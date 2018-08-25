@@ -54,6 +54,9 @@ jasypt:
 crosDomain: '*'
 
 phoibe:
+<<<<<<< HEAD
+  address: http://127.0.0.1:8090/phoibe/
+=======
   address: http://127.0.0.1:8890
   
 #上传文件路径
@@ -62,3 +65,4 @@ upload:
  
 
  
+>>>>>>> refs/remotes/origin/master
