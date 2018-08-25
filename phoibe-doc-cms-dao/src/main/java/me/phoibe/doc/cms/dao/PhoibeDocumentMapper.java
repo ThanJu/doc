@@ -1,5 +1,6 @@
 package me.phoibe.doc.cms.dao;
 
+import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
 import me.phoibe.doc.cms.domain.po.PhoibeDocumentExample;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,6 +24,10 @@ public interface PhoibeDocumentMapper {
     List<PhoibeDocument> selectByExampleWithBLOBs(PhoibeDocumentExample example);
 
     List<PhoibeDocument> selectByExample(PhoibeDocumentExample example);
+
+    List<PhoibeDocument> selectByPage(PageParam<PhoibeDocument> pageParam);
+
+    Long selectCountByPage(PageParam<PhoibeDocument> pageParam);
 
     PhoibeDocument selectByPrimaryKey(BigDecimal id);
 

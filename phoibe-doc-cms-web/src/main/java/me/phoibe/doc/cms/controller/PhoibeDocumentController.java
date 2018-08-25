@@ -1,15 +1,19 @@
 package me.phoibe.doc.cms.controller;
 
 import me.phoibe.doc.cms.dao.PhoibeDocumentMapper;
+import me.phoibe.doc.cms.domain.po.PageList;
+import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
 import me.phoibe.doc.cms.domain.po.PhoibeDocumentExample;
 import me.phoibe.doc.cms.entity.Code;
 import me.phoibe.doc.cms.entity.Result;
 import me.phoibe.doc.cms.service.PhoibeDocumentService;
 import me.phoibe.doc.cms.utils.JsonUtils;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,7 +31,7 @@ import java.util.List;
 public class PhoibeDocumentController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PhoibeDocumentController.class);
-    @Resource
+    @Autowired
     private PhoibeDocumentService phoibeDocumentService;
     @Resource
     private PhoibeDocumentMapper phoibeDocumentMapper;
@@ -66,26 +70,18 @@ public class PhoibeDocumentController {
         return JsonUtils.toJson(new Result<>(Code.SUCCESS, "ok"));
     }
 
-    @GetMapping("list")
-    public String saveDoucument(@PathVariable Integer pageNO, @PathVariable Integer pageSize, @RequestBody PhoibeDocument request) {
+    @GetMapping("list/{start}/{limit}")
+    public String saveDoucument(@PathVariable Integer start, @PathVariable Integer limit, PhoibeDocument param) {
 
-        LOGGER.info("pageNO:" + pageNO + ", pageSize:" + pageSize + ", request:" + JsonUtils.toJson(request));
+        PageParam<PhoibeDocument> pageParam = new PageParam<>();
+        pageParam.setStart(start);
+        pageParam.setLimit(limit);
+        pageParam.setParam(param);
 
-        PhoibeDocument phoibeDocument = new PhoibeDocument();
-        short arms = 1;
-
-        PhoibeDocumentExample phoibeDocumentExample = new PhoibeDocumentExample();
-
-        phoibeDocumentExample.setDistinct(true);
-        PhoibeDocumentExample.Criteria criteria1 = phoibeDocumentExample.createCriteria();
-        criteria1.andFormatEqualTo(request.getFormat());
-        criteria1.andNameLike(request.getName());
+        PageList<PhoibeDocument> pageList = phoibeDocumentService.fetchDocumentByPageList(pageParam);
 
 
-        List<PhoibeDocument> list = phoibeDocumentMapper.selectByExample(phoibeDocumentExample);
-
-
-        return JsonUtils.toJson(new Result<List<PhoibeDocument>>(Code.SUCCESS, list));
+        return JsonUtils.toJson(new Result<PageList<PhoibeDocument>>(Code.SUCCESS, pageList));
     }
 
     @PostMapping("count")

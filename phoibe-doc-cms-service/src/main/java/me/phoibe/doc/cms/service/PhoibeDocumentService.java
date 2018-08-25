@@ -1,6 +1,8 @@
 package me.phoibe.doc.cms.service;
 
+import me.phoibe.doc.cms.domain.po.PageList;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
+import me.phoibe.doc.cms.domain.po.PageParam;
 
 /**
  * @author pc
@@ -11,4 +13,6 @@ import me.phoibe.doc.cms.domain.po.PhoibeDocument;
 public interface PhoibeDocumentService {
 
     Integer save(PhoibeDocument phoibeDocument);
+
+    PageList<PhoibeDocument> fetchDocumentByPageList(PageParam<PhoibeDocument> pageParam);
 }

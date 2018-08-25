@@ -33,5 +33,9 @@
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.hynnet</groupId>
+            <artifactId>json-lib</artifactId>
+        </dependency>
     </dependencies>
 </project>
