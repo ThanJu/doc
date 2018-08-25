@@ -1,9 +1,9 @@
-package me.phoibe.doc.cms.domain.po;
+package me.phoibe.doc.cms.domain.dto;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class PhoibeDocument {
+public class DPhoibeDocument {
     private BigDecimal id;
 
     private String name;
@@ -20,11 +20,19 @@ public class PhoibeDocument {
 
     private Short combatType;
 
+    private String combatTypeDesc;
+
     private Short arms;
+
+    private String armsDesc;
 
     private Short status;
 
+    private String statusDesc;
+
     private Short auditStatus;
+
+    private String auditStatusDesc;
 
     private BigDecimal auditUserId;
 
@@ -50,9 +58,15 @@ public class PhoibeDocument {
 
     private Date stockTime;
 
-    private String stocker;
+    private Date auditTimeBegin;
+
+    private Date auditTimeEnd;
 
     private String userRealName;
+
+    public void settings(){
+
+    }
 
     public String getUserRealName() {
         return userRealName;
@@ -62,12 +76,52 @@ public class PhoibeDocument {
         this.userRealName = userRealName;
     }
 
-    public String getStocker() {
-        return stocker;
+    public String getCombatTypeDesc() {
+        return combatTypeDesc;
     }
 
-    public void setStocker(String stocker) {
-        this.stocker = stocker;
+    public void setCombatTypeDesc(String combatTypeDesc) {
+        this.combatTypeDesc = combatTypeDesc;
+    }
+
+    public String getArmsDesc() {
+        return armsDesc;
+    }
+
+    public void setArmsDesc(String armsDesc) {
+        this.armsDesc = armsDesc;
+    }
+
+    public String getStatusDesc() {
+        return statusDesc;
+    }
+
+    public void setStatusDesc(String statusDesc) {
+        this.statusDesc = statusDesc;
+    }
+
+    public String getAuditStatusDesc() {
+        return auditStatusDesc;
+    }
+
+    public void setAuditStatusDesc(String auditStatusDesc) {
+        this.auditStatusDesc = auditStatusDesc;
+    }
+
+    public Date getAuditTimeBegin() {
+        return auditTimeBegin;
+    }
+
+    public void setAuditTimeBegin(Date auditTimeBegin) {
+        this.auditTimeBegin = auditTimeBegin;
+    }
+
+    public Date getAuditTimeEnd() {
+        return auditTimeEnd;
+    }
+
+    public void setAuditTimeEnd(Date auditTimeEnd) {
+        this.auditTimeEnd = auditTimeEnd;
     }
 
     public Short getPagecount() {
@@ -119,6 +173,46 @@ public class PhoibeDocument {
     }
 
     private byte[] content;
+
+    private String userName;
+
+    private Short type;
+
+    private String realname;
+
+    private String nickname;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Short getType() {
+        return type;
+    }
+
+    public void setType(Short type) {
+        this.type = type;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public BigDecimal getId() {
         return id;

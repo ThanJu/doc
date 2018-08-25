@@ -9,6 +9,8 @@ public class PageList<T> {
     private Integer start;
     private Integer limit;
     private Long totalCount;
+    private Integer pageNumber;
+    private Integer pageCount;
     private List<T> dataList;
 
     public Integer getStart() {
@@ -28,11 +30,11 @@ public class PageList<T> {
     }
 
     public Integer getPageNumber(){
-        return (start / limit)+1;
+        return pageNumber;
     }
 
     public Integer getPageCount(){
-        return (int)(totalCount % limit.longValue())==0?(int)(totalCount / limit.longValue()):(int)(totalCount / limit.longValue())+1;
+        return pageCount;
     }
 
     public PageList<T> createPage(Integer start,Integer limit,Long totalCount,List<T> dataList){
@@ -40,6 +42,8 @@ public class PageList<T> {
         this.limit = limit;
         this.totalCount = totalCount;
         this.dataList = dataList;
+        this.pageNumber = (start / limit)+1;
+        this.pageCount = (int)(totalCount % limit.longValue())==0?(int)(totalCount / limit.longValue()):(int)(totalCount / limit.longValue())+1;
         return this;
     }
 }

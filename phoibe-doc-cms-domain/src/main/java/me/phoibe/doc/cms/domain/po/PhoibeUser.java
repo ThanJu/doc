@@ -15,6 +15,36 @@ public class PhoibeUser {
 
     private Date updateTime;
 
+    private String password;
+
+    private String realname;
+
+    private String nickname;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     public Long getId() {
         return id;
     }

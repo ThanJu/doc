@@ -19,6 +19,14 @@
     <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PAGECOUNT" jdbcType="DECIMAL" property="pagecount" />
+    <result column="HITCOUNT" jdbcType="DECIMAL" property="hitcount" />
+    <result column="RECORDER" jdbcType="DECIMAL" property="recorder" />
+    <result column="AUDIT_TIME" jdbcType="TIMESTAMP" property="auditTime" />
+    <result column="ISSTOCK" jdbcType="DECIMAL" property="isstock" />
+    <result column="STOCK_TIME" jdbcType="TIMESTAMP" property="stockTime" />
+    <result column="STOCKER" jdbcType="VARCHAR" property="stocker" />
+    <result column="USER_REAL_NAME" jdbcType="VARCHAR" property="userRealName" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="me.phoibe.doc.cms.domain.po.PhoibeDocument">
     <result column="CONTENT" jdbcType="BLOB" property="content" />
@@ -57,40 +65,40 @@
     <where>
       1=1
       <if test="param.name != null and param.name != ''">
-        and name LIKE '%'||#{param.name,jdbcType=VARCHAR}||'%'
+        and NAME LIKE '%'||#{param.name,jdbcType=VARCHAR}||'%'
       </if>
       <if test="param.userId != null and param.userId != ''">
-        and userId = #{param.userId,jdbcType=DECIMAL},
+        and USER_ID = #{param.userId,jdbcType=DECIMAL}
+      </if>
+      <if test="param.format != null and param.format != ''">
+        and FORMAT = #{param.format,jdbcType=VARCHAR}
+      </if>
+      <if test="param.userRealName != null and param.userRealName != ''">
+        and USER_REAL_NAME Like '%'||#{param.userRealName,jdbcType=VARCHAR}||'%'
       </if>
       <if test="param.score != null and param.score != ''">
-        and score = #{param.score,jdbcType=DECIMAL},
+        and SCORE = #{param.score,jdbcType=DECIMAL}
       </if>
-      <if test="param.combatType != null">
-        and combatType = #{param.combatType,jdbcType=DECIMAL},
+      <if test="param.combatType != null and param.arms != ''">
+        and COMBAT_TYPE = #{param.combatType,jdbcType=DECIMAL}
       </if>
-      <if test="param.arms != null">
-        and arms = #{param.arms,jdbcType=DECIMAL},
+      <if test="param.arms != null and param.arms != ''">
+        and ARMS = #{param.arms,jdbcType=DECIMAL}
       </if>
-      <if test="param.status != null">
-        and status = #{param.status,jdbcType=DECIMAL},
+      <if test="param.status != null and param.tag != ''">
+        and STATUS = #{param.status,jdbcType=DECIMAL}
       </if>
-      <if test="param.auditStatus != null">
-        and auditStatus = #{param.auditStatus,jdbcType=DECIMAL},
+      <if test="param.auditStatus != null and param.tag != ''">
+        and AUDIT_STATUS = #{param.auditStatus,jdbcType=DECIMAL}
       </if>
-      <if test="param.progress != null">
-        and progress = #{param.progress,jdbcType=DECIMAL},
+      <if test="param.tag != null and param.tag != ''">
+        and TAG LIKE '%'||#{param.tag,jdbcType=VARCHAR}||'%'
       </if>
-      <if test="param.tag != null">
-        and tag = #{param.tag,jdbcType=VARCHAR},
+      <if test="param.auditTimeBegin != null and param.auditTimeBegin != ''">
+        and AUDIT_TIME &gt;= #{param.auditTimeBegin,jdbcType=TIMESTAMP}
       </if>
-      <if test="param.description != null">
-        and description = #{param.description,jdbcType=VARCHAR},
-      </if>
-      <if test="param.createTime != null">
-        and createTime = #{param.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="param.updateTime != null">
-        and updateTime = #{param.updateTime,jdbcType=TIMESTAMP},
+      <if test="param.auditTimeEnd != null and param.auditTimeEnd != ''">
+        and AUDIT_TIME &lt;= #{param.auditTimeEnd,jdbcType=TIMESTAMP}
       </if>
     </where>
   </sql>
@@ -125,7 +133,7 @@
   </sql>
   <sql id="Base_Column_List">
     ID, NAME, FORMAT, USER_ID, SCORE, FILE_PATH, FILE_SIZE, COMBAT_TYPE, ARMS, STATUS, 
-    AUDIT_STATUS, AUDIT_USER_ID, PROGRESS, TAG, DESCRIPTION, CREATE_TIME, UPDATE_TIME
+    AUDIT_STATUS, AUDIT_USER_ID, PROGRESS, TAG, DESCRIPTION, CREATE_TIME, UPDATE_TIME,PAGECOUNT,HITCOUNT,RECORDER,AUDIT_TIME,ISSTOCK,STOCK_TIME,STOCKER,USER_REAL_NAME
   </sql>
   <sql id="Blob_Column_List">
     CONTENT
@@ -172,15 +180,27 @@
     ,rownum rno
     from PHOIBE_DOCUMENT
       <include refid="selectByPage_Condition_Sql"/>
-    ORDER BY CREATE_TIME
-    ) t WHERE t.rno BETWEEN #{start} and #{start}+#{limit}
+    ORDER BY ${orderBy} ${sort}
+    ) t WHERE t.rno BETWEEN #{start} and (#{start}+#{limit})
   </select>
 
-  <select id="selectCountByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultMap="BaseResultMap">
+  <select id="selectCountByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultType="long">
     select
     COUNT(*)
     from PHOIBE_DOCUMENT
     <include refid="selectByPage_Condition_Sql"/>
+  </select>
+
+  <select id="selectDocumentUser" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultType="me.phoibe.doc.cms.domain.dto.DPhoibeDocument">
+    SELECT t.* FROM (
+    select d.ID, NAME, FORMAT, USER_ID userId, SCORE,
+    FILE_PATH filePath, FILE_SIZE fileSize, COMBAT_TYPE combatType, ARMS, d.STATUS, AUDIT_STATUS auditStatus, AUDIT_USER_ID auditUserId,
+    PROGRESS, TAG, DESCRIPTION, d.CREATE_TIME createTime, d.UPDATE_TIME updateTime,PAGECOUNT,AUDIT_TIME auditTime,ISSTOCK,STOCK_TIME stockTime,STOCKER,USER_NAME userName, TYPE,
+    REALNAME,NICKNAME ,rownum rno
+    from PHOIBE_DOCUMENT d JOIN PHOIBE_USER u ON d.USER_ID = u.ID
+
+    ORDER BY d.CREATE_TIME DESC
+    ) t WHERE t.rno BETWEEN #{start} and (#{start}+#{limit})
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
@@ -207,7 +227,7 @@
       FILE_SIZE, COMBAT_TYPE, ARMS, 
       STATUS, AUDIT_STATUS, AUDIT_USER_ID, 
       PROGRESS, TAG, DESCRIPTION, 
-      CREATE_TIME, UPDATE_TIME, CONTENT
+      CREATE_TIME, UPDATE_TIME, CONTENT,PAGECOUNT,HITCOUNT,RECORDER,AUDIT_TIME,ISSTOCK,STOCK_TIME,STOCKER,USER_REAL_NAME
       )
     values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{format,jdbcType=VARCHAR}, 
       #{userId,jdbcType=DECIMAL}, #{score,jdbcType=DECIMAL}, #{filePath,jdbcType=VARCHAR}, 
@@ -215,6 +235,8 @@
       #{status,jdbcType=DECIMAL}, #{auditStatus,jdbcType=DECIMAL}, #{auditUserId,jdbcType=DECIMAL}, 
       #{progress,jdbcType=DECIMAL}, #{tag,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=BLOB}
+      ,#{pagecount,jdbcType=DECIMAL},#{hitcount,jdbcType=DECIMAL},#{recorder,jdbcType=DECIMAL},#{auditTime,jdbcType=TIMESTAMP}
+      ,#{isstock,jdbcType=DECIMAL},#{stockTime,jdbcType=TIMESTAMP},#{stocker,jdbcType=VARCHAR},#{userRealName,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
@@ -274,6 +296,29 @@
       <if test="content != null">
         CONTENT,
       </if>
+      <if test="pagecount != null">
+        PAGECOUNT,
+      </if>
+      <if test="hitcount != null">
+        HITCOUNT,
+      </if>
+      <if test="recorder != null">
+        RECORDER,
+      </if><if test="auditTime != null">
+      AUDIT_TIME,
+    </if>
+      <if test="isstock != null">
+        ISSTOCK,
+      </if>
+      <if test="stockTime != null">
+        STOCK_TIME,
+      </if>
+      <if test="stocker != null">
+        STOCKER,
+      </if>
+      <if test="userRealName != null">
+        USER_REAL_NAME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -329,6 +374,29 @@
       </if>
       <if test="content != null">
         #{content,jdbcType=BLOB},
+      </if>
+      <if test="pagecount != null">
+        #{pagecount,jdbcType=DECIMAL},
+      </if>
+      <if test="hitcount != null">
+        #{hitcount,jdbcType=DECIMAL},
+      </if>
+      <if test="recorder != null">
+        #{recorder,jdbcType=DECIMAL},
+      </if><if test="auditTime != null">
+      #{auditTime,jdbcType=TIMESTAMP},
+    </if>
+      <if test="isstock != null">
+        #{isstock,jdbcType=DECIMAL},
+      </if>
+      <if test="stockTime != null">
+        #{stockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stocker != null">
+        #{stocker,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null">
+        #{userRealName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>

@@ -9,6 +9,9 @@
     <result column="STATUS" jdbcType="DECIMAL" property="status" />
     <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
     <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="REALNAME" jdbcType="VARCHAR" property="realname" />
+    <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    ID, USER_NAME, TYPE, STATUS, CREATE_TIME, UPDATE_TIME
+    ID, USER_NAME, TYPE, STATUS, CREATE_TIME, UPDATE_TIME,PASSWORD,REALNAME,NICKNAME
   </sql>
   <select id="selectByExample" parameterType="me.phoibe.doc.cms.domain.po.PhoibeUserExample" resultMap="BaseResultMap">
     select
@@ -104,10 +107,11 @@
   </delete>
   <insert id="insert" parameterType="me.phoibe.doc.cms.domain.po.PhoibeUser">
     insert into PHOIBE_USER (ID, USER_NAME, TYPE, 
-      STATUS, CREATE_TIME, UPDATE_TIME
+      STATUS, CREATE_TIME, UPDATE_TIME,PASSWORD,REALNAME,NICKNAME
       )
     values (#{id,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR}, #{type,jdbcType=DECIMAL}, 
       #{status,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      , #{password,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeUser">
@@ -131,6 +135,15 @@
       <if test="updateTime != null">
         UPDATE_TIME,
       </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="realname != null">
+        REALNAME,
+      </if>
+      <if test="nickname != null">
+        NICKNAME,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -150,6 +163,15 @@
       </if>
       <if test="updateTime != null">
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,6 +202,15 @@
       <if test="record.updateTime != null">
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.password != null">
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null">
+        REALNAME = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        NICKNAME = #{record.nickname,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,7 +223,10 @@
       TYPE = #{record.type,jdbcType=DECIMAL},
       STATUS = #{record.status,jdbcType=DECIMAL},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+    REALNAME = #{record.realname,jdbcType=VARCHAR},
+    NICKNAME = #{record.nickname,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -215,6 +249,15 @@
       <if test="updateTime != null">
         UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        REALNAME = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
@@ -224,7 +267,10 @@
       TYPE = #{type,jdbcType=DECIMAL},
       STATUS = #{status,jdbcType=DECIMAL},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+    REALNAME = #{realname,jdbcType=VARCHAR},
+    NICKNAME = #{nickname,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=DECIMAL}
   </update>
 </mapper>

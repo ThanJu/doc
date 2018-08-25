@@ -1,11 +1,13 @@
 package me.phoibe.doc.cms.service.impl;
 
 import me.phoibe.doc.cms.dao.PhoibeDocumentMapper;
+import me.phoibe.doc.cms.domain.dto.DPhoibeDocument;
 import me.phoibe.doc.cms.domain.po.PageList;
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.service.PhoibeDocumentService;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
 import net.sf.json.JSONObject;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +32,20 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
     }
 
     @Override
-    public PageList<PhoibeDocument> fetchDocumentByPageList(PageParam<PhoibeDocument> pageParam) {
+    public PageList<DPhoibeDocument> fetchDocumentByPageList(PageParam<DPhoibeDocument> pageParam) {
+        List<DPhoibeDocument> dlist = new ArrayList<>();
         List<PhoibeDocument> list = phoibeDocumentMapper.selectByPage(pageParam);
-        return new PageList<PhoibeDocument>().createPage(pageParam.getStart(),pageParam.getLimit(),phoibeDocumentMapper.selectCountByPage(pageParam),list);
+        for (PhoibeDocument model:list){
+            DPhoibeDocument dmodel = new DPhoibeDocument();
+            BeanUtils.copyProperties(model,dmodel);
+            dmodel.settings();
+            dlist.add(dmodel);
+        }
+        return new PageList<DPhoibeDocument>().createPage(pageParam.getStart(),pageParam.getLimit(),phoibeDocumentMapper.selectCountByPage(pageParam),dlist);
+    }
+
+    @Override
+    public List<DPhoibeDocument> fetchDocumentUserList(PageParam<DPhoibeDocument> pageParam) {
+        return phoibeDocumentMapper.selectDocumentUser(pageParam);
     }
 }

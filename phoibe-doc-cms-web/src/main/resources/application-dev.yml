@@ -39,6 +39,8 @@ server:
 mybatis:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   typeAliasesPackage: com.apus.balance.domain
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 jasypt:
   encryptor:

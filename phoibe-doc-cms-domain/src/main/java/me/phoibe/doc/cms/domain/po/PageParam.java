@@ -6,7 +6,25 @@ package me.phoibe.doc.cms.domain.po;
 public class PageParam<T> {
     private Integer start;
     private Integer limit;
+    private String orderBy;
+    private String sort;
     private T param;
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
+    }
 
     public Integer getStart() {
         return start;

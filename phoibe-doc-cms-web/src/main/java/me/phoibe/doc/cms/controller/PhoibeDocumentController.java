@@ -1,6 +1,7 @@
 package me.phoibe.doc.cms.controller;
 
 import me.phoibe.doc.cms.dao.PhoibeDocumentMapper;
+import me.phoibe.doc.cms.domain.dto.DPhoibeDocument;
 import me.phoibe.doc.cms.domain.po.PageList;
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
@@ -10,6 +11,7 @@ import me.phoibe.doc.cms.entity.Result;
 import me.phoibe.doc.cms.service.PhoibeDocumentService;
 import me.phoibe.doc.cms.utils.JsonUtils;
 import net.sf.json.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -71,17 +73,41 @@ public class PhoibeDocumentController {
     }
 
     @GetMapping("list/{start}/{limit}")
-    public String saveDoucument(@PathVariable Integer start, @PathVariable Integer limit, PhoibeDocument param) {
+    public String listDoucument(@PathVariable Integer start, @PathVariable Integer limit,@RequestParam(required = false) String f, @ModelAttribute DPhoibeDocument param) {
+        String orderBy = "CREATE_TIME";
+        String sort = "DESC";
 
-        PageParam<PhoibeDocument> pageParam = new PageParam<>();
+        if("hot".equals(f)){
+            orderBy = "HITCOUNT";
+        }else if("handpick".equals(f)){
+            orderBy = "RECORDER";
+        }else{
+            orderBy = "AUDIT_TIME";
+        }
+        PageParam<DPhoibeDocument> pageParam = new PageParam<>();
         pageParam.setStart(start);
         pageParam.setLimit(limit);
-        pageParam.setParam(param);
+        pageParam.setParam(param==null?new DPhoibeDocument():param);
+        pageParam.setOrderBy(orderBy);
+        pageParam.setSort(sort);
 
-        PageList<PhoibeDocument> pageList = phoibeDocumentService.fetchDocumentByPageList(pageParam);
+        PageList<DPhoibeDocument> pageList = phoibeDocumentService.fetchDocumentByPageList(pageParam);
 
 
-        return JsonUtils.toJson(new Result<PageList<PhoibeDocument>>(Code.SUCCESS, pageList));
+        return JsonUtils.toJson(new Result<PageList<DPhoibeDocument>>(Code.SUCCESS, pageList));
+    }
+
+    @GetMapping("list/user/{start}/{limit}")
+    public String listDoucumentUser(@PathVariable Integer start, @PathVariable Integer limit) {
+
+        PageParam<DPhoibeDocument> pageParam = new PageParam<>();
+        pageParam.setStart(start);
+        pageParam.setLimit(limit);
+
+        List<DPhoibeDocument> list = phoibeDocumentService.fetchDocumentUserList(pageParam);
+
+
+        return JsonUtils.toJson(new Result<List<DPhoibeDocument>>(Code.SUCCESS, list));
     }
 
     @PostMapping("count")
