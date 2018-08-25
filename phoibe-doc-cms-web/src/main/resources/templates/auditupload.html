@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>审核上传</title>
+    <script src="js/laydate/laydate.js"></script>
+    <link rel="stylesheet" href="css/management.css"/>
+</head>
+<body>
+    <div id="auditupload">
+          <div class="main box_border">
+            <div class="container box_border">
+                <div class="box_border">
+                 <div class="bg_whiteSD box_border top inputblock">
+                    <div class="plateHeader i-audit"></div> 
+                     <div class="sidebar">
+
+	                <div class="widget widget-tab">
+		<input type="radio" name="widget-tab" id="new" checked="checked" style="display:none;"/>
+		<input type="radio" name="widget-tab" id="hot" style="display:none;"/>
+		<div class="widget-title inline-ul">
+			<ul>
+				<li class="new">
+					<label for="new">已审核</label>
+				</li>
+
+				<li class="hot">
+					<label for="hot">待审核</label>
+				</li>
+			</ul>
+		</div>
+		<div class="widget-box">
+            <ul class="new-list">
+				<li>文档名称:<input type="text" />&nbsp;&nbsp;上传人:<input type="text" />&nbsp;&nbsp;审核时间:<input type="text" id="audit-startdate"/>-<input id="audit-enddate" type="text" />&nbsp;&nbsp;
+                        
+                        <span class="btnSearch"></span></li>
+			</ul>
+			<ul class="hot-list">
+				<li>文档名称:<input type="text" />&nbsp;&nbsp;上传人:<input type="text" />&nbsp;&nbsp;审核时间:<input  id="wait-startdate" type="text" />-<input id="wait-enddate" type="text" />&nbsp;&nbsp;
+                        
+                        <span class="btnSearch"></span></li>
+			</ul>
+		</div>
+	</div>
+</div>
+               </div>
+                <br />
+               <div class="content box_border inputblock top bg_whiteSD">
+                         <div class="box_border">
+                           
+                                <div class="aduit"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div class="reback"></div>              
+                           <br />  <br />
+                             <table class="tblist" border="0">
+                                 <tr><th style="width:50px"></th><th>文档名称</th><th>大小</th><th>上传人</th><th>文档标签</th><th>审批时间</th><th>文档状态</th><th>审批人</th></tr>
+                                 <tr><td><input type="radio" name="chksel"/></td><td>文档名称</td><td>大小</td><td>上传人</td><td>文档标签</td><td>审批时间</td><td class="f-blue">审核通过</td><td>审批人</td></tr>
+                                 
+                                 <tr><td><input type="radio" name="chksel"/></td><td>文档名称</td><td>大小</td><td>上传人</td><td>文档标签</td><td>审批时间</td><td class="f-red">审核未通过</td><td>审批人</td></tr>
+                             </table>
+                         </div>
+                  
+                </div>
+            </div> 
+             
+           </div>
+            
+        </div>
+    </div>
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/management.js"></script>
+<script>
+    //lay('#version').html('-v'+ laydate.v);
+
+    laydate.render({
+      elem: '#audit-startdate' 
+    });
+    laydate.render({
+        elem: '#audit-enddate'
+    });
+
+    laydate.render({
+        elem: '#wait-startdate'
+    });
+    laydate.render({
+        elem: '#wait-enddate'
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<assembly xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+	<id>assembly</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>true</includeBaseDirectory>
+	<!--根目录用项目名称作为目录名称-->
+	<baseDirectory>${artifactId}</baseDirectory>
+	<fileSets>
+		<fileSet>
+			<!--打包执行脚本-->
+			<directory>src/bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<lineEnding>unix</lineEnding>
+		</fileSet>
+	</fileSets>
+	<files>
+		<file>
+			<!--根据不同环境打包环境变量-->
+			<source>src/env/${env}.sh</source>
+			<destName>env.sh</destName>
+			<outputDirectory>bin</outputDirectory>
+		</file>
+		<file>
+			<!--作为环境(测试、生产等)提醒-->
+			<source>src/env/DO_NOT_DELETE_IT</source>
+			<destName>current_env_is_${env}</destName>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</file>
+		<file>
+			<!--打包springboot的可执行jar-->
+			<source>target/${project.build.finalName}.jar</source>
+			<destName>app.jar</destName>
+			<outputDirectory>${file.separator}</outputDirectory>
+		</file>
+	</files>
+</assembly>

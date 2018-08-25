@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 控制台 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d [%thread] %-5level %logger[%M:%L] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <!-- 文件 -->
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>
+                ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}.log
+            </file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>
+                    ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}-%d{yyyy-MM-dd}.log
+                </fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>${apus.log.max.history:-10}</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d [%thread] %-5level %logger[%M:%L] - %msg%n</pattern>
+            </layout>
+        </appender>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- 测试环境 -->
+    <springProfile name="test">
+        <!-- 文件 -->
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>
+                ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}.log
+            </file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>
+                    ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}-%d{yyyy-MM-dd}.log
+                </fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>${apus.log.max.history:-10}</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d [%thread] %-5level %logger[%M:%L] - %msg%n</pattern>
+            </layout>
+        </appender>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- 预发环境 -->
+    <springProfile name="pre">
+        <!-- 文件 -->
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>
+                ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}.log
+            </file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>
+                    ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}-%d{yyyy-MM-dd}.log
+                </fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>${apus.log.max.history:-10}</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d [%thread] %-5level %logger[%M:%L] - %msg%n</pattern>
+            </layout>
+        </appender>
+        <root level="info">
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="prod">
+        <!-- 文件 -->
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>
+                ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}.log
+            </file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>
+                    ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}-%d{yyyy-MM-dd}.log
+                </fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>${apus.log.max.history:-10}</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d [%thread] %-5level %logger[%M:%L] - %msg%n</pattern>
+            </layout>
+        </appender>
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+    <!-- 验证环境 -->
+    <springProfile name="check">
+        <!-- 文件 -->
+        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <!-- 文件路径 -->
+            <file>
+                ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}.log
+            </file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                <!-- 文件名称 -->
+                <fileNamePattern>
+                    ${apus.log.dir:-/data/logs/java}/${spring.application.name:-springboot}/${spring.application.instance.name:-deft}/${spring.application.name:-springboot}-%d{yyyy-MM-dd}.log
+                </fileNamePattern>
+                <!-- 文件最大保存历史数量 -->
+                <MaxHistory>${apus.log.max.history:-10}</MaxHistory>
+            </rollingPolicy>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d [%thread] %-5level %logger[%M:%L] - %msg%n</pattern>
+            </layout>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+        </root>
+    </springProfile>
+
+</configuration>

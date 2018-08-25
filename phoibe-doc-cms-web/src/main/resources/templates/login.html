@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>登录页面</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link th:href="@{/css/jquery-ui-themes.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/axure_rp_page.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" type="text/css" rel="stylesheet"/>
+    <link th:href="@{/css/login/styles.css}" type="text/css" rel="stylesheet"/>
+    <script th:src="@{/js/jquery-1.7.1.min.js}"></script>
+    <script th:src="@{/js/jquery-ui-1.8.10.custom.min.js}"></script>
+    <script th:src="@{/js/prototypePre.js}"></script>
+    <script th:src="@{/js/document.js}"></script>
+    <script th:src="@{/js/prototypePost.js}"></script>
+    <script th:src="@{/js/data.js}"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (图片) -->
+      <div id="u0" class="ax_default image1">
+        <img id="u0_img" class="img " th:src="@{/images/login/u0.jpg}"/>
+        <!-- Unnamed () -->
+        <div id="u1" class="text" style="display:none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u2" class="ax_default box_1">
+        <div id="u2_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u3" class="text" style="display:none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u4" class="ax_default label">
+        <div id="u4_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u5" class="text">
+          <p><span>文档管理管理系统</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u6" class="ax_default box_1">
+        <div id="u6_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u7" class="text" style="display:none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u8" class="ax_default box_1">
+        <div id="u8_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u9" class="text" style="display:none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u10" class="ax_default label">
+        <div id="u10_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u11" class="text">
+          <p><span>用户名：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u12" class="ax_default label">
+        <div id="u12_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u13" class="text">
+          <p><span>密&nbsp;&nbsp; 码：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (图片) -->
+      <div id="u14" class="ax_default image1">
+        <img id="u14_img" class="img " th:src="@{/images/login/u14.png}"/>
+        <!-- Unnamed () -->
+        <div id="u15" class="text" style="display:none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <form th:action="@{/phoibe/userlogin}" method="post">
+        <!-- Unnamed (矩形) -->
+        <div id="u16" class="ax_default label">
+          <div id="u16_div" class=""></div>
+          <!-- Unnamed () -->
+          <div id="u17" class="text">
+            <p><input type="submit"><span>登&nbsp; 录</span></input></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (文本框) -->
+        <div id="u18" class="ax_default text_field" title="请输入用户名">
+          <input id="username" name="username" type="text" value="" title="请输入用户名"/>
+        </div>
+
+        <!-- Unnamed (文本框) -->
+        <div id="u19" class="ax_default text_field" title="请输入密码">
+          <input id="password" name="password" type="password" value="" title="请输入密码"/>
+        </div>
+
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>文档管理</title>
+    <link rel="stylesheet" th:href="@{/css/management.css}"/>
+</head>
+<body onload=" ">
+<div class="main box_border w1920">
+    <div class="header">
+        <div class="fl headerTitle">文档管理系统</div>
+        <div class="headerExit iconLeft fr">退出</div>
+        <div class="headerUsers fr">
+            <span class="userName iconLeft iconUser ">李明</span>
+            <span class="userIdentity">参谋</span>
+        </div>
+    </div>
+    <div class="navLeft box_border" id="navleft"  >
+        <div>
+            <ul>
+                <li class="navList box_border active" th:data-toggle="@{/index-m.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconIndex">首页
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" th:data-toggle="@{/docmgr.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconManagement">文档管理
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" th:data-toggle="@{/percenter.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconUser">个人中心
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" th:data-toggle="@{/auditupload.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconUpload">审核上传
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" th:data-toggle="@{/stockmgr.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconJoin">入库管理
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" th:data-toggle="@{/tagmgr.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconLabel">标签管理
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" th:data-toggle="@{/sysmgr.html}">
+                    <div class="box_border">
+                    <span class="iconLeft iconSystem">系统管理
+                    </span>
+                    </div>
+                </li>
+            </ul>
+            <div class="dateBox">
+                <div id="dateStr">2018-08-19</div>
+                <div>今天是<span id="weekStr">周三</span></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container box_border">
+      <iframe id="frm-main" name="frm-main" th:src="@{/index-m.html}" style="width:100%;overflow: scroll" scrolling="no"  frameborder="0" onload="iframeLoad()"></iframe>
+    </div>
+
+</div>
+<script th:src="@{/js/jquery-2.1.0.min.js}"></script>
+<script th:src="@{/js/management.js}"></script>
+    <script>
+
+function iframeLoad()
+{
+    document.getElementById("frm-main").height=0;
+    document.getElementById("frm-main").height=document.getElementById("frm-main").contentWindow.document.body.scrollHeight+100;
+}
+
+        window.onload = function () {
+            iframeLoad()
+
+        }
+    </script>
+
+    <script language="JavaScript" >
+        $(function(){
+            var datestr = setDefaultDate()
+            $("#dateStr").text(datestr);
+            console.log(datestr)
+            var mydate = new Date();
+            var today = new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六');
+            var week = today[mydate.getDay()]
+            console.log(week)
+            $("#weekStr").text(week);
+        });
+
+
+        function setDefaultDate() {
+            var myDate = new Date();
+            var month = myDate.getMonth() + 1;
+            var day = myDate.getDate();
+            month = (month.toString().length == 1) ? ("0" + month) : month;
+            day = (day.toString().length == 1) ? ("0" + day) : day;
+
+            var result = myDate.getFullYear() + '-' + month + '-' + day; //当前日期
+
+            return result;
+        }
+
+    </script>
+</body>
+</html>

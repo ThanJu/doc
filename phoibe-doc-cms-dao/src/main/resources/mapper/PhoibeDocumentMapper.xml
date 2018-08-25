@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.phoibe.doc.cms.dao.PhoibeDocumentMapper">
+  <resultMap id="BaseResultMap" type="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="FORMAT" jdbcType="VARCHAR" property="format" />
+    <result column="USER_ID" jdbcType="DECIMAL" property="userId" />
+    <result column="SCORE" jdbcType="DECIMAL" property="score" />
+    <result column="FILE_PATH" jdbcType="VARCHAR" property="filePath" />
+    <result column="FILE_SIZE" jdbcType="DECIMAL" property="fileSize" />
+    <result column="COMBAT_TYPE" jdbcType="DECIMAL" property="combatType" />
+    <result column="ARMS" jdbcType="DECIMAL" property="arms" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+    <result column="AUDIT_STATUS" jdbcType="DECIMAL" property="auditStatus" />
+    <result column="AUDIT_USER_ID" jdbcType="DECIMAL" property="auditUserId" />
+    <result column="PROGRESS" jdbcType="DECIMAL" property="progress" />
+    <result column="TAG" jdbcType="VARCHAR" property="tag" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UPDATE_TIME" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    <result column="CONTENT" jdbcType="BLOB" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, NAME, FORMAT, USER_ID, SCORE, FILE_PATH, FILE_SIZE, COMBAT_TYPE, ARMS, STATUS, 
+    AUDIT_STATUS, AUDIT_USER_ID, PROGRESS, TAG, DESCRIPTION, CREATE_TIME, UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List">
+    CONTENT
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocumentExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from PHOIBE_DOCUMENT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocumentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from PHOIBE_DOCUMENT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+
+    <if test="startRow != null and pageSize != null and pageSize != 0"> limit #{startRow},#{pageSize}</if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from PHOIBE_DOCUMENT
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from PHOIBE_DOCUMENT
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByExample" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocumentExample">
+    delete from PHOIBE_DOCUMENT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    insert into PHOIBE_DOCUMENT (ID, NAME, FORMAT, 
+      USER_ID, SCORE, FILE_PATH, 
+      FILE_SIZE, COMBAT_TYPE, ARMS, 
+      STATUS, AUDIT_STATUS, AUDIT_USER_ID, 
+      PROGRESS, TAG, DESCRIPTION, 
+      CREATE_TIME, UPDATE_TIME, CONTENT
+      )
+    values (#{id,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{format,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=DECIMAL}, #{score,jdbcType=DECIMAL}, #{filePath,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=DECIMAL}, #{combatType,jdbcType=DECIMAL}, #{arms,jdbcType=DECIMAL}, 
+      #{status,jdbcType=DECIMAL}, #{auditStatus,jdbcType=DECIMAL}, #{auditUserId,jdbcType=DECIMAL}, 
+      #{progress,jdbcType=DECIMAL}, #{tag,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=BLOB}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    insert into PHOIBE_DOCUMENT
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        NAME,
+      </if>
+      <if test="format != null">
+        FORMAT,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+      <if test="score != null">
+        SCORE,
+      </if>
+      <if test="filePath != null">
+        FILE_PATH,
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE,
+      </if>
+      <if test="combatType != null">
+        COMBAT_TYPE,
+      </if>
+      <if test="arms != null">
+        ARMS,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="auditStatus != null">
+        AUDIT_STATUS,
+      </if>
+      <if test="auditUserId != null">
+        AUDIT_USER_ID,
+      </if>
+      <if test="progress != null">
+        PROGRESS,
+      </if>
+      <if test="tag != null">
+        TAG,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME,
+      </if>
+      <if test="content != null">
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null">
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="combatType != null">
+        #{combatType,jdbcType=DECIMAL},
+      </if>
+      <if test="arms != null">
+        #{arms,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditUserId != null">
+        #{auditUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="progress != null">
+        #{progress,jdbcType=DECIMAL},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocumentExample" resultType="java.lang.Long">
+    select count(*) from PHOIBE_DOCUMENT
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update PHOIBE_DOCUMENT
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=DECIMAL},
+      </if>
+      <if test="record.name != null">
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.format != null">
+        FORMAT = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        USER_ID = #{record.userId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.score != null">
+        SCORE = #{record.score,jdbcType=DECIMAL},
+      </if>
+      <if test="record.filePath != null">
+        FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileSize != null">
+        FILE_SIZE = #{record.fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="record.combatType != null">
+        COMBAT_TYPE = #{record.combatType,jdbcType=DECIMAL},
+      </if>
+      <if test="record.arms != null">
+        ARMS = #{record.arms,jdbcType=DECIMAL},
+      </if>
+      <if test="record.status != null">
+        STATUS = #{record.status,jdbcType=DECIMAL},
+      </if>
+      <if test="record.auditStatus != null">
+        AUDIT_STATUS = #{record.auditStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.auditUserId != null">
+        AUDIT_USER_ID = #{record.auditUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="record.progress != null">
+        PROGRESS = #{record.progress,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tag != null">
+        TAG = #{record.tag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.content != null">
+        CONTENT = #{record.content,jdbcType=BLOB},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update PHOIBE_DOCUMENT
+    set ID = #{record.id,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      FORMAT = #{record.format,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=DECIMAL},
+      SCORE = #{record.score,jdbcType=DECIMAL},
+      FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      FILE_SIZE = #{record.fileSize,jdbcType=DECIMAL},
+      COMBAT_TYPE = #{record.combatType,jdbcType=DECIMAL},
+      ARMS = #{record.arms,jdbcType=DECIMAL},
+      STATUS = #{record.status,jdbcType=DECIMAL},
+      AUDIT_STATUS = #{record.auditStatus,jdbcType=DECIMAL},
+      AUDIT_USER_ID = #{record.auditUserId,jdbcType=DECIMAL},
+      PROGRESS = #{record.progress,jdbcType=DECIMAL},
+      TAG = #{record.tag,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      CONTENT = #{record.content,jdbcType=BLOB}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update PHOIBE_DOCUMENT
+    set ID = #{record.id,jdbcType=DECIMAL},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      FORMAT = #{record.format,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=DECIMAL},
+      SCORE = #{record.score,jdbcType=DECIMAL},
+      FILE_PATH = #{record.filePath,jdbcType=VARCHAR},
+      FILE_SIZE = #{record.fileSize,jdbcType=DECIMAL},
+      COMBAT_TYPE = #{record.combatType,jdbcType=DECIMAL},
+      ARMS = #{record.arms,jdbcType=DECIMAL},
+      STATUS = #{record.status,jdbcType=DECIMAL},
+      AUDIT_STATUS = #{record.auditStatus,jdbcType=DECIMAL},
+      AUDIT_USER_ID = #{record.auditUserId,jdbcType=DECIMAL},
+      PROGRESS = #{record.progress,jdbcType=DECIMAL},
+      TAG = #{record.tag,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    update PHOIBE_DOCUMENT
+    <set>
+      <if test="name != null">
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null">
+        FORMAT = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null">
+        SCORE = #{score,jdbcType=DECIMAL},
+      </if>
+      <if test="filePath != null">
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      </if>
+      <if test="combatType != null">
+        COMBAT_TYPE = #{combatType,jdbcType=DECIMAL},
+      </if>
+      <if test="arms != null">
+        ARMS = #{arms,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+      <if test="auditStatus != null">
+        AUDIT_STATUS = #{auditStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditUserId != null">
+        AUDIT_USER_ID = #{auditUserId,jdbcType=DECIMAL},
+      </if>
+      <if test="progress != null">
+        PROGRESS = #{progress,jdbcType=DECIMAL},
+      </if>
+      <if test="tag != null">
+        TAG = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        CONTENT = #{content,jdbcType=BLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    update PHOIBE_DOCUMENT
+    set NAME = #{name,jdbcType=VARCHAR},
+      FORMAT = #{format,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      SCORE = #{score,jdbcType=DECIMAL},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      COMBAT_TYPE = #{combatType,jdbcType=DECIMAL},
+      ARMS = #{arms,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL},
+      AUDIT_STATUS = #{auditStatus,jdbcType=DECIMAL},
+      AUDIT_USER_ID = #{auditUserId,jdbcType=DECIMAL},
+      PROGRESS = #{progress,jdbcType=DECIMAL},
+      TAG = #{tag,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=BLOB}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+    update PHOIBE_DOCUMENT
+    set NAME = #{name,jdbcType=VARCHAR},
+      FORMAT = #{format,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=DECIMAL},
+      SCORE = #{score,jdbcType=DECIMAL},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      FILE_SIZE = #{fileSize,jdbcType=DECIMAL},
+      COMBAT_TYPE = #{combatType,jdbcType=DECIMAL},
+      ARMS = #{arms,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=DECIMAL},
+      AUDIT_STATUS = #{auditStatus,jdbcType=DECIMAL},
+      AUDIT_USER_ID = #{auditUserId,jdbcType=DECIMAL},
+      PROGRESS = #{progress,jdbcType=DECIMAL},
+      TAG = #{tag,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>
