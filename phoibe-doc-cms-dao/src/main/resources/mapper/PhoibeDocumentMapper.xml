@@ -56,41 +56,41 @@
   <sql id="selectByPage_Condition_Sql">
     <where>
       1=1
-      <if test="name != null and name != ''">
-        and name LIKE '%'||#{name,jdbcType=VARCHAR}||'%'
+      <if test="param.name != null and param.name != ''">
+        and name LIKE '%'||#{param.name,jdbcType=VARCHAR}||'%'
       </if>
-      <if test="userId != null and userId != ''">
-        and userId = #{userId,jdbcType=DECIMAL},
+      <if test="param.userId != null and param.userId != ''">
+        and userId = #{param.userId,jdbcType=DECIMAL},
       </if>
-      <if test="score != null and score != ''">
-        and score = #{score,jdbcType=DECIMAL},
+      <if test="param.score != null and param.score != ''">
+        and score = #{param.score,jdbcType=DECIMAL},
       </if>
-      <if test="combatType != null">
-        and combatType = #{combatType,jdbcType=DECIMAL},
+      <if test="param.combatType != null">
+        and combatType = #{param.combatType,jdbcType=DECIMAL},
       </if>
-      <if test="arms != null">
-        and arms = #{arms,jdbcType=DECIMAL},
+      <if test="param.arms != null">
+        and arms = #{param.arms,jdbcType=DECIMAL},
       </if>
-      <if test="status != null">
-        and status = #{status,jdbcType=DECIMAL},
+      <if test="param.status != null">
+        and status = #{param.status,jdbcType=DECIMAL},
       </if>
-      <if test="auditStatus != null">
-        and auditStatus = #{auditStatus,jdbcType=DECIMAL},
+      <if test="param.auditStatus != null">
+        and auditStatus = #{param.auditStatus,jdbcType=DECIMAL},
       </if>
-      <if test="progress != null">
-        and progress = #{progress,jdbcType=DECIMAL},
+      <if test="param.progress != null">
+        and progress = #{param.progress,jdbcType=DECIMAL},
       </if>
-      <if test="tag != null">
-        and tag = #{tag,jdbcType=VARCHAR},
+      <if test="param.tag != null">
+        and tag = #{param.tag,jdbcType=VARCHAR},
       </if>
-      <if test="description != null">
-        and description = #{description,jdbcType=VARCHAR},
+      <if test="param.description != null">
+        and description = #{param.description,jdbcType=VARCHAR},
       </if>
-      <if test="createTime != null">
-        and createTime = #{createTime,jdbcType=TIMESTAMP},
+      <if test="param.createTime != null">
+        and createTime = #{param.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        and updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="param.updateTime != null">
+        and updateTime = #{param.updateTime,jdbcType=TIMESTAMP},
       </if>
     </where>
   </sql>
@@ -172,8 +172,8 @@
     ,rownum rno
     from PHOIBE_DOCUMENT
       <include refid="selectByPage_Condition_Sql"/>
-    ORDER BY create createTime
-    ) t WHERE t.rno BETWEEN #{start},#{start}+#{limit}
+    ORDER BY CREATE_TIME
+    ) t WHERE t.rno BETWEEN #{start} and #{start}+#{limit}
   </select>
 
   <select id="selectCountByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultMap="BaseResultMap">
