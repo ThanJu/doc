@@ -175,11 +175,6 @@ public class PhoibeDocumentController {
 			String arms = request.getParameter("arms");
 			String description = request.getParameter("description");
 
-			File path = new File(ResourceUtils.getURL("classpath:").getPath());
-
-			// F:\Java_WorkSpace\gitdoc\phoibe-doc-cms-web\target\classes/satic/docword/
-			
-
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			MultipartFile file = multipartRequest.getFile("file");
 			Map<String, Object> map = uploadFile(file, filepath);
