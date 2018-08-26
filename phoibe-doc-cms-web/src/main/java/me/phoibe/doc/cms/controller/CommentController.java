@@ -12,19 +12,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by carrey on 18-8-26.
  */
-@Controller
-@RequestMapping("phoibe/coment")
+@RestController
+@RequestMapping("phoibe/comment")
 public class CommentController {
     @Autowired
     private PhoibeCommentService phoibeCommentService;
 
     @RequestMapping("save")
     public String save(@ModelAttribute PhoibeComment phoibeComment){
-        phoibeComment.setUserId(1l);
         phoibeCommentService.addComment(phoibeComment);
         return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
     }
