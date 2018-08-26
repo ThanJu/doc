@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.WebDataBinder;
@@ -57,6 +58,9 @@ public class PhoibeDocumentController {
 	@Resource
 	private PhoibeDocumentMapper phoibeDocumentMapper;
 
+	@Value("${upload.filePath}")
+    private String filepath;
+	
 	@PostMapping("save")
 	public String saveDoucument(@RequestBody PhoibeDocument request) {
 
@@ -174,9 +178,7 @@ public class PhoibeDocumentController {
 			File path = new File(ResourceUtils.getURL("classpath:").getPath());
 
 			// F:\Java_WorkSpace\gitdoc\phoibe-doc-cms-web\target\classes/satic/docword/
-			String str = path.getAbsolutePath();
-			str = str.substring(0, str.lastIndexOf("phoibe-doc-cms-web"));
-			String filepath = str + "satic/docword/";
+			
 
 			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 			MultipartFile file = multipartRequest.getFile("file");

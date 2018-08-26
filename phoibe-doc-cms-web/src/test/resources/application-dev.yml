@@ -43,3 +43,6 @@ jasypt:
 
 #跨域配置
 crosDomain: '*'
+
+#上传配置
+filepath: F:/Java_WorkSpace
