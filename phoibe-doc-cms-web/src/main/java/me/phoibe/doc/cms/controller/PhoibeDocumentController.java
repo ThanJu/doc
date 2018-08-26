@@ -146,15 +146,15 @@ public class PhoibeDocumentController {
 //        return JsonUtils.toJson(new Result<>(Code.SUCCESS, Long.valueOf(number)));
     }
 
-	@DeleteMapping("delete/{id}")
-	public String removeDocument(@PathVariable Integer id) {
-		try {
-			phoibeDocumentService.removeDocumentById(id);
-		} catch (Exception e) {
-			JsonUtils.toJson(new Result<>(Code.FAILED, e.getMessage()));
-		}
-		return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
-	}
+//	@DeleteMapping("delete/{id}")
+//	public String removeDocument(@PathVariable Integer id) {
+//		try {
+//			phoibeDocumentService.removeDocumentById(id);
+//		} catch (Exception e) {
+//			JsonUtils.toJson(new Result<>(Code.FAILED, e.getMessage()));
+//		}
+//		return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
+//	}
 
 
 		

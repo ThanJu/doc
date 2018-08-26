@@ -578,6 +578,29 @@
       <if test="content != null">
         CONTENT = #{content,jdbcType=BLOB},
       </if>
+      <if test="pagecount != null">
+        PAGECOUNT = #{pagecount,jdbcType=DECIMAL},
+      </if>
+      <if test="hitcount != null">
+        HITCOUNT = #{hitcount,jdbcType=DECIMAL},
+      </if>
+      <if test="recorder != null">
+        RECORDER = #{recorder,jdbcType=DECIMAL},
+      </if><if test="auditTime != null">
+        AUDIT_TIME = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isstock != null">
+        ISSTOCK = #{isstock,jdbcType=DECIMAL},
+      </if>
+      <if test="stockTime != null">
+        STOCK_TIME = #{stockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stocker != null">
+        STOCKER = #{stocker,jdbcType=VARCHAR},
+      </if>
+      <if test="userRealName != null">
+        USER_REAL_NAME = #{userRealName,jdbcType=VARCHAR},
+      </if>
     </set>
     where ID = #{id,jdbcType=DECIMAL}
   </update>
