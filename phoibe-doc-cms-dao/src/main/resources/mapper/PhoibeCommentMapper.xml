@@ -94,14 +94,14 @@
       <if test="param.userId != null">
         and USER_ID = #{param.userId,jdbcType=DECIMAL}
       </if>
-      <if test="documentId != null">
-        and DOCUMENT_ID = #{documentId,jdbcType=DECIMAL}
+      <if test="param.documentId != null">
+        and DOCUMENT_ID = #{param.documentId,jdbcType=DECIMAL}
       </if>
-      <if test="score != null">
-        and SCORE = #{score,jdbcType=DECIMAL}
+      <if test="param.score != null">
+        and SCORE = #{param.score,jdbcType=DECIMAL}
       </if>
-      <if test="status != null">
-        and STATUS = #{status,jdbcType=DECIMAL}
+      <if test="param.status != null">
+        and STATUS = #{param.status,jdbcType=DECIMAL}
       </if>
     </where>
   </sql>
@@ -112,9 +112,7 @@
     <include refid="Base_Column_List"/>,rownum rno
     from PHOIBE_COMMENT
     <include refid="selectByPage_Condition_Sql" />
-    <if test="orderByClause != null">
       order by ${orderBy} ${sort}
-    </if>
     ) t WHERE t.rno BETWEEN #{start} AND (#{start}+#{limit})
   </select>
 
@@ -122,7 +120,7 @@
     select
     COUNT(*)
     from PHOIBE_COMMENT
-    selectByPage_Condition_Sql
+    <include refid="selectByPage_Condition_Sql" />
   </select>
 
   <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">

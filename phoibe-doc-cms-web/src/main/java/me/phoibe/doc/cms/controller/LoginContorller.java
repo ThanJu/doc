@@ -29,7 +29,7 @@ import java.util.Map;
  * @Description: class
  * @date 2018/8/25 0:20
  */
-@Controller
+@RestController
 @RequestMapping("/phoibe/")
 public class LoginContorller {
 
@@ -88,39 +88,16 @@ public class LoginContorller {
     /**
      * 登录
      */
-    @RequestMapping(value = "userlogin", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "userlogin", method = { RequestMethod.POST})
     public String userlogin(@RequestParam String username,
                         @RequestParam String password,
                         HttpSession session,
                         HttpServletResponse response) {
-        if (StringUtils.isEmpty(username) || StringUtils.isEmpty(password)) {
-            return JsonUtils.toJson(new Result<>(Code.LOGIN_FAILED, "ok"));
-        }
-        PhoibeUserExample phoibeUserExample = new PhoibeUserExample();
-        phoibeUserExample.setDistinct(true);
-        PhoibeUserExample.Criteria criteria = phoibeUserExample.createCriteria();
-        criteria.andUserNameEqualTo(username);
-        String encryed = getPassword(password, username);
-        criteria.andPasswordEqualTo(encryed);
-        System.out.println(phoibeUserExample.toString());
-
-        List<PhoibeUser> list = phoibeUserMapper.selectByExample(phoibeUserExample);
-
-        if (CollectionUtils.isNotEmpty(list)) {
-            try {
-                response.sendRedirect(address);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }else {
-            try {
-                response.sendRedirect(address);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if("admin".equals(username)&&"Yhc5880908!".equals(password)){
+            return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
         }
 
-        return "index";
+        return JsonUtils.toJson(new Result<>(Code.FAILED, ""));
     }
 
 
@@ -134,16 +111,4 @@ public class LoginContorller {
                 DigestUtils.md5Hex(username + password + Constant.SAULT));
     }
 
-
-    public static void main(String[] args) {
-//        StringBuilder str1 = DigestUtils.appendMd5DigestAsHex("sdfwerfss".getBytes(), new StringBuilder(Constant.SAULT));
-//        StringBuilder str2 = DigestUtils.appendMd5DigestAsHex("sdfwerfss".getBytes(), new StringBuilder(Constant.SAULT));
-
-//        DigestUtils.md5Hex("sdfwerfss" +  Constant.SAULT);
-//        boolean b1 = str1.equals(str2);
-//        System.out.println(str1);
-//        System.out.println(str2);
-//        System.out.println(b1);
-        System.out.println(getPassword("123456", "liming"));
-    }
 }
