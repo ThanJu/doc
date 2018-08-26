@@ -17,9 +17,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpRequest;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.HttpRequestHandler;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -32,6 +34,7 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -143,6 +146,16 @@ public class PhoibeDocumentController {
 //        return JsonUtils.toJson(new Result<>(Code.SUCCESS, Long.valueOf(number)));
     }
 
+	@DeleteMapping("delete/{id}")
+	public String removeDocument(@PathVariable Integer id) {
+		try {
+			phoibeDocumentService.removeDocumentById(id);
+		} catch (Exception e) {
+			JsonUtils.toJson(new Result<>(Code.FAILED, e.getMessage()));
+		}
+		return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
+	}
+
 
 		
 	@RequestMapping(value = { "upload" })
@@ -200,6 +213,7 @@ public class PhoibeDocumentController {
 				 phoibeDocument.setTag("#战役#,#标签#,#讲解#,#视频#");
 				 phoibeDocument.setUpdateTime(new Date());
 				 phoibeDocument.setUserId(new BigDecimal(1));
+				 phoibeDocument.setUserRealName("admin");
 				 phoibeDocument.setStatus((short)(2));
 				 phoibeDocument.setCreateTime(new Date());
 
@@ -264,4 +278,47 @@ public class PhoibeDocumentController {
 	        
 	        return map;
 	    }
+
+
+	@RequestMapping("update/{f}/{id}")
+	public String modifyDocument(@PathVariable String f,@PathVariable Integer id) {
+		try {
+			PhoibeDocument phoibeDocument = new PhoibeDocument();
+			phoibeDocument.setId(new BigDecimal(id));
+			if("instorage".equals(f)){
+				phoibeDocument.setIsstock(Short.valueOf("1"));
+				phoibeDocument.setStockTime(new Date());
+				phoibeDocument.setStocker("admin");
+			}else if("outstorage".equals(f)){
+				phoibeDocument.setIsstock(Short.valueOf("0"));
+			}else if("checkpass".equals(f)){
+				phoibeDocument.setAuditStatus(Short.valueOf("2"));
+				phoibeDocument.setAuditTime(new Date());
+				phoibeDocument.setAuditUserId(new BigDecimal(1));
+			}else if("checkrefuse".equals(f)){
+				phoibeDocument.setAuditStatus(Short.valueOf("3"));
+				phoibeDocument.setAuditTime(new Date());
+				phoibeDocument.setAuditUserId(new BigDecimal(1));
+			}else {
+				throw new Exception("业务参数错误");
+			}
+
+			phoibeDocumentService.modifyDocumentById(phoibeDocument);
+		} catch (Exception e) {
+			JsonUtils.toJson(new Result<>(Code.FAILED, e.getMessage()));
+		}
+		return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder){
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		// 严格限制日期转换
+		sdf.setLenient(false);
+
+		//true:允许输入空值，false:不能为空值
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+
+	}
 }

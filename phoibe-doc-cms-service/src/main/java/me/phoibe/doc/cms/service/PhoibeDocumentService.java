@@ -20,4 +20,8 @@ public interface PhoibeDocumentService {
     PageList<DPhoibeDocument> fetchDocumentByPageList(PageParam<DPhoibeDocument> pageParam);
 
     List<DPhoibeDocument> fetchDocumentUserList(PageParam<DPhoibeDocument> pageParam);
+
+    void removeDocumentById(Integer id) throws Exception;
+
+    void modifyDocumentById(PhoibeDocument phoibeDocument) throws Exception;
 }

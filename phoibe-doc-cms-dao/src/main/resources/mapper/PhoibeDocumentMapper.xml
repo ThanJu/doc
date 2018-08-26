@@ -67,6 +67,9 @@
       <if test="param.name != null and param.name != ''">
         and NAME LIKE '%'||#{param.name,jdbcType=VARCHAR}||'%'
       </if>
+      <if test="param.description != null and param.description != ''">
+        and DESCRIPTION LIKE '%'||#{param.description,jdbcType=VARCHAR}||'%'
+      </if>
       <if test="param.userId != null and param.userId != ''">
         and USER_ID = #{param.userId,jdbcType=DECIMAL}
       </if>
@@ -94,11 +97,17 @@
       <if test="param.tag != null and param.tag != ''">
         and TAG LIKE '%'||#{param.tag,jdbcType=VARCHAR}||'%'
       </if>
-      <if test="param.auditTimeBegin != null and param.auditTimeBegin != ''">
+      <if test="param.auditTimeBegin != null">
         and AUDIT_TIME &gt;= #{param.auditTimeBegin,jdbcType=TIMESTAMP}
       </if>
-      <if test="param.auditTimeEnd != null and param.auditTimeEnd != ''">
+      <if test="param.auditTimeEnd != null">
         and AUDIT_TIME &lt;= #{param.auditTimeEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="param.stockTimeBegin != null">
+        and STOCK_TIME &gt;= #{param.stockTimeBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="param.stockTimeEnd != null">
+        and STOCK_TIME &lt;= #{param.stockTimeEnd,jdbcType=TIMESTAMP}
       </if>
     </where>
   </sql>

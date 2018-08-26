@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +48,21 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
     @Override
     public List<DPhoibeDocument> fetchDocumentUserList(PageParam<DPhoibeDocument> pageParam) {
         return phoibeDocumentMapper.selectDocumentUser(pageParam);
+    }
+
+    @Override
+    public void removeDocumentById(Integer id) throws Exception {
+        if(null == id){
+            throw new Exception("删除参数id为空");
+        }
+        phoibeDocumentMapper.deleteByPrimaryKey(new BigDecimal(id));
+    }
+
+    @Override
+    public void modifyDocumentById(PhoibeDocument phoibeDocument) throws Exception {
+        if(null == phoibeDocument || null == phoibeDocument.getId()){
+            throw new Exception("修改参数错误");
+        }
+        phoibeDocumentMapper.updateByPrimaryKeySelective(phoibeDocument);
     }
 }

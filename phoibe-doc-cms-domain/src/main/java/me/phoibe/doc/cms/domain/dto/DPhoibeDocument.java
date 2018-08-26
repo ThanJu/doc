@@ -64,8 +64,38 @@ public class DPhoibeDocument {
 
     private String userRealName;
 
+    private String stocker;
+
+    private Date stockTimeBegin;
+
+    private Date stockTimeEnd;
+
     public void settings(){
 
+    }
+
+    public String getStocker() {
+        return stocker;
+    }
+
+    public void setStocker(String stocker) {
+        this.stocker = stocker;
+    }
+
+    public Date getStockTimeBegin() {
+        return stockTimeBegin;
+    }
+
+    public void setStockTimeBegin(Date stockTimeBegin) {
+        this.stockTimeBegin = stockTimeBegin;
+    }
+
+    public Date getStockTimeEnd() {
+        return stockTimeEnd;
+    }
+
+    public void setStockTimeEnd(Date stockTimeEnd) {
+        this.stockTimeEnd = stockTimeEnd;
     }
 
     public String getUserRealName() {
