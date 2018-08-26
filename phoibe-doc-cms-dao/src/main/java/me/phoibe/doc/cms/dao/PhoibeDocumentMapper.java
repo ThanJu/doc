@@ -1,6 +1,6 @@
 package me.phoibe.doc.cms.dao;
 
-import me.phoibe.doc.cms.domain.dto.DPhoibeDocument;
+import me.phoibe.doc.cms.domain.dto.DPhoebeDocument;
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
 import me.phoibe.doc.cms.domain.po.PhoibeDocumentExample;
@@ -26,9 +26,9 @@ public interface PhoibeDocumentMapper {
 
     List<PhoibeDocument> selectByExample(PhoibeDocumentExample example);
 
-    List<PhoibeDocument> selectByPage(PageParam<DPhoibeDocument> pageParam);
+    List<PhoibeDocument> selectByPage(PageParam<DPhoebeDocument> pageParam);
 
-    Long selectCountByPage(PageParam<DPhoibeDocument> pageParam);
+    Long selectCountByPage(PageParam<DPhoebeDocument> pageParam);
 
     PhoibeDocument selectByPrimaryKey(BigDecimal id);
 
@@ -44,5 +44,5 @@ public interface PhoibeDocumentMapper {
 
     int updateByPrimaryKey(PhoibeDocument record);
 
-    List<DPhoibeDocument> selectDocumentUser(PageParam<DPhoibeDocument> pageParam);
+    List<DPhoebeDocument> selectDocumentUser(PageParam<DPhoebeDocument> pageParam);
 }

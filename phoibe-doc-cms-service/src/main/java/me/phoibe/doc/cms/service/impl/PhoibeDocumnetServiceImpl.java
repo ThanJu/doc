@@ -1,14 +1,12 @@
 package me.phoibe.doc.cms.service.impl;
 
 import me.phoibe.doc.cms.dao.PhoibeDocumentMapper;
-import me.phoibe.doc.cms.domain.dto.DPhoibeDocument;
+import me.phoibe.doc.cms.domain.dto.DPhoebeDocument;
 import me.phoibe.doc.cms.domain.po.PageList;
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.service.PhoibeDocumentService;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
-import net.sf.json.JSONObject;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,20 +31,20 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
     }
 
     @Override
-    public PageList<DPhoibeDocument> fetchDocumentByPageList(PageParam<DPhoibeDocument> pageParam) {
-        List<DPhoibeDocument> dlist = new ArrayList<>();
+    public PageList<DPhoebeDocument> fetchDocumentByPageList(PageParam<DPhoebeDocument> pageParam) {
+        List<DPhoebeDocument> dlist = new ArrayList<>();
         List<PhoibeDocument> list = phoibeDocumentMapper.selectByPage(pageParam);
         for (PhoibeDocument model:list){
-            DPhoibeDocument dmodel = new DPhoibeDocument();
+            DPhoebeDocument dmodel = new DPhoebeDocument();
             BeanUtils.copyProperties(model,dmodel);
             dmodel.settings();
             dlist.add(dmodel);
         }
-        return new PageList<DPhoibeDocument>().createPage(pageParam.getStart(),pageParam.getLimit(),phoibeDocumentMapper.selectCountByPage(pageParam),dlist);
+        return new PageList<DPhoebeDocument>().createPage(pageParam.getStart(),pageParam.getLimit(),phoibeDocumentMapper.selectCountByPage(pageParam),dlist);
     }
 
     @Override
-    public List<DPhoibeDocument> fetchDocumentUserList(PageParam<DPhoibeDocument> pageParam) {
+    public List<DPhoebeDocument> fetchDocumentUserList(PageParam<DPhoebeDocument> pageParam) {
         return phoibeDocumentMapper.selectDocumentUser(pageParam);
     }
 
@@ -64,5 +62,20 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
             throw new Exception("修改参数错误");
         }
         phoibeDocumentMapper.updateByPrimaryKeySelective(phoibeDocument);
+    }
+
+    @Override
+    public DPhoebeDocument fetchDocumentById(Integer id) {
+        if(null == id){
+            return null;
+        }
+        DPhoebeDocument dmodel = new DPhoebeDocument();
+        PhoibeDocument model = phoibeDocumentMapper.selectByPrimaryKey(new BigDecimal(id));
+        if(null == model){
+            return null;
+        }
+        BeanUtils.copyProperties(model,dmodel);
+        dmodel.settings();
+        return dmodel;
     }
 }

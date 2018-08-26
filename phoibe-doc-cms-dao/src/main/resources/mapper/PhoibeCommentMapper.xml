@@ -87,6 +87,44 @@
       order by ${orderByClause}
     </if>
   </select>
+
+  <sql id="selectByPage_Condition_Sql">
+    <where>
+      1=1
+      <if test="param.userId != null">
+        and USER_ID = #{param.userId,jdbcType=DECIMAL}
+      </if>
+      <if test="documentId != null">
+        and DOCUMENT_ID = #{documentId,jdbcType=DECIMAL}
+      </if>
+      <if test="score != null">
+        and SCORE = #{score,jdbcType=DECIMAL}
+      </if>
+      <if test="status != null">
+        and STATUS = #{status,jdbcType=DECIMAL}
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultMap="BaseResultMap">
+    SELECT t.* FROM (
+    select
+    <include refid="Base_Column_List"/>,rownum rno
+    from PHOIBE_COMMENT
+    <include refid="selectByPage_Condition_Sql" />
+    <if test="orderByClause != null">
+      order by ${orderBy} ${sort}
+    </if>
+    ) t WHERE t.rno BETWEEN #{start} AND (#{start}+#{limit})
+  </select>
+
+  <select id="selectCountByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultType="long">
+    select
+    COUNT(*)
+    from PHOIBE_COMMENT
+    selectByPage_Condition_Sql
+  </select>
+
   <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

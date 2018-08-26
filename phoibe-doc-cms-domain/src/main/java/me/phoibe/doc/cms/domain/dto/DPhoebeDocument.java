@@ -1,9 +1,11 @@
 package me.phoibe.doc.cms.domain.dto;
 
+import org.springframework.util.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class DPhoibeDocument {
+public class DPhoebeDocument {
     private BigDecimal id;
 
     private String name;
@@ -70,8 +72,21 @@ public class DPhoibeDocument {
 
     private Date stockTimeEnd;
 
-    public void settings(){
+    private String contentStr;
 
+    public void settings(){
+        if(!StringUtils.isEmpty(content)){
+            this.contentStr =new String(content);
+            content = null;
+        }
+    }
+
+    public String getContentStr() {
+        return contentStr;
+    }
+
+    public void setContentStr(String contentStr) {
+        this.contentStr = contentStr;
     }
 
     public String getStocker() {
@@ -378,10 +393,6 @@ public class DPhoibeDocument {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public byte[] getContent() {
-        return content;
     }
 
     public void setContent(byte[] content) {

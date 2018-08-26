@@ -200,7 +200,7 @@
     <include refid="selectByPage_Condition_Sql"/>
   </select>
 
-  <select id="selectDocumentUser" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultType="me.phoibe.doc.cms.domain.dto.DPhoibeDocument">
+  <select id="selectDocumentUser" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultType="me.phoibe.doc.cms.domain.dto.DPhoebeDocument">
     SELECT t.* FROM (
     select d.ID, NAME, FORMAT, USER_ID userId, SCORE,
     FILE_PATH filePath, FILE_SIZE fileSize, COMBAT_TYPE combatType, ARMS, d.STATUS, AUDIT_STATUS auditStatus, AUDIT_USER_ID auditUserId,
@@ -212,7 +212,7 @@
     ) t WHERE t.rno BETWEEN #{start} and (#{start}+#{limit})
   </select>
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,

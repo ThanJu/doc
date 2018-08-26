@@ -1,39 +1,38 @@
 package me.phoibe.doc.cms.controller;
 
 import me.phoibe.doc.cms.dao.PhoibeDocumentMapper;
-import me.phoibe.doc.cms.domain.dto.DPhoibeDocument;
+import me.phoibe.doc.cms.domain.dto.DPhoebeDocument;
 import me.phoibe.doc.cms.domain.po.PageList;
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
-import me.phoibe.doc.cms.domain.po.PhoibeDocumentExample;
 import me.phoibe.doc.cms.entity.Code;
 import me.phoibe.doc.cms.entity.Result;
 import me.phoibe.doc.cms.service.PhoibeDocumentService;
 import me.phoibe.doc.cms.utils.JsonUtils;
-import net.sf.json.JSONObject;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.http.HttpRequest;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.annotation.Resource;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -91,7 +90,7 @@ public class PhoibeDocumentController {
     }
 
     @GetMapping("list/{start}/{limit}")
-    public String listDoucument(@PathVariable Integer start, @PathVariable Integer limit,@RequestParam(required = false) String f, @ModelAttribute DPhoibeDocument param) {
+    public String listDoucument(@PathVariable Integer start, @PathVariable Integer limit,@RequestParam(required = false) String f, @ModelAttribute DPhoebeDocument param) {
         String orderBy = "CREATE_TIME";
         String sort = "DESC";
 
@@ -102,44 +101,48 @@ public class PhoibeDocumentController {
         }else{
             orderBy = "AUDIT_TIME";
         }
-        PageParam<DPhoibeDocument> pageParam = new PageParam<>();
+        PageParam<DPhoebeDocument> pageParam = new PageParam<>();
         pageParam.setStart(start);
         pageParam.setLimit(limit);
-        pageParam.setParam(param==null?new DPhoibeDocument():param);
+        pageParam.setParam(param==null?new DPhoebeDocument():param);
         pageParam.setOrderBy(orderBy);
         pageParam.setSort(sort);
 
-        PageList<DPhoibeDocument> pageList = phoibeDocumentService.fetchDocumentByPageList(pageParam);
+        PageList<DPhoebeDocument> pageList = phoibeDocumentService.fetchDocumentByPageList(pageParam);
 
 
-        return JsonUtils.toJson(new Result<PageList<DPhoibeDocument>>(Code.SUCCESS, pageList));
+        return JsonUtils.toJson(new Result<PageList<DPhoebeDocument>>(Code.SUCCESS, pageList));
     }
 
     @GetMapping("list/user/{start}/{limit}")
     public String listDoucumentUser(@PathVariable Integer start, @PathVariable Integer limit) {
 
-        PageParam<DPhoibeDocument> pageParam = new PageParam<>();
+        PageParam<DPhoebeDocument> pageParam = new PageParam<>();
         pageParam.setStart(start);
         pageParam.setLimit(limit);
 
-        List<DPhoibeDocument> list = phoibeDocumentService.fetchDocumentUserList(pageParam);
+        List<DPhoebeDocument> list = phoibeDocumentService.fetchDocumentUserList(pageParam);
 
 
-        return JsonUtils.toJson(new Result<List<DPhoibeDocument>>(Code.SUCCESS, list));
+        return JsonUtils.toJson(new Result<List<DPhoebeDocument>>(Code.SUCCESS, list));
     }
 
-    @PostMapping("count")
-    public String countDoucument(@RequestBody PhoibeDocument request) {
-        PhoibeDocumentExample phoibeDocumentExample = new PhoibeDocumentExample();
+	@GetMapping("fetch/{id}")
+	public String getDoucument(@PathVariable Integer id) {
 
-        phoibeDocumentExample.setDistinct(true);
-        PhoibeDocumentExample.Criteria criteria1 = phoibeDocumentExample.createCriteria();
-        criteria1.andFormatEqualTo(request.getFormat());
-        criteria1.andNameLike(request.getName());
+		DPhoebeDocument dPhoibeDocument = phoibeDocumentService.fetchDocumentById(id);
 
-        Long counts = phoibeDocumentMapper.countByExample(phoibeDocumentExample);
+		return JsonUtils.toJson(new Result<DPhoebeDocument>(Code.SUCCESS, dPhoibeDocument));
 
-        return JsonUtils.toJson(new Result<>(Code.SUCCESS, counts));
+	}
+
+    @GetMapping("count")
+    public String countDoucument() {
+		PageParam<DPhoebeDocument> pageParam = new PageParam<>();
+		pageParam.setParam(new DPhoebeDocument());
+        Long count = phoibeDocumentMapper.selectCountByPage(pageParam);
+
+        return JsonUtils.toJson(new Result<>(Code.SUCCESS, count));
 
 //        Random random = new Random();
 //        int number = 1000*random.nextInt(1000);
@@ -167,7 +170,7 @@ public class PhoibeDocumentController {
 		try {
 			request.setCharacterEncoding("UTF-8");
 			String title= request.getParameter("title");
-			String combat_type= request.getParameter("arms");
+			String combat_type= request.getParameter("combat_type");
 			String arms= request.getParameter("arms");
 			String description= request.getParameter("description");
 			
@@ -175,10 +178,8 @@ public class PhoibeDocumentController {
 
 			//F:\Java_WorkSpace\gitdoc\phoibe-doc-cms-web\target\classes/satic/docword/
 			String str = path.getAbsolutePath();
-			str = str.substring(0,str.lastIndexOf("\\"));
-			str = str.substring(0,str.lastIndexOf("\\"));
-			str = str.substring(0,str.lastIndexOf("\\"));
-			String filepath= str+"/satic/docword/";
+			str = str.substring(0,str.lastIndexOf("phoibe-doc-cms-web"));
+			String filepath= str+"satic/docword/";
 			
 	        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 	        MultipartFile file = multipartRequest.getFile("file"); 
@@ -186,8 +187,8 @@ public class PhoibeDocumentController {
 			String pd = (String) map.get("SUCESS");
 			if(pd.equals("true")) {
 				String suffix = map.get("suffix").toString();
-				suffix.substring(1, suffix.length());
-				String datapath = (String) map.get("data");
+				suffix = suffix.substring(1, suffix.length());
+				String filename = (String) map.get("data");
 				String fileSize = (String) map.get("fileSize");
 				/*
 				//如果是doc文件，读取文件内容
@@ -204,7 +205,7 @@ public class PhoibeDocumentController {
 				 phoibeDocument.setCombatType(Short.parseShort(combat_type));
 				 phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
 				 phoibeDocument.setDescription(description);
-				 phoibeDocument.setFilePath(datapath);
+				 phoibeDocument.setFilePath(filepath+filename);
 				 phoibeDocument.setFileSize(new BigDecimal(fileSize));
 				 phoibeDocument.setFormat(suffix);
 				 phoibeDocument.setName(title);
@@ -216,6 +217,8 @@ public class PhoibeDocumentController {
 				 phoibeDocument.setUserRealName("admin");
 				 phoibeDocument.setStatus((short)(2));
 				 phoibeDocument.setCreateTime(new Date());
+				 short pc = (short)(1+Math.random()*(10-1+1));
+				 phoibeDocument.setPagecount(pc);
 
 				int result = phoibeDocumentService.save(phoibeDocument);
 				
@@ -268,7 +271,7 @@ public class PhoibeDocumentController {
 	                }
 	 
 	                map.put("SUCESS", success);
-	                map.put("data", docPath +new Date().getTime() + "-gettime-"+ tempFile.getName());
+	                map.put("data", tempFile.getName());
 	 
 	            } else {
 	                map.put("SUCESS", fail);
@@ -308,6 +311,56 @@ public class PhoibeDocumentController {
 			JsonUtils.toJson(new Result<>(Code.FAILED, e.getMessage()));
 		}
 		return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
+	}
+
+	@RequestMapping(value = {"download"})
+	public void download(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+ /*测试开始*/
+		/*
+            String uri = request.getRequestURI();// /download_demo/download/show
+            StringBuffer url = request.getRequestURL();//http://127.0.0.1:8080/download_demo/download/show
+            String servletPath = request.getServletPath();// /download
+            String serverName = request.getServerName();// 127.0.0.1
+            String servletPath = request.getPathInfo();// /show
+        */
+
+	/*测试结束*/
+		String pdId= request.getParameter("Id");
+		DPhoebeDocument pd = phoibeDocumentService.fetchDocumentById(Integer.parseInt(pdId));
+
+			if(null!=pd){
+
+				String fileAbosultePath = pd.getFilePath();
+
+				File file = new File(fileAbosultePath);
+				if (file.exists()) {//file存在
+					if (file.isFile()) {//file是一个文件
+
+						FileInputStream fis = new FileInputStream(file);
+						BufferedInputStream bis = new BufferedInputStream(fis);
+
+						byte[] buff = new byte[4096];
+						int readSize;
+						ServletOutputStream outputStream = response.getOutputStream();
+
+						while ((readSize = bis.read(buff)) != -1) {
+							outputStream.write(buff, 0, readSize);
+						}
+
+						//1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+						response.setContentType("multipart/form-data");
+
+						//2.设置文件头：最后一个参数是设置下载文件名(假如我们叫a.pdf)
+						response.setHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(file.getName(), "UTF-8"));
+
+
+						bis.close();
+
+						outputStream.close();
+					}
+				}
+			}
 	}
 
 	@InitBinder

@@ -1,5 +1,6 @@
 package me.phoibe.doc.cms.dao;
 
+import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeComment;
 import me.phoibe.doc.cms.domain.po.PhoibeCommentExample;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,4 +31,8 @@ public interface PhoibeCommentMapper {
     int updateByPrimaryKeySelective(PhoibeComment record);
 
     int updateByPrimaryKey(PhoibeComment record);
+
+    List<PhoibeComment> selectByPage(PageParam<PhoibeComment> pageParam);
+
+    Long selectCountByPage(PageParam<PhoibeComment> pageParam);
 }

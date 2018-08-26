@@ -1,6 +1,6 @@
 package me.phoibe.doc.cms.service;
 
-import me.phoibe.doc.cms.domain.dto.DPhoibeDocument;
+import me.phoibe.doc.cms.domain.dto.DPhoebeDocument;
 import me.phoibe.doc.cms.domain.po.PageList;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
 import me.phoibe.doc.cms.domain.po.PageParam;
@@ -17,11 +17,13 @@ public interface PhoibeDocumentService {
 
     Integer save(PhoibeDocument phoibeDocument);
 
-    PageList<DPhoibeDocument> fetchDocumentByPageList(PageParam<DPhoibeDocument> pageParam);
+    PageList<DPhoebeDocument> fetchDocumentByPageList(PageParam<DPhoebeDocument> pageParam);
 
-    List<DPhoibeDocument> fetchDocumentUserList(PageParam<DPhoibeDocument> pageParam);
+    List<DPhoebeDocument> fetchDocumentUserList(PageParam<DPhoebeDocument> pageParam);
 
     void removeDocumentById(Integer id) throws Exception;
 
     void modifyDocumentById(PhoibeDocument phoibeDocument) throws Exception;
+
+    DPhoebeDocument fetchDocumentById(Integer id);
 }
