@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>搜索文档</title>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/layui.js"></script>
+    <link rel="stylesheet" href="css/management.css"/>
+    <link rel="stylesheet" href="css/layui.css">
+</head>
+<body>
+    <div id="docmgr">
+        <div class="main box_border">
+            <div class="container box_border">
+                <div class="box_border">
+              
+                    <div class="bg_whiteSD box_border search inputblock">
+                  
+                     文档名称:<input type="text" id="docname"/>典型作战：
+                     <select id="wartype">
+                                         <option value ="0">全部</option>
+                           <option value ="1">步兵</option>
+                      <option value ="2 ">特种破击 </option>
+                      <option value ="3">要地夺控</option>
+                           <option value ="4 ">网电对战 </option>
+                      <option value ="5">联合火力打击</option>
+                        </select>
+                        兵种:
+                        <select id="armtype">
+                              <option value ="0">全部</option>
+                      <option value ="1">步兵</option>
+                      <option value ="2">装甲兵</option>
+                      <option value ="3">通信兵</option>
+                      <option value ="4">炮兵</option>
+                        </select>
+                       
+                        文档拥有者：<input type="text" id="owner"/>
+                        <span class="btnSearch" id="btnSearch"></span>
+                        <ul class="checkList clearfix " id="con-value">
+                           <li class="checkBox">PDF</li>
+                            <li class="checkBox">DOC</li>
+                            <li class="checkBox ">DOCX</li>
+                            <li class="checkBox">BMP</li>
+                            <li class="checkBox">PNG</li>
+                            <li class="checkBox ">GIF</li>
+                            <li class="checkBox">JPG</li>
+                            <li class="checkBox">JPEG</li>
+                            <li class="checkBox ">MPG</li>
+                            <li class="checkBox ">AVI</li>
+                            <li class="checkBox">MOV</li>
+                            <li class="checkBox ">MP4</li>
+                            <li class="checkBox">MP3</li>
+                            <li class="checkBox ">WAV</li>
+                            <li class="checkBox">MID</li>
+                        </ul>
+                    </div>
+                   
+                </div>
+                <br />
+               <div class="content box_border top  bg_whiteSD">
+                        <div class="box_border">
+                            <div  id="doc-content">
+                              
+                            </div>
+                            <div id="notice_pages"></div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+</div>
+
+<script src="js/management.js"></script>
+    
+</body>
+</html>

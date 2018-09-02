@@ -184,14 +184,8 @@ public class PhoibeDocumentController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			request.setCharacterEncoding("UTF-8");
-			String title = request.getParameter("title");
-			String combat_type = request.getParameter("combat_type");
-			String arms = request.getParameter("arms");
-			String description = request.getParameter("description");
-
-			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
-			MultipartFile file = multipartRequest.getFile("file");
-			Map<String, Object> map = uploadFile(file, filepath);
+			
+			Map<String, Object> map = null;
 			String pd = (String) map.get("SUCESS");
 			if (pd.equals("true")) {
 				String suffix = map.get("suffix").toString();
@@ -205,16 +199,16 @@ public class PhoibeDocumentController {
 				 */
 
 				PhoibeDocument phoibeDocument = new PhoibeDocument();
-				phoibeDocument.setArms(Short.parseShort(arms));
+				//phoibeDocument.setArms(Short.parseShort(arms));
 				phoibeDocument.setAuditStatus((short) (1));
 				phoibeDocument.setAuditUserId(1l);
-				phoibeDocument.setCombatType(Short.parseShort(combat_type));
+				//phoibeDocument.setCombatType(Short.parseShort(combat_type));
 				phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
-				phoibeDocument.setDescription(description);
+				//phoibeDocument.setDescription(description);
 				phoibeDocument.setFilePath(filepath + filename);
 				phoibeDocument.setFileSize(new BigDecimal(fileSize));
 				phoibeDocument.setFormat(suffix);
-				phoibeDocument.setName(title);
+				//phoibeDocument.setName(title);
 				phoibeDocument.setProgress((short) (100));
 				phoibeDocument.setScore(new BigDecimal(1.2));
 				phoibeDocument.setTag("#战役#,#标签#,#讲解#,#视频#");
@@ -242,45 +236,6 @@ public class PhoibeDocumentController {
 		}
 		LOGGER.info(JsonUtils.toJson(resultMap));
 		return JsonUtils.toJson(resultMap);
-	}
-
-	public static Map<String, Object> uploadFile(MultipartFile file, String docPath) throws IOException {
-		String fail = "fail";// 上传失败状态
-		String success = "true";// 上传成功状态
-
-		long maxFileSize = 1024000000;
-		String suffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-		long fileSize = file.getSize();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("suffix", suffix);
-		map.put("fileSize", fileSize + "");
-		if (fileSize < maxFileSize) {
-			// System.out.println("fileSize"+fileSize);
-			String fileName = file.getOriginalFilename();
-			File tempFile = new File(docPath, new Date().getTime() + "-gettime-" + fileName);
-			try {
-				if (!tempFile.getParentFile().exists()) {
-					tempFile.getParentFile().mkdirs();// 如果是多级文件使用mkdirs();如果就一层级的话，可以使用mkdir()
-				}
-				if (!tempFile.exists()) {
-					tempFile.createNewFile();
-				}
-				file.transferTo(tempFile);
-			} catch (IllegalStateException e) {
-				map.put("SUCESS", fail);
-				map.put("data", "文件上传失败");
-				throw e;
-			}
-
-			map.put("SUCESS", success);
-			map.put("data", tempFile.getName());
-
-		} else {
-			map.put("SUCESS", fail);
-			map.put("data", "文件过大，请重新选择文件");
-		}
-
-		return map;
 	}
 
 	@RequestMapping("update/{f}/{id}")

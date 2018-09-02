@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>文档管理</title>
+    <link rel="stylesheet" href="css/management.css"/>
+	<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/management.js"></script>
+</head>
+<body onload=" ">
+<div class="main box_border w1920">
+    <div class="header">
+        <div class="fl headerTitle">文档管理系统</div>
+        <div class="headerExit iconLeft fr">退出</div>
+        <div class="headerUsers fr">
+            <span class="userName iconLeft iconUser ">李明</span>
+            <span class="userIdentity">参谋</span>
+        </div>
+    </div>
+    <div class="navLeft box_border" id="navleft"  >
+        <div>
+            <ul>
+                <li class="navList box_border active" data-toggle="index-m.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconIndex">首页
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" data-toggle="docmgr.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconManagement">文档管理
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" data-toggle="percenter.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconUser">个人中心
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" data-toggle="auditupload.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconUpload">审核上传
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" data-toggle="stockmgr.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconJoin">入库管理
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" data-toggle="tagmgr.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconLabel">标签管理
+                    </span>
+                    </div>
+                </li>
+                <li class="navList box_border" data-toggle="sysmgr.html">
+                    <div class="box_border">
+                    <span class="iconLeft iconSystem">系统管理
+                    </span>
+                    </div>
+                </li>
+            </ul>
+            <div class="dateBox">
+                <div id="curtime"></div>
+                <div>今天是<span id="curweek">周三</span></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container box_border">
+      <iframe id="frm-main" name="frm-main" src="index-m.html" style="width:100%;min-height:600px;overflow: scroll" scrolling="no"  frameborder="0" onload="iframeLoad()"></iframe>
+    </div>
+
+</div>
+
+    <script>
+        $(function () {
+            var show = document.getElementById("curtime");
+            setInterval(function () {
+                var time = new Date();   // 程序计时的月从0开始取值后+1   
+                var m = time.getMonth() + 1;
+                var t = time.getFullYear() + "-" + m + "-"
+                + time.getDate() + " " + time.getHours() + ":"
+                + time.getMinutes() + ":" + time.getSeconds();
+                show.innerHTML = t;
+            }, 1000);
+
+            var week;
+            var iweek= new Date().getDay();
+            if (iweek == 0) week = "星期日"
+            if (iweek == 1) week = "星期一"
+            if (iweek == 2) week = "星期二"
+            if (iweek == 3) week = "星期三"
+            if (iweek == 4) week = "星期四"
+            if (iweek == 5) week = "星期五"
+            if (iweek == 6) week = "星期六"
+            curweek.innerHTML = week;
+        });
+
+		function iframeLoad()
+		{
+			document.getElementById("frm-main").height=0;
+			document.getElementById("frm-main").height=document.getElementById("frm-main").contentWindow.document.body.scrollHeight+100;
+		}
+
+		window.onload = function () {
+			iframeLoad()
+		}
+    </script>
+</body>
+</html>

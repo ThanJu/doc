@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>标签管理</title>
+    <link rel="stylesheet" href="css/management.css"/>
+	<link rel="stylesheet" href="css/layui.css">
+	<script src="js/jquery-2.1.0.min.js"></script>
+	<script src="js/layui.js"></script>
+
+	<script src="js/tagmgr.js"></script>
+
+</head>
+<body>
+    <div id="tagmgr">
+        <div class="main box_border">
+            <div class="container box_border">
+                    <div class="bg_whiteSD box_border search inputblock">
+                    <div class="plateHeader"></div>
+                        标签名称:<input type="text" id="tagname"/>
+                        <span class="btnSearch" id="#btnSearch"></span>
+                    </div>
+                   
+        
+                <br />
+               <div class="content box_border bg_whiteSD">
+                       <div class="box_border">
+					    <div class="btn-cmd-list">
+					    <a id="btnadd">添加</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="btnmodify">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="btndel">删除</a> </div>                                             <br/><br />
+                             <table class="tblist" border="0">
+                                 <tr><th ></th><th>标签名称</th><th>创建时间</th><th>点击量</th><th>状态</th></tr>
+                                  <tbody id="tblist-body"></tbody>
+                             </table>
+							   <div id="notice_pages"></div>
+						</div>
+               </div>
+             </div>
+            </div>
+        </div>
+</div>
+
+ 
+ <div class="bodyMask">
+	<div class="mask">
+    <span class="fullScreen"></span>
+    <div class="popup">
+        <div class="model-title fl">添加标签</div><i class="closed fr"></i>
+        <div class="clearfix"></div> 
+        <hr />
+       　 <form method="post" id="ajaxform">
+					
+					<div class="tbl-row">
+						<div class="lable">*名称:</div>
+						<div class="ctrl">
+							<input type="text" id="name" name="name" class="inputBox" />
+						</div>
+					</div>
+					
+					<div class="tbl-row">
+						<div class="lable">排序:</div>
+						<div class="ctrl">
+							<input type="text" id="sequence" name="sequence" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable"></div>
+						<div class="ctrl">
+							<div id="submit" class="submit"></div>
+						</div>
+					</div>
+				</form>
+    </div>
+        </div>
+</div>
+
+</body>
+</html>
