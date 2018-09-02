@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>文档管理</title>
+    <link rel="stylesheet" href="css/management.css"/>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+<body>
+<div id="index-m">
+   <div class="main box_border">
+            <div class="container box_border">
+                <div class="box_border">
+                    <div class="bg_whiteSD box_border search">
+                        <div class="inputBox">
+                            <input type="text" class="box_border" id="search-key"/>
+                            <span class="btnSearch" id="btnSearch"></span>
+                        </div>
+                        <ul class="checkList clearfix " id="con-value">
+                            <li class="checkBox check">PDF</li>
+                            <li class="checkBox">DOC</li>
+                            <li class="checkBox ">DOCX</li>
+                            <li class="checkBox">BMP</li>
+                            <li class="checkBox">PNG</li>
+                            <li class="checkBox ">GIF</li>
+                            <li class="checkBox">JPG</li>
+                            <li class="checkBox">JPEG</li>
+                            <li class="checkBox ">MPG</li>
+                            <li class="checkBox ">AVI</li>
+                            <li class="checkBox">MOV</li>
+                            <li class="checkBox ">MP4</li>
+                            <li class="checkBox">MP3</li>
+                            <li class="checkBox ">WAV</li>
+                            <li class="checkBox">MID</li>
+                        </ul>
+                    </div>
+                    <div class="content box_border">
+                        <div class="box_border left">
+                            <div class="box_border bg_whiteSD">
+                                <div class="plateHeader jingpin"></div>
+                                <br />
+                                <div id="recom-doc">
+
+                                </div>
+                            </div>
+                            <div class="box_border bg_whiteSD">
+                                <div class="plateHeader resou"></div>
+                                <br />
+                                 <div id="resou-doc">
+                                 
+								</div>
+                            </div>
+                        </div>
+                        <div class="box_border rightAb">
+                            <div class="dataword box_border">
+                                <div class="font18">战法数据文档</div>
+                                <div class="font16" id="docnum"></div>
+
+                            </div>
+                            <div class="bg_whiteSD idx_box_list">
+                                <div class="index-head-bg">
+                                    <img class="index-head" src="images/index-head.png"/><span class="userName">李明,你好</span>
+                                </div>
+                                <div class="font22 title">中国战法</div>
+                                <ul class="list3" id="zgzhanfa">
+                                   
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div id="upload"></div>
+                            </div>
+                            <div class="bg_whiteSD idx_box_list">
+                                <div class="font22 title">最新动态</div>
+                                   <marquee id="affiche" align="left" behavior="scroll" direction="up" height="176px" width="100%" loop="-1" scrollamount="10" scrolldelay="300" onMouseOut="this.start()" onMouseOver="this.stop()">
+                                    <ul class="list3" id="lst-dym">
+
+                                    </ul>
+                                   </marquee>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>
+
+     <div class="bodyMask">
+<div class="mask">
+    <span class="fullScreen"></span>
+    <div class="popup">
+        <div class="model-title fl">上传文档</div><i class="closed fr"></i>
+        <div class="clearfix"></div> 
+        <hr />
+      <form method="post" id="ajaxform">
+					<div class="tbl-row">
+						<div class="lable">选择文件:</div>
+						<div class="ctrl">
+							<input id="file" name="file" type="file" multiple="multiple"/>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">标题:</div>
+						<div class="ctrl">
+							<input type="text" id="title" name="title" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战国家:</div>
+						<div class="ctrl">
+							<input type="text" id="warcountry" name="warcountry" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">类型作战:</div>
+						<div class="ctrl">
+							<select id="combat_type" name="combat_type">
+								<option value ="1">步兵</option>
+		                        <option value ="2 ">特种破击 </option>
+		                        <option value ="3">要地夺控</option>
+		                        <option value ="4 ">网电对战 </option>
+		                        <option value ="5">联合火力打击</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="tbl-row">
+						<div class="lable">参战兵种:</div>
+						<div class="ctrl">
+							<select id="arms" name="arms">
+								  <option value ="1">步兵</option>
+			                      <option value ="2">装甲兵</option>
+			                      <option value ="3">通信兵</option>
+			                      <option value ="4">炮兵</option>
+							</select>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战地址:</div>
+						<div class="ctrl">
+							<input type="text" id="waraddr" name="waraddr" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战时间:</div>
+						<div class="ctrl">
+							<input type="text" id="wartime" name="wartime" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">胜利方:</div>
+						<div class="ctrl">
+							<input type="text" id="winner" name="winner" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">失败方:</div>
+						<div class="ctrl">
+							<input type="text" id="loser" name="loser" class="inputBox" />
+						</div>
+					</div>
+
+					<div class="tbl-row">
+						<div class="lable">伤亡人数:</div>
+						<div class="ctrl">
+							<input type="text" id="warnum" name="warnum" class="inputBox" />
+						</div>
+					</div>
+
+					<div class="tbl-row">
+						<div class="lable">摘要:</div>
+						<div class="ctrl">
+							<textarea rows="10" style="width:88%;border: 1px solid #cccccc;" id="description" name="description"></textarea>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable"></div>
+						<div class="ctrl">
+							<div id="submit" class="submit"></div>
+						</div>
+					</div>
+				</form>
+
+    </div>
+        </div>
+</div>
+
+
+<script src="js/management.js"></script>
+   
+</body>
+</html>
