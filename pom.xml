@@ -28,7 +28,7 @@
         <okhttp3.version>3.8.1</okhttp3.version>
         <com.google.guava.version>19.0</com.google.guava.version>
         <project.version>1.0-SNAPSHOT</project.version>
-    </properties> 
+    </properties>  
 
     <parent>
         <groupId>org.springframework.boot</groupId>
