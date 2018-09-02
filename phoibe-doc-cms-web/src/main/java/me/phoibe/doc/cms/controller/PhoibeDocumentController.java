@@ -96,8 +96,8 @@ public class PhoibeDocumentController {
 		return JsonUtils.toJson(new Result<>(Code.SUCCESS, "ok"));
 	}
 
-	@GetMapping("list/{start}/{limit}")
-	public String listDoucument(@PathVariable Integer start, @PathVariable Integer limit,
+	@GetMapping("list/{index}/{limit}")
+	public String listDoucument(@PathVariable Integer index, @PathVariable Integer limit,
 			@RequestParam(required = false) String f, @ModelAttribute DPhoebeDocument param) {
 		String orderBy = "CREATE_TIME";
 		String sort = "DESC";
@@ -127,7 +127,7 @@ public class PhoibeDocumentController {
 			}
 		}
 		PageParam<DPhoebeDocument> pageParam = new PageParam<>();
-		pageParam.setStart(start);
+		pageParam.setStart(index * limit + 1);
 		pageParam.setLimit(limit);
 		pageParam.setParam(param == null ? new DPhoebeDocument() : param);
 		pageParam.setOrderBy(orderBy);
@@ -138,11 +138,11 @@ public class PhoibeDocumentController {
 		return JsonUtils.toJson(new Result<PageList<DPhoebeDocument>>(Code.SUCCESS, pageList));
 	}
 
-	@GetMapping("list/user/{start}/{limit}")
-	public String listDoucumentUser(@PathVariable Integer start, @PathVariable Integer limit) {
+	@GetMapping("list/user/{index}/{limit}")
+	public String listDoucumentUser(@PathVariable Integer index, @PathVariable Integer limit) {
 
 		PageParam<DPhoebeDocument> pageParam = new PageParam<>();
-		pageParam.setStart(start);
+		pageParam.setStart(index * limit + 1);
 		pageParam.setLimit(limit);
 
 		List<DPhoebeDocument> list = phoibeDocumentService.fetchDocumentUserList(pageParam);

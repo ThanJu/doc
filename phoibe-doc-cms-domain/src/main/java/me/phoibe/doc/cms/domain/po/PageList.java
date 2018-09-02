@@ -6,11 +6,11 @@ import java.util.List;
  * Created by carrey on 18-8-25.
  */
 public class PageList<T> {
-    private Integer start;
-    private Integer limit;
-    private Long totalCount;
-    private Integer pageNumber;
-    private Integer pageCount;
+    private Integer start; //起始数据
+    private Integer limit; //一页显示数据量
+    private Long totalCount;//总数据量
+    private Integer pageNumber;//当前页数
+    private Integer pageCount;//总页数
     private List<T> dataList;
 
     public Integer getStart() {

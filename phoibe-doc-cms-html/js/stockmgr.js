@@ -7,7 +7,7 @@ var baseUrl = "http://47.93.62.169:8090";//"http://192.168.199.139:8090";
         function loadData(pageindex) {
             $("#tblist-body").children().remove();
 
-            var data = baseUrl+'/phoibe/document/list/'+pageindex+'/10?1=1';
+            var data = baseUrl+'/phoibe/document/list/'+pageindex+'/10?1=1&f=storage';
 
             var docname = $("#docname").val();
             var owner = $("#owner").val();
@@ -124,7 +124,7 @@ var baseUrl = "http://47.93.62.169:8090";//"http://192.168.199.139:8090";
                         }
             });
 
-            loadData(1);
+            loadData(0);
 
             $("#btnaddstock").click(function () {
                 var sel = $("#tblist-body tr td input[type='radio']:checked");

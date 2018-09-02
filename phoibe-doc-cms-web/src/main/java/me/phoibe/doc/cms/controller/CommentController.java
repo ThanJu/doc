@@ -29,10 +29,10 @@ public class CommentController {
         return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
     }
 
-    @RequestMapping("list/{docId}/{start}/{limit}")
-    public String listComment(@PathVariable Integer start,@PathVariable Integer limit,@PathVariable Long docId){
+    @RequestMapping("list/{docId}/{index}/{limit}")
+    public String listComment(@PathVariable Integer index,@PathVariable Integer limit,@PathVariable Long docId){
         PageParam<PhoibeComment> pageParam = new PageParam<>();
-        pageParam.setStart(start);
+        pageParam.setStart(index * limit + 1);
         pageParam.setLimit(limit);
         pageParam.setOrderBy("UPDATE_TIME");
         pageParam.setSort("DESC");

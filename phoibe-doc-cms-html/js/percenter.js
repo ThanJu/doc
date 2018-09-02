@@ -102,7 +102,7 @@ function loadData(pageindex) {
 
     $("#tblist-body").children().remove();
 
-    var data = baseUrl+'/phoibe/document/list/' + pageindex + '/10';
+    var data = baseUrl+'/phoibe/document/list/' + pageindex + '/10?f=audit';
 
     $.ajax({
             type: 'GET',
@@ -124,7 +124,7 @@ function loadData(pageindex) {
                     var createtime = val["createTime"];
                     var auditstatus = val["auditStatus"];
                     var owner = "admin";
-                    var auditdate = "2018-08-26";
+                    var auditdate = val["auditTime"];
                     var auditor = "admin";
                     var tid = val["id"];
                     var tag = "";

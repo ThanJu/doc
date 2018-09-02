@@ -500,13 +500,12 @@
     </where>
   </sql>
   <select id="selectByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultMap="BaseResultMap">
-    SELECT t.* FROM (
+    select * from (SELECT a.*,rownum rno FROM (
     select
     <include refid="Base_Column_List"/>
-    ,rownum rno
     from PHOIBE_DOCUMENT
     <include refid="selectByPage_Condition_Sql"/>
-    ORDER BY ${orderBy} ${sort}
+    ORDER BY ${orderBy} ${sort}) a
     ) t WHERE t.rno BETWEEN #{start} and (#{start}+#{limit})
   </select>
 
@@ -518,14 +517,14 @@
   </select>
 
   <select id="selectDocumentUser" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultType="me.phoibe.doc.cms.domain.dto.DPhoebeDocument">
-    SELECT t.* FROM (
+    select * from (SELECT a.*,rownum rno FROM (
     select d.ID, NAME, FORMAT, USER_ID userId, SCORE,
     FILE_PATH filePath, FILE_SIZE fileSize, COMBAT_TYPE combatType, ARMS, d.STATUS, AUDIT_STATUS auditStatus, AUDIT_USER_ID auditUserId,
     PROGRESS, TAG, DESCRIPTION, d.CREATE_TIME createTime, d.UPDATE_TIME updateTime,PAGECOUNT,AUDIT_TIME auditTime,ISSTOCK,STOCK_TIME stockTime,STOCKER,USER_NAME userName, TYPE,
-    REALNAME,NICKNAME ,rownum rno
+    REALNAME,NICKNAME
     from PHOIBE_DOCUMENT d JOIN PHOIBE_USER u ON d.USER_ID = u.ID
 
-    ORDER BY d.CREATE_TIME DESC nulls last
+    ORDER BY d.CREATE_TIME DESC nulls last) a
     ) t WHERE t.rno BETWEEN #{start} and (#{start}+#{limit})
   </select>
 </mapper>

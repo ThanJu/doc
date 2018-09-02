@@ -324,11 +324,15 @@ body,html{
     right: 0;
     width: 319px;
 }
+#recorder{
+    padding-bottom: 20px;
+}
 .main .container .content .left .bg_whiteSD{
-    padding: 30px;
+    padding: 35px;
     margin-bottom: 14px;
     overflow:hidden;
 }
+
 /*.main .container .content .left*/ .plateHeader{
     height: 30px;
     line-height: 30px;

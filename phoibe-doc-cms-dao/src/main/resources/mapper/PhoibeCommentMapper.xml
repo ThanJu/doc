@@ -145,12 +145,12 @@
   </sql>
 
   <select id="selectByPage" parameterType="me.phoibe.doc.cms.domain.po.PageParam" resultMap="BaseResultMap">
-    SELECT t.* FROM (
+    select * from (SELECT a.*,rownum rno FROM (
     select
-    <include refid="Base_Column_List"/>,rownum rno
+    <include refid="Base_Column_List"/>
     from PHOIBE_COMMENT
     <include refid="selectByPage_Condition_Sql" />
-    order by ${orderBy} ${sort}
+    order by ${orderBy} ${sort}) a
     ) t WHERE t.rno BETWEEN #{start} AND (#{start}+#{limit})
   </select>
 
