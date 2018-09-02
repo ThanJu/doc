@@ -3,9 +3,11 @@ package me.phoibe.doc.cms.dao;
 import me.phoibe.doc.cms.domain.dto.DPhoebeDocument;
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeDocument;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface PhoibeDocumentMapper {
     int deleteByPrimaryKey(Long id);
 

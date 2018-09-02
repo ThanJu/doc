@@ -1,7 +1,9 @@
 package me.phoibe.doc.cms.dao;
 
 import me.phoibe.doc.cms.domain.po.PhoibeDicvalues;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface PhoibeDicvaluesMapper {
     int deleteByPrimaryKey(Short id);
 

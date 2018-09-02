@@ -2,9 +2,11 @@ package me.phoibe.doc.cms.dao;
 
 import me.phoibe.doc.cms.domain.po.PageParam;
 import me.phoibe.doc.cms.domain.po.PhoibeComment;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface PhoibeCommentMapper {
     int deleteByPrimaryKey(Long id);
 

@@ -1,7 +1,9 @@
 package me.phoibe.doc.cms.dao;
 
 import me.phoibe.doc.cms.domain.po.PhoibeOperateLog;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface PhoibeOperateLogMapper {
     int deleteByPrimaryKey(Long id);
 
