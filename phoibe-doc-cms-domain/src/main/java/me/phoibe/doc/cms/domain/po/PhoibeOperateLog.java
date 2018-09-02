@@ -54,7 +54,7 @@ public class PhoibeOperateLog {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content = content == null ? null : content.trim();
     }
 
     public Date getCreateTime() {

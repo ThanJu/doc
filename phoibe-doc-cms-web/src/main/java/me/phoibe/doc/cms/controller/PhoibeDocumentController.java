@@ -148,10 +148,6 @@ public class PhoibeDocumentController {
 		Long count = phoibeDocumentMapper.selectCountByPage(pageParam);
 
 		return JsonUtils.toJson(new Result<>(Code.SUCCESS, count));
-
-		// Random random = new Random();
-		// int number = 1000*random.nextInt(1000);
-		// return JsonUtils.toJson(new Result<>(Code.SUCCESS, Long.valueOf(number)));
 	}
 
 	// @DeleteMapping("delete/{id}")
@@ -193,7 +189,7 @@ public class PhoibeDocumentController {
 				PhoibeDocument phoibeDocument = new PhoibeDocument();
 				phoibeDocument.setArms(Short.parseShort(arms));
 				phoibeDocument.setAuditStatus((short) (1));
-				phoibeDocument.setAuditUserId(new BigDecimal(1));
+				phoibeDocument.setAuditUserId(1l);
 				phoibeDocument.setCombatType(Short.parseShort(combat_type));
 				phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
 				phoibeDocument.setDescription(description);
@@ -205,7 +201,7 @@ public class PhoibeDocumentController {
 				phoibeDocument.setScore(new BigDecimal(1.2));
 				phoibeDocument.setTag("#战役#,#标签#,#讲解#,#视频#");
 				phoibeDocument.setUpdateTime(new Date());
-				phoibeDocument.setUserId(new BigDecimal(1));
+				phoibeDocument.setUserId(1l);
 				phoibeDocument.setUserRealName("admin");
 				phoibeDocument.setStatus((short) (2));
 				phoibeDocument.setCreateTime(new Date());
@@ -273,7 +269,7 @@ public class PhoibeDocumentController {
 	public String modifyDocument(@PathVariable String f, @PathVariable Integer id) {
 		try {
 			PhoibeDocument phoibeDocument = new PhoibeDocument();
-			phoibeDocument.setId(new BigDecimal(id));
+			phoibeDocument.setId(1l);
 			if ("instorage".equals(f)) {
 				phoibeDocument.setIsstock(Short.valueOf("1"));
 				phoibeDocument.setStockTime(new Date());
@@ -283,11 +279,11 @@ public class PhoibeDocumentController {
 			} else if ("checkpass".equals(f)) {
 				phoibeDocument.setAuditStatus(Short.valueOf("2"));
 				phoibeDocument.setAuditTime(new Date());
-				phoibeDocument.setAuditUserId(new BigDecimal(1));
+				phoibeDocument.setAuditUserId(1l);
 			} else if ("checkrefuse".equals(f)) {
 				phoibeDocument.setAuditStatus(Short.valueOf("3"));
 				phoibeDocument.setAuditTime(new Date());
-				phoibeDocument.setAuditUserId(new BigDecimal(1));
+				phoibeDocument.setAuditUserId(1l);
 			} else {
 				throw new Exception("业务参数错误");
 			}
@@ -302,17 +298,6 @@ public class PhoibeDocumentController {
 	// phoibe/document/download
 	@RequestMapping(value = {"download"})
 	public byte[] download(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
- /*测试开始*/
-		/*
-            String uri = request.getRequestURI();// /download_demo/download/show
-            StringBuffer url = request.getRequestURL();//http://127.0.0.1:8080/download_demo/download/show
-            String servletPath = request.getServletPath();// /download
-            String serverName = request.getServerName();// 127.0.0.1
-            String servletPath = request.getPathInfo();// /show
-        */
-
-	/*测试结束*/
 		String pdId= request.getParameter("Id");
 		DPhoebeDocument pd = phoibeDocumentService.fetchDocumentById(Integer.parseInt(pdId));
 

@@ -37,13 +37,18 @@ public class PageList<T> {
         return pageCount;
     }
 
-    public PageList<T> createPage(Integer start,Integer limit,Long totalCount,List<T> dataList){
-        this.start = start;
-        this.limit = limit;
+    private PageList(){}
+
+    private PageList(PageParam<T> pageParam,Long totalCount,List<T> dataList){
+        this.start = pageParam.getStart();
+        this.limit = pageParam.getLimit();
         this.totalCount = totalCount;
         this.dataList = dataList;
         this.pageNumber = (start / limit)+1;
         this.pageCount = (int)(totalCount % limit.longValue())==0?(int)(totalCount / limit.longValue()):(int)(totalCount / limit.longValue())+1;
-        return this;
+    }
+
+    public static PageList createPage(PageParam pageParam,Long totalCount,List dataList){
+        return new PageList(pageParam,totalCount,dataList);
     }
 }

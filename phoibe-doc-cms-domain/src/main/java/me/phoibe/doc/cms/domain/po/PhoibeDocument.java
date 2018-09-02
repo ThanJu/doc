@@ -4,13 +4,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class PhoibeDocument {
-    private BigDecimal id;
+    private Long id;
 
     private String name;
 
     private String format;
 
-    private BigDecimal userId;
+    private Long userId;
 
     private BigDecimal score;
 
@@ -26,7 +26,7 @@ public class PhoibeDocument {
 
     private Short auditStatus;
 
-    private BigDecimal auditUserId;
+    private Long auditUserId;
 
     private Short progress;
 
@@ -54,20 +54,154 @@ public class PhoibeDocument {
 
     private String userRealName;
 
-    public String getUserRealName() {
-        return userRealName;
+    private String waraddr;
+
+    private Date wartime;
+
+    private String winner;
+
+    private String loser;
+
+    private String warnum;
+
+    private String warstate;
+
+    private byte[] content;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUserRealName(String userRealName) {
-        this.userRealName = userRealName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getStocker() {
-        return stocker;
+    public String getName() {
+        return name;
     }
 
-    public void setStocker(String stocker) {
-        this.stocker = stocker;
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public void setFormat(String format) {
+        this.format = format == null ? null : format.trim();
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public BigDecimal getScore() {
+        return score;
+    }
+
+    public void setScore(BigDecimal score) {
+        this.score = score;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath == null ? null : filePath.trim();
+    }
+
+    public BigDecimal getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(BigDecimal fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    public Short getCombatType() {
+        return combatType;
+    }
+
+    public void setCombatType(Short combatType) {
+        this.combatType = combatType;
+    }
+
+    public Short getArms() {
+        return arms;
+    }
+
+    public void setArms(Short arms) {
+        this.arms = arms;
+    }
+
+    public Short getStatus() {
+        return status;
+    }
+
+    public void setStatus(Short status) {
+        this.status = status;
+    }
+
+    public Short getAuditStatus() {
+        return auditStatus;
+    }
+
+    public void setAuditStatus(Short auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+
+    public Long getAuditUserId() {
+        return auditUserId;
+    }
+
+    public void setAuditUserId(Long auditUserId) {
+        this.auditUserId = auditUserId;
+    }
+
+    public Short getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Short progress) {
+        this.progress = progress;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag == null ? null : tag.trim();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Short getPagecount() {
@@ -118,142 +252,68 @@ public class PhoibeDocument {
         this.stockTime = stockTime;
     }
 
-    private byte[] content;
-
-    public BigDecimal getId() {
-        return id;
+    public String getStocker() {
+        return stocker;
     }
 
-    public void setId(BigDecimal id) {
-        this.id = id;
+    public void setStocker(String stocker) {
+        this.stocker = stocker == null ? null : stocker.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getUserRealName() {
+        return userRealName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserRealName(String userRealName) {
+        this.userRealName = userRealName == null ? null : userRealName.trim();
     }
 
-    public String getFormat() {
-        return format;
+    public String getWaraddr() {
+        return waraddr;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public void setWaraddr(String waraddr) {
+        this.waraddr = waraddr == null ? null : waraddr.trim();
     }
 
-    public BigDecimal getUserId() {
-        return userId;
+    public Date getWartime() {
+        return wartime;
     }
 
-    public void setUserId(BigDecimal userId) {
-        this.userId = userId;
+    public void setWartime(Date wartime) {
+        this.wartime = wartime;
     }
 
-    public BigDecimal getScore() {
-        return score;
+    public String getWinner() {
+        return winner;
     }
 
-    public void setScore(BigDecimal score) {
-        this.score = score;
+    public void setWinner(String winner) {
+        this.winner = winner == null ? null : winner.trim();
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getLoser() {
+        return loser;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setLoser(String loser) {
+        this.loser = loser == null ? null : loser.trim();
     }
 
-    public BigDecimal getFileSize() {
-        return fileSize;
+    public String getWarnum() {
+        return warnum;
     }
 
-    public void setFileSize(BigDecimal fileSize) {
-        this.fileSize = fileSize;
+    public void setWarnum(String warnum) {
+        this.warnum = warnum == null ? null : warnum.trim();
     }
 
-    public Short getCombatType() {
-        return combatType;
+    public String getWarstate() {
+        return warstate;
     }
 
-    public void setCombatType(Short combatType) {
-        this.combatType = combatType;
-    }
-
-    public Short getArms() {
-        return arms;
-    }
-
-    public void setArms(Short arms) {
-        this.arms = arms;
-    }
-
-    public Short getStatus() {
-        return status;
-    }
-
-    public void setStatus(Short status) {
-        this.status = status;
-    }
-
-    public Short getAuditStatus() {
-        return auditStatus;
-    }
-
-    public void setAuditStatus(Short auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
-    public BigDecimal getAuditUserId() {
-        return auditUserId;
-    }
-
-    public void setAuditUserId(BigDecimal auditUserId) {
-        this.auditUserId = auditUserId;
-    }
-
-    public Short getProgress() {
-        return progress;
-    }
-
-    public void setProgress(Short progress) {
-        this.progress = progress;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setWarstate(String warstate) {
+        this.warstate = warstate == null ? null : warstate.trim();
     }
 
     public byte[] getContent() {

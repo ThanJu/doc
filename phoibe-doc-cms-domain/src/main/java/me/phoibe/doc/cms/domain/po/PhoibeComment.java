@@ -40,7 +40,7 @@ public class PhoibeComment {
     }
 
     public void setCommentContent(String commentContent) {
-        this.commentContent = commentContent;
+        this.commentContent = commentContent == null ? null : commentContent.trim();
     }
 
     public Long getDocumentId() {

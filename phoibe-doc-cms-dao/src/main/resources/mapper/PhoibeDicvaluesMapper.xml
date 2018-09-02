@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.phoibe.doc.cms.dao.PhoibeDicvaluesMapper">
+  <resultMap id="BaseResultMap" type="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ITEMID" jdbcType="DECIMAL" property="itemid" />
+    <result column="TEXT" jdbcType="OTHER" property="text" />
+    <result column="VALUE" jdbcType="OTHER" property="value" />
+    <result column="SEQUENCE" jdbcType="DECIMAL" property="sequence" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ITEMID, TEXT, VALUE, SEQUENCE, CREATE_TIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PHOIBE_DICVALUES
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from PHOIBE_DICVALUES
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    insert into PHOIBE_DICVALUES (ID, ITEMID, TEXT, 
+      VALUE, SEQUENCE, CREATE_TIME, 
+      STATUS)
+    values (#{id,jdbcType=DECIMAL}, #{itemid,jdbcType=DECIMAL}, #{text,jdbcType=OTHER}, 
+      #{value,jdbcType=OTHER}, #{sequence,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    insert into PHOIBE_DICVALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="itemid != null">
+        ITEMID,
+      </if>
+      <if test="text != null">
+        TEXT,
+      </if>
+      <if test="value != null">
+        VALUE,
+      </if>
+      <if test="sequence != null">
+        SEQUENCE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=DECIMAL},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=OTHER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=OTHER},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    update PHOIBE_DICVALUES
+    <set>
+      <if test="itemid != null">
+        ITEMID = #{itemid,jdbcType=DECIMAL},
+      </if>
+      <if test="text != null">
+        TEXT = #{text,jdbcType=OTHER},
+      </if>
+      <if test="value != null">
+        VALUE = #{value,jdbcType=OTHER},
+      </if>
+      <if test="sequence != null">
+        SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    update PHOIBE_DICVALUES
+    set ITEMID = #{itemid,jdbcType=DECIMAL},
+      TEXT = #{text,jdbcType=OTHER},
+      VALUE = #{value,jdbcType=OTHER},
+      SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <resultMap id="BaseResultMap" type="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="ITEMID" jdbcType="DECIMAL" property="itemid" />
+    <result column="TEXT" jdbcType="OTHER" property="text" />
+    <result column="VALUE" jdbcType="OTHER" property="value" />
+    <result column="SEQUENCE" jdbcType="DECIMAL" property="sequence" />
+    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="STATUS" jdbcType="DECIMAL" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ITEMID, TEXT, VALUE, SEQUENCE, CREATE_TIME, STATUS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from PHOIBE_DICVALUES
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from PHOIBE_DICVALUES
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    insert into PHOIBE_DICVALUES (ID, ITEMID, TEXT, 
+      VALUE, SEQUENCE, CREATE_TIME, 
+      STATUS)
+    values (#{id,jdbcType=DECIMAL}, #{itemid,jdbcType=DECIMAL}, #{text,jdbcType=OTHER}, 
+      #{value,jdbcType=OTHER}, #{sequence,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    insert into PHOIBE_DICVALUES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="itemid != null">
+        ITEMID,
+      </if>
+      <if test="text != null">
+        TEXT,
+      </if>
+      <if test="value != null">
+        VALUE,
+      </if>
+      <if test="sequence != null">
+        SEQUENCE,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=DECIMAL},
+      </if>
+      <if test="text != null">
+        #{text,jdbcType=OTHER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=OTHER},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    update PHOIBE_DICVALUES
+    <set>
+      <if test="itemid != null">
+        ITEMID = #{itemid,jdbcType=DECIMAL},
+      </if>
+      <if test="text != null">
+        TEXT = #{text,jdbcType=OTHER},
+      </if>
+      <if test="value != null">
+        VALUE = #{value,jdbcType=OTHER},
+      </if>
+      <if test="sequence != null">
+        SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDicvalues">
+    update PHOIBE_DICVALUES
+    set ITEMID = #{itemid,jdbcType=DECIMAL},
+      TEXT = #{text,jdbcType=OTHER},
+      VALUE = #{value,jdbcType=OTHER},
+      SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

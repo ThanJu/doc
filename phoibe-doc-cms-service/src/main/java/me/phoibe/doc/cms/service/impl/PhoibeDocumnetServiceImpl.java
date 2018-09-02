@@ -40,7 +40,7 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
             dmodel.settings();
             dlist.add(dmodel);
         }
-        return new PageList<DPhoebeDocument>().createPage(pageParam.getStart(),pageParam.getLimit(),phoibeDocumentMapper.selectCountByPage(pageParam),dlist);
+        return PageList.createPage(pageParam,phoibeDocumentMapper.selectCountByPage(pageParam),dlist);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
         if(null == id){
             throw new Exception("删除参数id为空");
         }
-        phoibeDocumentMapper.deleteByPrimaryKey(new BigDecimal(id));
+        phoibeDocumentMapper.deleteByPrimaryKey(id.longValue());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
             return null;
         }
         DPhoebeDocument dmodel = new DPhoebeDocument();
-        PhoibeDocument model = phoibeDocumentMapper.selectByPrimaryKey(new BigDecimal(id));
+        PhoibeDocument model = phoibeDocumentMapper.selectByPrimaryKey(id.longValue());
         if(null == model){
             return null;
         }

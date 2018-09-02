@@ -31,6 +31,6 @@ public class PhoibeCommentServiceImpl implements PhoibeCommentService {
     public PageList<PhoibeComment> fetchCommentByPageList(PageParam<PhoibeComment> pageParam) {
         List<PhoibeComment> list = phoibeCommentMapper.selectByPage(pageParam);
 
-        return new PageList<PhoibeComment>().createPage(pageParam.getStart(),pageParam.getLimit(),phoibeCommentMapper.selectCountByPage(pageParam),list);
+        return PageList.createPage(pageParam,phoibeCommentMapper.selectCountByPage(pageParam),list);
     }
 }

@@ -1,10 +1,9 @@
 package me.phoibe.doc.cms.domain.po;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class PhoibeSystemProperties {
-    private BigDecimal id;
+    private Long id;
 
     private Short type;
 
@@ -16,11 +15,11 @@ public class PhoibeSystemProperties {
 
     private Date updateTime;
 
-    public BigDecimal getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,7 +36,7 @@ public class PhoibeSystemProperties {
     }
 
     public void setKey(String key) {
-        this.key = key;
+        this.key = key == null ? null : key.trim();
     }
 
     public String getDescription() {
@@ -45,7 +44,7 @@ public class PhoibeSystemProperties {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description == null ? null : description.trim();
     }
 
     public Date getCreateTime() {
