@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文档预览</title>
+</head>
+<body style="overflow-x: hidden; overflow-y: hidden">
+	<div id="wps" align="center"
+		style="left: -1px; width: 100%; height: 100%; position: absolute;"></div>
+</body>
+</html>
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/management.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	var el = document.documentElement;
+    var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
+        if(typeof rfs != "undefined" && rfs) {
+            rfs.call(el);
+        };
+    
+	var DocFrame;
+	var MenuItems = {FILE:1<<0, EDIT:1<<1, VIEW:1<<2, INSERT:1<<3, FORMAT:1<<4, TOOL:1<<5, CHART:1<<6, HELP:1<<7};
+	var FileSubmenuItems = {NEW:1<<0, OPEN:1<<1, CLOSE:1<<2, SAVE:1<<3, SAVEAS:1<<4, PAGESETUP:1<<5, PRINT:1<<6, PROPERTY:1<<7};
+	
+	//初始化文档插件
+	InitFrame();
+	let filePath = getUrlString("filePath");
+	filePath = filePath.replace("%20"," ");
+	filePath = filePath.replace("%20"," ");
+	//打开本地文档
+	var path = filePath;
+	alert(path);
+	openDocumentF(path);
+	
+})
+	function init(tagID, width, height) {
+		var iframe;
+		var obj;
+		iframe = document.getElementById(tagID);
+		var codes=[];   
+		codes.push('<object id=DocFrame1 height=' + height + ' width=' + width + ' ');
+		codes.push('data=data:application/x-oleobject;base64,7Kd9juwHQ0OBQYiirbY6XwEABAA7DwMAAgAEAB0AAAADAAQAgICAAAQABAD///8ABQBcAFgAAABLAGkAbgBnAHMAbwBmAHQAIABBAGMAdABpAHYAZQBYACAARABvAGMAdQBtAGUAbgB0ACAARgByAGEAbQBlACAAQwBvAG4AdAByAG8AbAAgADEALgAwAAAA ');
+		codes.push('classid=clsid:8E7DA7EC-07EC-4343-8141-88A2ADB63A5F viewastext=VIEWASTEXT></object> ');
+		iframe.innerHTML = codes.join("");
+		obj = document.getElementById("DocFrame1");
+		
+		//以下方法二选一
+		//添加事件方法1
+		var fn = function(){
+			function obj::OnRequireSave(){
+				alert("用户请求保存文档");
+			}
+			
+			function obj::OnDocumentOpened(){
+				alert("文档打开");
+			}
+			
+			function obj::OnDocumentCopy(){
+				alert("用户复制");
+			}
+			
+			function obj::OnDocumentBeforePrint(){
+				alert("用户打印");
+				
+			}
+			
+			function obj::OnDocumentBeforeSave(){
+				alert("用户保存");
+			}
+		};
+		fn();
+		//添加事件方法2
+		/*if(obj.attachEvent){
+			console.log("attachEvent...");
+			obj.attachEvent('OnRequireSave', function () {
+				alert("用户请求保存文档");
+				console.log("OnRequireSave..........222222222.....");
+			});
+		}else{
+			console.error("该版本ie不支持attachEvent事件，请设置<meta http-equiv='X-UA-Compatible' content='IE=10' />");
+		}
+		*/
+		return obj;
+	}
+
+	function InitFrame() {
+		DocFrame = init("wps", "99%", "99%");
+		//需要隐藏文件的平台可以在这里调用
+		//DocFrame.MenuItems &= ~MenuItems.FILE;
+	}
+	function FullScreen(){
+		DocFrame.FullScreen();
+	}
+	
+	function createDocument() {
+        DocFrame.createDocument("uot");
+    }
+
+    function openDocumentT(path) {
+        var aa = DocFrame.openDocument(path,true);
+		//alert(aa);
+    }
+	
+	function openDocumentF(path) {
+        //var aa = DocFrame.openDocument('C:\\Users\\Administrator\\Desktop\\1.wps',false);
+		var aa = DocFrame.openDocument(path,false);
+		//alert(aa);
+    }
+
+    function openDocumentRemote(path) {
+        var aa = DocFrame.openDocumentRemote(path,false);
+        //alert(aa);		
+    }
+	</script>

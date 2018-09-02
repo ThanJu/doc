@@ -1,4 +1,5 @@
 var baseUrl = "http://47.93.62.169:8090";
+//var baseUrl = "http://127.0.0.1:8090";
 //"http://192.168.199.139:8090";//"
 var totalRows = 0;
 var currPage = 1;
@@ -20,6 +21,9 @@ function getInfo() {
                 if (result.data.format == "pdf") {
                     $("#icontitle").attr("class", "pdf");
                 }
+                let hrefurl = $(".perview").attr("href");
+                hrefurl = hrefurl + "?filePath="+result.data.filePath;
+                $(".perview").attr("href",hrefurl);
                 $("#date").html(result.data.createTime);
                 $("#format").html(result.data.format);
                 $("#size").html(result.data.fileSize);
@@ -112,7 +116,6 @@ $(function () {
     initstar();
         getInfo();
         loadData(1);
-
         $(".download").click(function () {
             url = baseUrl + "/phoibe/document/download?Id="+tid;
             window.location.href = url;

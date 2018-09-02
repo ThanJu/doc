@@ -185,7 +185,15 @@ $(function () {
     $(".closed").click(function () {
         $(".bodyMask").hide();
     });
-
+    $(".tag-li").click(function () {
+        $(this).addClass("tag-li-in");
+        $(".tag-li-in").click(function(){
+            $(this).removeClass("tag-li-in");
+            $(".tag-li").click(function () {
+                $(this).addClass("tag-li-in");
+            });
+        })
+    });
     $("#btnSearch").click(function () {
         var searchKey = $("#search-key").val();
         var chkValue = $("#con-value li[checked='checked']");
@@ -210,8 +218,17 @@ $(function () {
     })
     function formSubmit(){
 	    var form = $("#ajaxform");
-	    
-	    if(""==$("#title").val()){
+
+	    if($("#thelist").find(".item").length==0){
+	    	alert("请上传文档");
+	    	return 
+	    }
+        let filestatus = $('#ctlBtn').attr("filestatus");
+        if(filestatus==0){
+        	alert("您的文件未上传");
+	    	return 
+        }
+	    if(""==$("#name").val()){
 	    	alert("请输入标题");
 	    	return 
 	    }
@@ -228,7 +245,7 @@ $(function () {
 			 
 	    });
 	    $.ajax({
-	        url: form.attr("action"),
+	        url: baseUrl+"/phoibe/document/save",
 	        type: form.attr("method"),
 	        data: JSON.stringify(formdata), 
 	        dataType: "json",
@@ -237,6 +254,7 @@ $(function () {
 	        {
 	            if(data.success){
 	            	alert("提交成功");
+	            	$(".bodyMask").hide();
 	            }
 	        }
 	    });

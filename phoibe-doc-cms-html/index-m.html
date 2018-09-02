@@ -45,21 +45,16 @@
 						<div class="box_border left">
 							<div class="box_border bg_whiteSD">
 								<div class="plateHeader jingpin"></div>
-								<br />
+								<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>
 								<div id="recom-doc"></div>
 							</div>
 							<div class="box_border bg_whiteSD">
 								<div class="plateHeader resou"></div>
-								<br />
+								<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>
 								<div id="resou-doc"></div>
 							</div>
 						</div>
 						<div class="box_border rightAb">
-							<div class="dataword box_border">
-								<div class="font18">战法数据文档</div>
-								<div class="font16" id="docnum"></div>
-
-							</div>
 							<div class="bg_whiteSD idx_box_list">
 								<div class="index-head-bg">
 									<img class="index-head" src="images/index-head.png" /><span
@@ -72,10 +67,15 @@
 								<div class="clearfix"></div>
 								<div id="upload"></div>
 							</div>
+							<div class="dataword box_border">
+								<div class="font18">战法数据文档</div>
+								<div class="font16" id="docnum"></div>
+
+							</div>
 							<div class="bg_whiteSD idx_box_list">
 								<div class="font22 title">最新动态</div>
 								<marquee id="affiche" align="left" behavior="scroll"
-									direction="up" height="176px" width="100%" loop="-1"
+									direction="up" height="223px" width="100%" loop="-1"
 									scrollamount="10" scrolldelay="300" onMouseOut="this.start()"
 									onMouseOver="this.stop()">
 									<ul class="list3" id="lst-dym">
@@ -98,12 +98,21 @@
 				<i class="closed fr"></i>
 				<div class="clearfix"></div>
 				<hr />
-				<form action="http://127.0.0.1:8090/phoibe/document/save"
-					method="post" id="ajaxform">
+				<form method="post" id="ajaxform">
 					<div class="tbl-row">
 						<div class="lable">标题:</div>
 						<div class="ctrl">
 							<input type="text" id="name" name="name" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="ctrl">
+							<ul class='tag-ul'>
+								<li class='tag-li'>#战役#</li>
+								<li class='tag-li'>#解析#</li>
+								<li class='tag-li'>#讲解#</li>
+								<li class='tag-li'>#讨论#</li>
+							</ul>
 						</div>
 					</div>
 					<div class="tbl-row">
@@ -173,7 +182,7 @@
 						<div class="lable">摘要:</div>
 						<div class="ctrl">
 							<textarea rows="10" cols="50"
-								style="width: 88%; border: 1px solid #cccccc;" id="description"
+								style="width: 79%; border: 1px solid #cccccc;" id="description"
 								name="description"></textarea>
 						</div>
 					</div>
@@ -184,7 +193,7 @@
 						<div id="thelist" class="uploader-list"></div>
 					</div>
 					<div class="ctrl">
-						<button id="ctlBtn" class="btn btn-default">开始上传</button>
+						<button id="ctlBtn" class="btn btn-default" filestatus=0 >开始上传</button>
 					</div>
 				</div>
 
@@ -227,7 +236,7 @@
 			                // file.uid = new Date().getTime() + "_" + Math.random() * 100;
 			                file.uid = WebUploader.Base.guid();
 			                // 进行md5判断
-			                $.post("http://127.0.0.1:8090/phoibe/uopload/checkFileMd5", {filename:file.name,uid: file.uid, md5: file.md5},
+			                $.post(baseUrl+"/phoibe/uopload/checkFileMd5", {filename:file.name,uid: file.uid, md5: file.md5},
 			                        function (data) {
 			                            console.log(data.status);
 			                            var status = data.status.value;
@@ -292,7 +301,7 @@
 			        chunked: true,
 			        chunkSize: chunkSize, // 字节 1M分块
 			        threads: 3,
-			        server: 'http://127.0.0.1:8090/phoibe/uopload/fileUpload',
+			        server: baseUrl+'/phoibe/uopload/fileUpload',
 			        auto: false,
 
 			        // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
@@ -323,6 +332,7 @@
 			    uploader.on('uploadProgress', function (file, percentage) {
 			        getProgressBar(file, percentage, "FILE", "上传进度");
 			        $('#' + file.id).find('p.state').text("文件上传中...");
+			        $('#ctlBtn').attr("filestatus","0");
 			    });
 			    // 上传返回结果
 			    uploader.on('uploadSuccess', function (file) {
@@ -333,6 +343,7 @@
 			        $('#' + file.id).find('p.state').text(text);
 			        $('#' + file.id).attr("filemd5",file.md5);
 			        $('#' + file.id).attr("fileSize",file.size);
+			        $('#ctlBtn').attr("filestatus","1");
 			    });
 			    uploader.on('uploadError', function (file) {
 			        $('#' + file.id).find('p.state').text('上传出错');
