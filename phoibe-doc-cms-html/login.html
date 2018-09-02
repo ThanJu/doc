@@ -96,7 +96,8 @@
     <script>
         $(function () {
 
-            var baseUrl = "http://47.93.62.169:8090"
+            //var baseUrl = "http://47.93.62.169:8090"
+            var baseUrl = "http://127.0.0.1:8090"
             $("#btnlogin").click(function () {
                 var username = $("#username").val();
                 var password = $("#password").val();
@@ -107,7 +108,7 @@
                     dataType: 'json',
                     success: function (result) {
                         if (result.code == "SUCCESS") {
-                            window.location.href = '/index.html';
+                        	window.location.href = './index.html';
                             setCookie("username", username);
                         }
                         else {
