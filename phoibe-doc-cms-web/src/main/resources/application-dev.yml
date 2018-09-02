@@ -59,3 +59,9 @@ phoibe:
 #上传文件路径
 upload: 
   filePath: F:/Java_WorkSpace/satic/docword/
+
+breakpoint: 
+ upload: 
+  dir: F:/Java_WorkSpace/satic/docword/
+  chunkSize: 10240000
+  

@@ -55,6 +55,11 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
+		<dependency>
+			<groupId>com.cedarsoft.commons</groupId>
+			<artifactId>io</artifactId>
+			<version>8.5.1</version>
+		</dependency>
     </dependencies>
 
     <profiles>
