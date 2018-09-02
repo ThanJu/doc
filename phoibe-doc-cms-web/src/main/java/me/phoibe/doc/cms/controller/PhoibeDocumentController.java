@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.util.ResourceUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -101,12 +102,29 @@ public class PhoibeDocumentController {
 		String orderBy = "CREATE_TIME";
 		String sort = "DESC";
 
-		if ("hot".equals(f)) {
-			orderBy = "HITCOUNT";
-		} else if ("handpick".equals(f)) {
-			orderBy = "RECORDER";
-		} else {
-			orderBy = "AUDIT_TIME";
+		if(!StringUtils.isEmpty(f)) {
+			switch (f) {
+				case "hot": {
+					orderBy = "HITCOUNT";
+					break;
+				}
+				case "handpick": {
+					orderBy = "RECORDER";
+					break;
+				}
+				case "audit": {
+					orderBy = "AUDIT_TIME";
+					sort = "DESC nulls last";
+					break;
+				}
+				case "storage": {
+					orderBy = "STOCK_TIME";
+					sort = "DESC nulls last";
+					break;
+				}
+
+
+			}
 		}
 		PageParam<DPhoebeDocument> pageParam = new PageParam<>();
 		pageParam.setStart(start);

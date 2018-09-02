@@ -14,17 +14,11 @@ public class DPhoebeDocument extends PhoibeDocument {
 
     private String statusDesc;
 
-    private Short auditStatus;
-
     private String auditStatusDesc;
 
     private Date auditTimeBegin;
 
     private Date auditTimeEnd;
-
-    private String userRealName;
-
-    private String stocker;
 
     private Date stockTimeBegin;
 
@@ -37,46 +31,6 @@ public class DPhoebeDocument extends PhoibeDocument {
             this.contentStr =new String(getContent());
             setContent(null);
         }
-    }
-
-    public String getContentStr() {
-        return contentStr;
-    }
-
-    public void setContentStr(String contentStr) {
-        this.contentStr = contentStr;
-    }
-
-    public String getStocker() {
-        return stocker;
-    }
-
-    public void setStocker(String stocker) {
-        this.stocker = stocker;
-    }
-
-    public Date getStockTimeBegin() {
-        return stockTimeBegin;
-    }
-
-    public void setStockTimeBegin(Date stockTimeBegin) {
-        this.stockTimeBegin = stockTimeBegin;
-    }
-
-    public Date getStockTimeEnd() {
-        return stockTimeEnd;
-    }
-
-    public void setStockTimeEnd(Date stockTimeEnd) {
-        this.stockTimeEnd = stockTimeEnd;
-    }
-
-    public String getUserRealName() {
-        return userRealName;
-    }
-
-    public void setUserRealName(String userRealName) {
-        this.userRealName = userRealName;
     }
 
     public String getCombatTypeDesc() {
@@ -127,53 +81,27 @@ public class DPhoebeDocument extends PhoibeDocument {
         this.auditTimeEnd = auditTimeEnd;
     }
 
-
-    private String userName;
-
-    private Short type;
-
-    private String realname;
-
-    private String nickname;
-
-    public String getUserName() {
-        return userName;
+    public Date getStockTimeBegin() {
+        return stockTimeBegin;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStockTimeBegin(Date stockTimeBegin) {
+        this.stockTimeBegin = stockTimeBegin;
     }
 
-    public Short getType() {
-        return type;
+    public Date getStockTimeEnd() {
+        return stockTimeEnd;
     }
 
-    public void setType(Short type) {
-        this.type = type;
+    public void setStockTimeEnd(Date stockTimeEnd) {
+        this.stockTimeEnd = stockTimeEnd;
     }
 
-    public String getRealname() {
-        return realname;
+    public String getContentStr() {
+        return contentStr;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname;
+    public void setContentStr(String contentStr) {
+        this.contentStr = contentStr;
     }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public Short getAuditStatus() {
-        return auditStatus;
-    }
-
-    public void setAuditStatus(Short auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
 }

@@ -525,7 +525,7 @@
     REALNAME,NICKNAME ,rownum rno
     from PHOIBE_DOCUMENT d JOIN PHOIBE_USER u ON d.USER_ID = u.ID
 
-    ORDER BY d.CREATE_TIME DESC
+    ORDER BY d.CREATE_TIME DESC nulls last
     ) t WHERE t.rno BETWEEN #{start} and (#{start}+#{limit})
   </select>
 </mapper>
