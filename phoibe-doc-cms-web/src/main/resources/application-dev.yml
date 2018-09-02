@@ -63,5 +63,5 @@ upload:
 breakpoint: 
  upload: 
   dir: F:/Java_WorkSpace/satic/docword/
-  chunkSize: 10240000
+  chunkSize: 5242880
   

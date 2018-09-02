@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
 <html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>文档管理</title>
-    <link rel="stylesheet" href="css/management.css"/>
-    <script src="js/jquery-2.1.0.min.js"></script>
-    <script src="js/index.js"></script>
+<meta charset="UTF-8">
+<title>文档管理</title>
+<link rel="stylesheet" href="css/management.css" />
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/index.js"></script>
 <link href="js/webuploader-0.1.5/webuploader.css" rel="stylesheet"
 	type="text/css" />
 <!-- 引入文件上传插件 -->
@@ -13,130 +14,126 @@
 	src="js/webuploader-0.1.5/webuploader.min.js"></script>
 </head>
 <body>
-<div id="index-m">
-   <div class="main box_border">
-            <div class="container box_border">
-                <div class="box_border">
-                    <div class="bg_whiteSD box_border search">
-                        <div class="inputBox">
-                            <input type="text" class="box_border" id="search-key"/>
-                            <span class="btnSearch" id="btnSearch"></span>
-                        </div>
-                        <ul class="checkList clearfix " id="con-value">
-                            <li class="checkBox check">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">BMP</li>
-                            <li class="checkBox">PNG</li>
-                            <li class="checkBox ">GIF</li>
-                            <li class="checkBox">JPG</li>
-                            <li class="checkBox">JPEG</li>
-                            <li class="checkBox ">MPG</li>
-                            <li class="checkBox ">AVI</li>
-                            <li class="checkBox">MOV</li>
-                            <li class="checkBox ">MP4</li>
-                            <li class="checkBox">MP3</li>
-                            <li class="checkBox ">WAV</li>
-                            <li class="checkBox">MID</li>
-                        </ul>
-                    </div>
-                    <div class="content box_border">
-                        <div class="box_border left">
-                            <div class="box_border bg_whiteSD">
-                                <div class="plateHeader resou"></div>
-                                <br />
-                                 <div id="resou-doc">
-                                 
-								</div>
-                            </div>
-							<div class="box_border bg_whiteSD" id="recorder" >
+	<div id="index-m">
+		<div class="main box_border">
+			<div class="container box_border">
+				<div class="box_border">
+					<div class="bg_whiteSD box_border search">
+						<div class="inputBox">
+							<input type="text" class="box_border" id="search-key" /> <span
+								class="btnSearch" id="btnSearch"></span>
+						</div>
+						<ul class="checkList clearfix " id="con-value">
+							<li class="checkBox check">PDF</li>
+							<li class="checkBox">DOC</li>
+							<li class="checkBox ">DOCX</li>
+							<li class="checkBox">BMP</li>
+							<li class="checkBox">PNG</li>
+							<li class="checkBox ">GIF</li>
+							<li class="checkBox">JPG</li>
+							<li class="checkBox">JPEG</li>
+							<li class="checkBox ">MPG</li>
+							<li class="checkBox ">AVI</li>
+							<li class="checkBox">MOV</li>
+							<li class="checkBox ">MP4</li>
+							<li class="checkBox">MP3</li>
+							<li class="checkBox ">WAV</li>
+							<li class="checkBox">MID</li>
+						</ul>
+					</div>
+					<div class="content box_border">
+						<div class="box_border left">
+							<div class="box_border bg_whiteSD">
 								<div class="plateHeader jingpin"></div>
 								<br />
-								<div id="recom-doc">
-
-								</div>
+								<div id="recom-doc"></div>
 							</div>
-                        </div>
-                        <div class="box_border rightAb">
-                            <div class="dataword box_border">
-                                <div class="font18">战法数据文档</div>
-                                <div class="font16" id="docnum"></div>
+							<div class="box_border bg_whiteSD">
+								<div class="plateHeader resou"></div>
+								<br />
+								<div id="resou-doc"></div>
+							</div>
+						</div>
+						<div class="box_border rightAb">
+							<div class="dataword box_border">
+								<div class="font18">战法数据文档</div>
+								<div class="font16" id="docnum"></div>
 
-                            </div>
-                            <div class="bg_whiteSD idx_box_list">
-                                <div class="index-head-bg">
-                                    <img class="index-head" src="images/index-head.png"/><span class="userName">李明,你好</span>
-                                </div>
-                                <div class="font22 title">中国战法</div>
-                                <ul class="list3" id="zgzhanfa">
-                                   
-                                </ul>
-                                <div class="clearfix"></div>
-                                <div id="upload"></div>
-                            </div>
-                            <div class="bg_whiteSD idx_box_list">
-                                <div class="font22 title">最新动态</div>
-                                   <marquee id="affiche" align="left" behavior="scroll" direction="up" height="220px" width="100%" loop="-1" scrollamount="10" scrolldelay="300" onMouseOut="this.start()" onMouseOver="this.stop()">
-                                    <ul class="list3" id="lst-dym">
+							</div>
+							<div class="bg_whiteSD idx_box_list">
+								<div class="index-head-bg">
+									<img class="index-head" src="images/index-head.png" /><span
+										class="userName">李明,你好</span>
+								</div>
+								<div class="font22 title">中国战法</div>
+								<ul class="list3" id="zgzhanfa">
 
-                                    </ul>
-                                   </marquee>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-</div>
+								</ul>
+								<div class="clearfix"></div>
+								<div id="upload"></div>
+							</div>
+							<div class="bg_whiteSD idx_box_list">
+								<div class="font22 title">最新动态</div>
+								<marquee id="affiche" align="left" behavior="scroll"
+									direction="up" height="176px" width="100%" loop="-1"
+									scrollamount="10" scrolldelay="300" onMouseOut="this.start()"
+									onMouseOver="this.stop()">
+									<ul class="list3" id="lst-dym">
 
-     <div class="bodyMask">
-<div class="mask">
-    <span class="fullScreen"></span>
-    <div class="popup">
-        <div class="model-title fl">上传文档</div><i class="closed fr"></i>
-        <div class="clearfix"></div> 
-        <hr />
-      <form action="http://127.0.0.1:8090/phoibe/document/save"
-					method="post" id="ajaxform">
-					<div class="tbl-row">
-						<div class="lable">选择文件:</div>
-						<div class="ctrl">
-							<input id="file" name="file" type="file" multiple="multiple"/>
+									</ul>
+								</marquee>
+							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="bodyMask">
+		<div class="mask">
+			<span class="fullScreen"></span>
+			<div class="popup">
+				<div class="model-title fl">上传文档</div>
+				<i class="closed fr"></i>
+				<div class="clearfix"></div>
+				<hr />
+				<form action="http://127.0.0.1:8090/phoibe/document/save"
+					method="post" id="ajaxform">
 					<div class="tbl-row">
 						<div class="lable">标题:</div>
 						<div class="ctrl">
-							<input type="text" id="title" name="title" class="inputBox" />
+							<input type="text" id="name" name="name" class="inputBox" />
 						</div>
 					</div>
 					<div class="tbl-row">
 						<div class="lable">参战国家:</div>
 						<div class="ctrl">
-							<input type="text" id="warcountry" name="warcountry" class="inputBox" />
+							<input type="text" id="warcountry" name="warcountry"
+								class="inputBox" />
 						</div>
 					</div>
 					<div class="tbl-row">
 						<div class="lable">类型作战:</div>
 						<div class="ctrl">
 							<select id="combat_type" name="combat_type">
-								<option value ="1">步兵</option>
-		                        <option value ="2 ">特种破击 </option>
-		                        <option value ="3">要地夺控</option>
-		                        <option value ="4 ">网电对战 </option>
-		                        <option value ="5">联合火力打击</option>
+								<option value="1">步兵</option>
+								<option value="2 ">特种破击</option>
+								<option value="3">要地夺控</option>
+								<option value="4 ">网电对战</option>
+								<option value="5">联合火力打击</option>
 							</select>
 						</div>
 					</div>
-					
+
 					<div class="tbl-row">
 						<div class="lable">参战兵种:</div>
 						<div class="ctrl">
 							<select id="arms" name="arms">
-								  <option value ="1">步兵</option>
-			                      <option value ="2">装甲兵</option>
-			                      <option value ="3">通信兵</option>
-			                      <option value ="4">炮兵</option>
+								<option value="1">步兵</option>
+								<option value="2">装甲兵</option>
+								<option value="3">通信兵</option>
+								<option value="4">炮兵</option>
 							</select>
 						</div>
 					</div>
@@ -149,7 +146,7 @@
 					<div class="tbl-row">
 						<div class="lable">参战时间:</div>
 						<div class="ctrl">
-							<input type="text" id="wartime" name="wartime" class="inputBox" />
+							<input type="date" id="wartime" name="wartime" class="inputBox" />
 						</div>
 					</div>
 					<div class="tbl-row">
@@ -175,19 +172,15 @@
 					<div class="tbl-row">
 						<div class="lable">摘要:</div>
 						<div class="ctrl">
-							<textarea rows="10" style="width:88%;border: 1px solid #cccccc;" id="description" name="description"></textarea>
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable"></div>
-						<div class="ctrl">
-							<div id="submit" class="submit"></div>
+							<textarea rows="10" cols="50"
+								style="width: 88%; border: 1px solid #cccccc;" id="description"
+								name="description"></textarea>
 						</div>
 					</div>
 				</form>
-								<div id="uploader" class="tbl-row wu-example">
-					<div id="picker" class="lable">选择文件</div>
-					<div id="thelist" class="wu-example ctrl">
+				<div id="uploader" class="tbl-row wu-example">
+					<div id="picker" class="lable"></div>
+					<div class="wu-example ctrl">
 						<div id="thelist" class="uploader-list"></div>
 					</div>
 					<div class="ctrl">
@@ -195,50 +188,21 @@
 					</div>
 				</div>
 
-    </div>
-        </div>
-</div>
+				<div class="tbl-row">
+					<div class="lable"></div>
+					<div class="ctrl">
+						<div id=submit class="submit"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script src="js/management.js"></script>
 	<script>
 		
 		$(function() {
-			$("#upload").click(function() {
-				$(".bodyMask").fadeIn();
-			});
-			$(".closed").click(function() {
-				$(".bodyMask").hide();
-			});
-
-			$("#btnSearch").click(function() {
-				var searchKey = $("#search-key").val();
-				var chkValue = $("#con-value li[checked='checked']");
-				alert(chkValue.text() + "-" + searchKey);
-			});
-			$("#submit").click(function (){
-			    var form = $("#ajaxform");
-			    
-			    if(""==$("#title").val()){
-			    	alert("请输入标题");
-			    	return 
-			    }
-			    
-			    $.ajax({
-			        url: form.attr("action"),
-			        type: form.attr("method"),
-			        data: form.serialize(), 
-			        dataType: "json",
-			        success: function (data)
-			        {
-			            if(data.success){
-			            	alert("提交成功");
-			            }
-			        }
-			    });
-			});
-		});
-		</script>
-	<script type="text/javascript">
+	        $("#ctlBtn").hide();
 			 var $btn = $('#ctlBtn');
 			    var $thelist = $('#thelist');
 			    var chunkSize = 5 * 1024 * 1024;
@@ -263,7 +227,7 @@
 			                // file.uid = new Date().getTime() + "_" + Math.random() * 100;
 			                file.uid = WebUploader.Base.guid();
 			                // 进行md5判断
-			                $.post("http://127.0.0.1:8090/phoibe/uopload/checkFileMd5", {filename:file.name,uid: file.uid, md5: file.md5,"Authorization": localStorage.token},
+			                $.post("http://127.0.0.1:8090/phoibe/uopload/checkFileMd5", {filename:file.name,uid: file.uid, md5: file.md5},
 			                        function (data) {
 			                            console.log(data.status);
 			                            var status = data.status.value;
@@ -310,7 +274,7 @@
 			            return $.when(task);
 			        }
 			    });
-
+			    
 			    // 实例化
 			    var uploader = WebUploader.create({
 			        pick: {
@@ -320,8 +284,7 @@
 			        formData: {
 			            uid: 0,
 			            md5: '',
-			            chunkSize: chunkSize,
-			            "Authorization": localStorage.token
+			            chunkSize: chunkSize
 			        },
 			        //dnd: '#dndArea',
 			        //paste: '#uploader',
@@ -341,10 +304,11 @@
 			 // 当有文件被添加进队列的时候
 			    uploader.on('fileQueued', function (file) {
 			        console.log("fileQueued");
-			        $thelist.append('<div id="' + file.id + '" class="item">' +
+			        $thelist.append('<div id="' + file.id + '"  filename="'+file.name+'" class="item">' +
 			                '<h4 class="info">' + file.name + '</h4>' +
 			                '<div><progress max="100" value="0" id="'+file.id +'-progress">测试</progress><p class="state">等待上传...</p><div>' +
 			                '</div>');
+			        $("#ctlBtn").show();
 			    });
 
 
@@ -367,6 +331,8 @@
 			            text = "文件妙传功能，文件已上传。"
 			        }
 			        $('#' + file.id).find('p.state').text(text);
+			        $('#' + file.id).attr("filemd5",file.md5);
+			        $('#' + file.id).attr("fileSize",file.size);
 			    });
 			    uploader.on('uploadError', function (file) {
 			        $('#' + file.id).find('p.state').text('上传出错');
@@ -381,6 +347,7 @@
 			        console.log("上传...");
 			        uploader.upload();
 			        console.log("上传成功");
+
 			    });
 
 			    /**
@@ -404,6 +371,7 @@
 			    function fadeOutProgress(file, id_Prefix) {
 			        $('#' + file.id+ '-progress').fadeOut();
 			    }
+		});
 			</script>
 
 </body>

@@ -9,6 +9,7 @@ import me.phoibe.doc.cms.entity.Code;
 import me.phoibe.doc.cms.entity.Result;
 import me.phoibe.doc.cms.service.PhoibeDocumentService;
 import me.phoibe.doc.cms.utils.JsonUtils;
+import me.phoibe.doc.cms.utils.PlatDateTimeUtil;
 
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.slf4j.Logger;
@@ -59,42 +60,8 @@ public class PhoibeDocumentController {
 	@Resource
 	private PhoibeDocumentMapper phoibeDocumentMapper;
 
-	@Value("${upload.filePath}")
-    private String filepath;
-	
-	@PostMapping("save")
-	public String saveDoucument(@RequestBody PhoibeDocument request) {
-
-		LOGGER.info(JsonUtils.toJson(request));
-
-		PhoibeDocument phoibeDocument = new PhoibeDocument();
-		// short arms = 1;
-		// phoibeDocument.setArms(arms);
-		// phoibeDocument.setAuditStatus(arms);
-		// phoibeDocument.setAuditUserId(new BigDecimal(1));
-		// phoibeDocument.setCombatType(arms);
-		// phoibeDocument.setContent("adfdasfdasfadf".getBytes());
-		// phoibeDocument.setDescription("sdfadsfd");
-		// phoibeDocument.setFilePath("test");
-		// phoibeDocument.setFileSize(new BigDecimal(1234556789));
-		// phoibeDocument.setFormat("doc");
-		// phoibeDocument.setName("test");
-		// phoibeDocument.setProgress((short) (arms +10));
-		// phoibeDocument.setScore(new BigDecimal(1.2));
-		// phoibeDocument.setTag("1,34,546,121");
-		// phoibeDocument.setUpdateTime(new Date());
-		// phoibeDocument.setUserId(new BigDecimal(1234));
-		// phoibeDocument.setStatus(arms);
-		// phoibeDocument.setCreateTime(new Date());
-
-		BeanUtils.copyProperties(request, phoibeDocument);
-		phoibeDocument.setCreateTime(new Date());
-
-		int result = phoibeDocumentService.save(phoibeDocument);
-		System.out.println(result);
-
-		return JsonUtils.toJson(new Result<>(Code.SUCCESS, "ok"));
-	}
+	@Value("${breakpoint.upload.dir}")
+	private String finalDirPath;
 
 	@GetMapping("list/{index}/{limit}")
 	public String listDoucument(@PathVariable Integer index, @PathVariable Integer limit,
@@ -178,56 +145,61 @@ public class PhoibeDocumentController {
 	// return JsonUtils.toJson(new Result<>(Code.SUCCESS, ""));
 	// }
 
-	@RequestMapping(value = { "upload" })
-	public String saveOrUpdate(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = { "save" })
+	public String saveOrUpdate(@RequestBody Map rb, HttpServletRequest request,
+			HttpServletResponse response) {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			request.setCharacterEncoding("UTF-8");
-			
+
 			Map<String, Object> map = null;
-			String pd = (String) map.get("SUCESS");
-			if (pd.equals("true")) {
-				String suffix = map.get("suffix").toString();
-				suffix = suffix.substring(1, suffix.length());
-				String filename = (String) map.get("data");
-				String fileSize = (String) map.get("fileSize");
-				/*
-				 * //如果是doc文件，读取文件内容 String path=""; InputStream is = new FileInputStream(new
-				 * File(path)); WordExtractor ex = new WordExtractor(is); buffer = ex.getText();
-				 * ex.close();
-				 */
+			String filemd5 = (String) rb.get("filemd5");
+			String filename = (String) rb.get("filename");
+			String suffix ="";
+			if(filename!=""&&null!=filename) {
+				suffix = filename.substring(filename.lastIndexOf(".")+1, filename.length());
+			}
+			String fileSize = (String) rb.get("filesize");
+			PhoibeDocument phoibeDocument = new PhoibeDocument();
+			phoibeDocument.setName((String) rb.get("name"));
+			phoibeDocument.setWarstate((String) rb.get("warcountry"));
+			String combat_type =(String)rb.get("combat_type");
+			combat_type = combat_type.replaceAll(" ", "");
+			phoibeDocument.setCombatType(Short.parseShort(combat_type));
+			String srms =(String)rb.get("arms");
+			srms = srms.replaceAll(" ", "");
+			phoibeDocument.setArms(Short.parseShort(srms));
+			phoibeDocument.setWaraddr((String) rb.get("waraddr"));
+			phoibeDocument.setWartime(PlatDateTimeUtil.formatStr((String) rb.get("wartime"),"YYYY-MM-DD"));
+			phoibeDocument.setWinner((String) rb.get("winner"));
+			phoibeDocument.setLoser((String) rb.get("loser"));
+			phoibeDocument.setWarnum((String) rb.get("warnum"));
+			phoibeDocument.setDescription((String) rb.get("description"));
+			phoibeDocument.setAuditStatus((short) (1));
+			phoibeDocument.setAuditUserId(1l);
+			phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
+			phoibeDocument.setFilePath(finalDirPath + filemd5+"/"+filename);
+			phoibeDocument.setFileSize(new BigDecimal(fileSize));
+			phoibeDocument.setFormat(suffix);;
+			phoibeDocument.setProgress((short) (100));
+			phoibeDocument.setScore(new BigDecimal(1.2));
+			phoibeDocument.setTag("#战役#,#标签#,#讲解#,#视频#");
+			phoibeDocument.setUpdateTime(new Date());
+			phoibeDocument.setUserId(1l);
+			phoibeDocument.setUserRealName("admin");
+			phoibeDocument.setStatus((short) (2));
+			phoibeDocument.setCreateTime(new Date());
+			short pc = (short) (1 + Math.random() * (10 - 1 + 1));
+			phoibeDocument.setPagecount(pc);
 
-				PhoibeDocument phoibeDocument = new PhoibeDocument();
-				//phoibeDocument.setArms(Short.parseShort(arms));
-				phoibeDocument.setAuditStatus((short) (1));
-				phoibeDocument.setAuditUserId(1l);
-				//phoibeDocument.setCombatType(Short.parseShort(combat_type));
-				phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
-				//phoibeDocument.setDescription(description);
-				phoibeDocument.setFilePath(filepath + filename);
-				phoibeDocument.setFileSize(new BigDecimal(fileSize));
-				phoibeDocument.setFormat(suffix);
-				//phoibeDocument.setName(title);
-				phoibeDocument.setProgress((short) (100));
-				phoibeDocument.setScore(new BigDecimal(1.2));
-				phoibeDocument.setTag("#战役#,#标签#,#讲解#,#视频#");
-				phoibeDocument.setUpdateTime(new Date());
-				phoibeDocument.setUserId(1l);
-				phoibeDocument.setUserRealName("admin");
-				phoibeDocument.setStatus((short) (2));
-				phoibeDocument.setCreateTime(new Date());
-				short pc = (short) (1 + Math.random() * (10 - 1 + 1));
-				phoibeDocument.setPagecount(pc);
+			int result = phoibeDocumentService.save(phoibeDocument);
 
-				int result = phoibeDocumentService.save(phoibeDocument);
-
-				BeanUtils.copyProperties(request, phoibeDocument);
-				if (result > 0) {
-					resultMap.put("success", true);
-				} else {
-					resultMap.put("success", false);
-				}
+			BeanUtils.copyProperties(request, phoibeDocument);
+			if (result > 0) {
+				resultMap.put("success", true);
+			} else {
+				resultMap.put("success", false);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

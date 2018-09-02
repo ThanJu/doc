@@ -205,34 +205,40 @@ $(function () {
         document.parent().getElementById("frm-main").height=document.getElementById("frm-main").contentWindow.document.body.scrollHeight+100;
         alert(document.parent().html());*/
     });
-
     $("#submit").click(function () {
-        var form = $("#ajaxform");
-        var path = baseUrl + "/phoibe/document/upload";
-        form.attr("action", path)
-        var files = $("#file").get(0).files[0]; //获取file控件中的内容
-        var fd = new FormData();
-        if ("" == $("#title").val()) {
-            alert("请输入标题");
-            return
-        }
-        fd.append("title", $("#title").val());
-        fd.append("combat_type", $("#combat_type").val());
-        fd.append("arms", $("#arms").val());
-        fd.append("description", $("#description").val());
-        fd.append("file", files);
-        $.ajax({
-            url: path,
-            type: form.attr("method"),
-            data: fd,
-            dataType: "json",
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                if (data.success) {
-                    alert("提交成功");
-                }
-            }
-        });
-    });
+    	formSubmit();
+    })
+    function formSubmit(){
+	    var form = $("#ajaxform");
+	    
+	    if(""==$("#title").val()){
+	    	alert("请输入标题");
+	    	return 
+	    }
+	    var formdata ={};
+	    for (var i = 0; i < form.serializeArray().length; i++) {
+			let key = form.serializeArray()[i].name;
+			let value = form.serializeArray()[i].value;
+			formdata[key] = value;
+		}
+	    $("#thelist").find(".item").each(function(){
+	    	formdata.filemd5 = $(this).attr("filemd5");
+	    	formdata.filename = $(this).attr("filename");
+	    	formdata.filesize = $(this).attr("filesize");
+			 
+	    });
+	    $.ajax({
+	        url: form.attr("action"),
+	        type: form.attr("method"),
+	        data: JSON.stringify(formdata), 
+	        dataType: "json",
+	        contentType:"application/json;charset=UTF-8",
+	        success: function (data)
+	        {
+	            if(data.success){
+	            	alert("提交成功");
+	            }
+	        }
+	    });
+	};
 });
