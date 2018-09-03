@@ -30,8 +30,12 @@ public class BreakPointController {
 	@Autowired
 	private StorageService storageService;
 
-	@Value("${breakpoint.upload.dir}")
-	private String finalDirPath;
+	@Value("${breakpoint.upload.window}")
+	private String window;
+	@Value("${breakpoint.upload.linux}")
+	private String linux;
+	@Value("${breakpoint.upload.status}")
+	private String status;
 	/**
 	 * 秒传判断，断点判断
 	 *
@@ -40,6 +44,13 @@ public class BreakPointController {
 	@RequestMapping(value = "checkFileMd5", method = RequestMethod.POST)
 	@ResponseBody
 	public Object checkFileMd5(String md5,String filename) throws IOException {
+		
+		String finalDirPath="";
+		if(status.equals("1")) {
+			finalDirPath = window;
+		}else {
+			finalDirPath = linux;
+		}
 		
 		String value = finalDirPath + md5+"/"+filename;
 		File confFile = new File(value+".conf");

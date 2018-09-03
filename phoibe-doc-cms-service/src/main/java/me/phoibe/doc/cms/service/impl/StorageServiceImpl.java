@@ -33,12 +33,21 @@ public class StorageServiceImpl implements StorageService {
 	@Value("${breakpoint.upload.chunkSize}")
 	private long CHUNK_SIZE;
 
-	@Value("${breakpoint.upload.dir}")
-	private String finalDirPath;
-
+	@Value("${breakpoint.upload.window}")
+	private String window;
+	@Value("${breakpoint.upload.linux}")
+	private String linux;
+	@Value("${breakpoint.upload.status}")
+	private String status;
+	
 	@Autowired
-	public StorageServiceImpl(@Value("${breakpoint.upload.dir}") String location) {
-		this.rootPaht = Paths.get(location);
+	public StorageServiceImpl(@Value("${breakpoint.upload.window}") String floag,@Value("${breakpoint.upload.linux}") String linux,@Value("${breakpoint.upload.status}") String status) {
+		System.out.println(!status.equals("1"));
+		if(!status.equals("1")) {
+			this.rootPaht = Paths.get(linux);
+		}else {
+			this.rootPaht = Paths.get(floag);
+		}
 	}
 
 	@Override
@@ -62,6 +71,13 @@ public class StorageServiceImpl implements StorageService {
 	@Override
 	public void uploadFileRandomAccessFile(MultipartFileParam param) throws IOException {
 		String fileName = param.getName();
+		
+		String finalDirPath="";
+		if(status.equals("1")) {
+			finalDirPath = window;
+		}else {
+			finalDirPath = linux;
+		}
 		String tempDirPath = finalDirPath + param.getMd5();
 		String tempFileName = fileName + "_tmp";
 		File tmpDir = new File(tempDirPath);
@@ -89,6 +105,12 @@ public class StorageServiceImpl implements StorageService {
 	@Override
 	public void uploadFileByMappedByteBuffer(MultipartFileParam param) throws IOException {
 		String fileName = param.getName();
+		String finalDirPath="";
+		if(status.equals("1")) {
+			finalDirPath = window;
+		}else {
+			finalDirPath = linux;
+		}
 		String uploadDirPath = finalDirPath + param.getMd5();
 		String tempFileName = fileName + "_tmp";
 		File tmpDir = new File(uploadDirPath);

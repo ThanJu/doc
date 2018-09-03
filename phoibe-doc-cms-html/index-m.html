@@ -55,34 +55,31 @@
 							</div>
 						</div>
 						<div class="box_border rightAb">
-							<div class="bg_whiteSD idx_box_list">
-								<div class="index-head-bg">
-									<img class="index-head" src="images/index-head.png" /><span
-										class="userName">李明,你好</span>
-								</div>
-								<div class="font22 title">中国战法</div>
-								<ul class="list3" id="zgzhanfa">
-
-								</ul>
-								<div class="clearfix"></div>
-								<div id="upload"></div>
-							</div>
 							<div class="dataword box_border">
-								<div class="font18">战法数据文档</div>
-								<div class="font16" id="docnum"></div>
+                                <div class="font18">战法数据文档</div>
+                                <div class="font16" id="docnum"></div>
 
-							</div>
-							<div class="bg_whiteSD idx_box_list">
-								<div class="font22 title">最新动态</div>
-								<marquee id="affiche" align="left" behavior="scroll"
-									direction="up" height="223px" width="100%" loop="-1"
-									scrollamount="10" scrolldelay="300" onMouseOut="this.start()"
-									onMouseOver="this.stop()">
-									<ul class="list3" id="lst-dym">
+                            </div>
+                            <div class="bg_whiteSD idx_box_list">
+                                <div class="index-head-bg">
+                                    <img class="index-head" src="images/index-head.png"/><span class="userName">李明,你好</span>
+                                </div>
+                                <div class="font22 title">中国战法</div>
+                                <ul class="list3" id="zgzhanfa">
+                                   
+                                </ul>
+                                <div class="clearfix"></div>
+                                <div id="upload"></div>
+                            </div>
+                            <div class="bg_whiteSD idx_box_list">
+                                <div class="font22 title">最新动态</div>
+                                   <marquee id="affiche" align="left" behavior="scroll" direction="up" height="176px" width="100%" loop="-1" scrollamount="10" scrolldelay="300" onMouseOut="this.start()" onMouseOver="this.stop()">
+                                    <ul class="list3" id="lst-dym">
 
-									</ul>
-								</marquee>
-							</div>
+                                    </ul>
+                                   </marquee>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -98,6 +95,22 @@
 				<i class="closed fr"></i>
 				<div class="clearfix"></div>
 				<hr />
+	<br/>
+				<div class="tbl-row">
+						<div class="lable">上传:</div>
+						<div class="ctrl">
+							<div id="uploader" class="wu-example">
+								<div id="picker" class="lable"></div>
+								<div class="wu-example ctrl">
+									<div id="thelist" class="uploader-list"></div>
+								</div>
+								<div class="ctrl">
+									<button id="ctlBtn" class="btn btn-default" filestatus=0 >开始上传</button>
+								</div>
+							</div>
+							</div>
+				</div>
+
 				<form method="post" id="ajaxform">
 					<div class="tbl-row">
 						<div class="lable">标题:</div>
@@ -105,16 +118,7 @@
 							<input type="text" id="name" name="name" class="inputBox" />
 						</div>
 					</div>
-					<div class="tbl-row">
-						<div class="ctrl">
-							<ul class='tag-ul'>
-								<li class='tag-li'>#战役#</li>
-								<li class='tag-li'>#解析#</li>
-								<li class='tag-li'>#讲解#</li>
-								<li class='tag-li'>#讨论#</li>
-							</ul>
-						</div>
-					</div>
+					
 					<div class="tbl-row">
 						<div class="lable">参战国家:</div>
 						<div class="ctrl">
@@ -177,7 +181,17 @@
 							<input type="text" id="warnum" name="warnum" class="inputBox" />
 						</div>
 					</div>
-
+					<div class="tbl-row">
+					<div class="lable">标签:</div>
+						<div class="ctrl">
+							<ul class='tag-ul'>
+								<li class='tag-li'>#战役#</li>
+								<li class='tag-li'>#解析#</li>
+								<li class='tag-li'>#讲解#</li>
+								<li class='tag-li'>#讨论#</li>
+							</ul>
+						</div>
+					</div>
 					<div class="tbl-row">
 						<div class="lable">摘要:</div>
 						<div class="ctrl">
@@ -187,15 +201,7 @@
 						</div>
 					</div>
 				</form>
-				<div id="uploader" class="tbl-row wu-example">
-					<div id="picker" class="lable"></div>
-					<div class="wu-example ctrl">
-						<div id="thelist" class="uploader-list"></div>
-					</div>
-					<div class="ctrl">
-						<button id="ctlBtn" class="btn btn-default" filestatus=0 >开始上传</button>
-					</div>
-				</div>
+				
 
 				<div class="tbl-row">
 					<div class="lable"></div>

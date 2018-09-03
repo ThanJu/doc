@@ -60,9 +60,13 @@ public class PhoibeDocumentController {
 	@Resource
 	private PhoibeDocumentMapper phoibeDocumentMapper;
 
-	@Value("${breakpoint.upload.dir}")
-	private String finalDirPath;
-
+	@Value("${breakpoint.upload.window}")
+	private String window;
+	@Value("${breakpoint.upload.linux}")
+	private String linux;
+	@Value("${breakpoint.upload.status}")
+	private String status;
+	
 	@GetMapping("list/{index}/{limit}")
 	public String listDoucument(@PathVariable Integer index, @PathVariable Integer limit,
 			@RequestParam(required = false) String f, @ModelAttribute DPhoebeDocument param) {
@@ -179,6 +183,12 @@ public class PhoibeDocumentController {
 			phoibeDocument.setAuditStatus((short) (1));
 			phoibeDocument.setAuditUserId(1l);
 			phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
+			String finalDirPath="";
+			if(status.equals("1")) {
+				finalDirPath = window;
+			}else {
+				finalDirPath = linux;
+			}
 			phoibeDocument.setFilePath(finalDirPath + filemd5+"/"+filename);
 			phoibeDocument.setFileSize(new BigDecimal(fileSize));
 			phoibeDocument.setFormat(suffix);;
@@ -252,7 +262,6 @@ public class PhoibeDocumentController {
 				
 				File file = new File(fileAbosultePath);
 				String filename = file.getName();
-				filename = filename.substring(filename.indexOf("-gettime-")+9,filename.length());
 				
 				byte[]bytes=getContent(fileAbosultePath);
 				 response.setContentType("multipart/form-data"); 

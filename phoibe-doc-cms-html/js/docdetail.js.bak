@@ -41,7 +41,7 @@ function loadData(pageindex) {
     $("#comm-content").children().remove();
     var docid = getUrlString("tid");
     var url = baseUrl + "/phoibe/comment/list/"+docid+"/"+pageindex+"/10";
-	//alert(url);
+	alert(url);
             $.ajax({
                 type: 'GET',
                 url: url,

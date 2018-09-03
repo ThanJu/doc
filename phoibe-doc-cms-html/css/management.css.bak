@@ -76,7 +76,7 @@ body,html{
 .main{
     /*height: 100%;*/
     position: relative;
-    padding-left: 310px;
+    padding-left: 260px;
     padding-top: 88px;
 }
 
@@ -134,7 +134,7 @@ body,html{
     background-image: url("../images/iconUser.png");
 }
 .main .navLeft{
-    width: 300px;
+    width: 240px;
     height: 100%;
     background-color: #333;
     position: absolute;
@@ -1013,14 +1013,16 @@ height:40px;
 .ul-header {
 width:100%;
 line-height: 20px;
-height: 40px;
+height: 48px;
+margin-top:4px;
 
 }
 .ul-header-right {
-padding-left:10px;
+padding-left:8px;
 }
 .list1 {
 width:100%;
+margin-left: 4px
 }
 .ul-header-docnum {
 color:#226c97;
@@ -1028,3 +1030,19 @@ color:#226c97;
 	#resou-doc .col3{
 	height:130px;
 	}
+.tag-li{
+	float: left;
+	margin-right: 10px;
+	width: auto;
+	height: 26px;
+	line-height:26px;
+	border:1px solid #cccccc;
+	padding: 0px 8px;
+	border-radius: 6px;
+	cursor:pointer;
+}
+.tag-li-in{
+	background-color: #b3e882;
+	color: #f8f6fb;
+	background-color: #6eb7fc;
+}

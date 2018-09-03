@@ -71,7 +71,7 @@ var baseUrl = "http://47.93.62.169:8090";//"http://192.168.199.139:8090";
                         else if (status == 2) {
                             docstatus = "上传完成";
                         }
-						if(val["stockTime"]=='undefined' || val['stockTime']==null){
+						if(val["stockTime"]=='undefined'){
 						   stockTime = '';
 						}
 

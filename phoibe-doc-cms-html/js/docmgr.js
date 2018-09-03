@@ -47,7 +47,7 @@ function loadData(pageindex) {
     if (doctypevalue != "undefined" && doctypevalue != null) {
         data = data + "&format=" + doctypevalue.toLowerCase();
     }
-
+//alert(data);
          $.ajax({
              type: 'GET',
              url: data,

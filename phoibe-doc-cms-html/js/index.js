@@ -1,10 +1,11 @@
 var baseUrl = "http://47.93.62.169:8090";
+//var baseUrl = "http://127.0.0.1:8090";
 //""http://47.93.62.169:8090";//
 function bindZhanfa() {
     $("#zgzhanfa").children().remove();
     $.ajax({
         type: 'GET',
-        url: baseUrl + '/phoibe/document/list/user/1/1',// '/phoibe/document/list/user/1/2',
+        url: baseUrl + '/phoibe/document/list/user/1/2',
         dataType: 'json',
         success: function (result) {//<div class='font22 title'>中国战法</div>
             var total_rows = result.data.totalCount;
@@ -64,7 +65,17 @@ function bindResouDoc() {//<div class='font22 title'>中国战法</div>
                     return;
                 }
                 if (step % 3 == 0) {
-                    var trow = "<div class='col3  clearfix'><div class='ul-header'><div class='ul-img fl'><img src='images/index-head.png'/></div><div class='ul-header-right fl'><div class='ul-header-name'>李明</div><span class='ul-header-docnum'>10689</span>篇文档</div></div><ul class='list1'>" + row + "</ul></div>";;
+                    var trow = "<div class='resoucole col3  clearfix'><div class='ul-header'><div class='ul-img fl'><img src='images/index-head.png'/></div><div class='ul-header-right fl'><div class='ul-header-name'>李明&nbsp;&nbsp;<span class='ul-header-docnum'>10689</span>篇文档&nbsp;</div>"
+                                      //+"<div class='scoreremark'><span class='ul-header-docnum'>10689</span>篇文档&nbsp;评分：<ul><li class='light'><a href='javascript:;'>1</a></li>"
+                                      /*+"<div class='scoreremark'>评分：<ul class='fr'><li class='light'><a href='javascript:;'>1</a></li>"  
+									  +"<li class='light'><a href='javascript:;'>2</a></li>"
+                                      +"<li class='light'><a href='javascript:;'>3</a></li>"
+                                      +"<li class='light'><a href='javascript:;'>4</a></li>"
+                                      +"<li class='light'><a href='javascript:;'>5</a></li>"
+                                     +"</ul></div></div></div><ul class='list1'>" + row + "</ul></div>";*/
+									 +"<div class='scoreremark'>评分:<i class='i-star'></i><i class='i-star'></i><i class='i-star'></i><i class='i-star'></i><i class='i-star'></i>"
+									 +"</div></div></div><ul class='list1'>" + row + "</ul></div>";
+					//alert(trow);
                     $("#resou-doc").append(trow)
                     row = "";
                 }

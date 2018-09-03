@@ -62,6 +62,8 @@ upload:
 
 breakpoint: 
  upload: 
-  dir: F:/Java_WorkSpace/satic/docword/
+  window:  F:/Java_WorkSpace/satic/docword/
+  linux:  satic/docword/
+  status:  2
   chunkSize: 5242880
   
