@@ -536,6 +536,7 @@ vertical-align:middle;
     float:left;
     margin-top:30px;
     cursor:pointer;
+	margin-left:10px;
     }
     #docdetail .right .favorite {
     background-image:url("../images/favorite.png") ;
@@ -1045,4 +1046,12 @@ color:#226c97;
 	background-color: #b3e882;
 	color: #f8f6fb;
 	background-color: #6eb7fc;
+}
+
+#docdetail .right .perview {
+	background-image: url("../images/perview.png");
+	width: 88px;
+	height: 34px;
+	float: left;
+	margin-top: 30px;
 }

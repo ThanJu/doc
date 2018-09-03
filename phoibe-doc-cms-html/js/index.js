@@ -1,4 +1,4 @@
-var baseUrl = "http://47.93.62.169:8090";
+var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090";;
 //var baseUrl = "http://127.0.0.1:8090";
 //""http://47.93.62.169:8090";//
 function bindZhanfa() {

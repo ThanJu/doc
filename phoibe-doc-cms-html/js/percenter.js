@@ -1,7 +1,7 @@
 
 var totalRows = 0;
 var currPage = 1;
-var baseUrl = "http://47.93.62.169:8090";//"http://192.168.199.139:8090";
+var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090";;//"http://192.168.199.139:8090";
 
 function bindNearRead() {
     var data = baseUrl+'/phoibe/document/list/1/10'

@@ -59,11 +59,12 @@ phoibe:
 #上传文件路径
 upload: 
   filePath: F:/Java_WorkSpace/satic/docword/
-
+  
+#status在windows环境下为需设置为1，Linux下需设置为2
 breakpoint: 
  upload: 
   window:  F:/Java_WorkSpace/satic/docword/
   linux:  satic/docword/
-  status:  2
+  status:  1
   chunkSize: 5242880
   

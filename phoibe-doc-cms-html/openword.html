@@ -13,6 +13,7 @@
 <script src="js/management.js"></script>
 <script type="text/javascript">
 $(function() {
+	var baseUrl = "http://47.93.62.169";
 	
 	var el = document.documentElement;
     var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
@@ -31,8 +32,8 @@ $(function() {
 	filePath = filePath.replace("%20"," ");
 	//打开本地文档
 	var path = filePath;
-	alert(path);
-	openDocumentF(path);
+	//alert(baseUrl+"/home/docmanage/"+path+"----/home/docmanage/satic/docword/42e8312eacb0bfb181e05d1c6afe5813");
+	openDocumentRemote("http://47.93.62.169:8888/group1/M00/00/00/rBE5j1uNRYCASww0AAfGwZEZudE.0.docx");
 	
 })
 	function init(tagID, width, height) {
@@ -93,24 +94,17 @@ $(function() {
 	function FullScreen(){
 		DocFrame.FullScreen();
 	}
-	
-	function createDocument() {
-        DocFrame.createDocument("uot");
-    }
-
-    function openDocumentT(path) {
-        var aa = DocFrame.openDocument(path,true);
-		//alert(aa);
-    }
-	
-	function openDocumentF(path) {
-        //var aa = DocFrame.openDocument('C:\\Users\\Administrator\\Desktop\\1.wps',false);
-		var aa = DocFrame.openDocument(path,false);
-		//alert(aa);
-    }
-
     function openDocumentRemote(path) {
         var aa = DocFrame.openDocumentRemote(path,false);
-        //alert(aa);		
+		alert(aa);		
+    }
+
+    function saveURL(path,filename) {
+		var name=prompt("请输入要保存的名称","要保存的文件名.ofd")
+		if (name!=null && name!=""){
+			var ret = DocFrame.saveURL(path, name);
+			alert(ret);
+		}
+
     }
 	</script>
