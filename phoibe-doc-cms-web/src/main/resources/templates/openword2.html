@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文档预览</title>
+</head>
+<script src="js/jquery-2.1.0.min.js"></script>
+
+<body style="overflow-x: hidden; overflow-y: hidden">
+	<div id="wps" align="center"
+		style="left: -1px; width: 100%; height: 100%; position: absolute;"></div>
+</body>
+<script type="text/javascript">
+
+if (navigator.userAgent.indexOf("MSIE") > 0) {
+    weboffice = "<OBJECT id='DocFrame1' align='middle' style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT:" + height + "px'"
+        + "classid=clsid:E77E049B-23FC-4DB8-B756-60529A35FAD5 codebase='../../../WebOffice/WebOffice.cab'>"
+        + "</OBJECT>";
+}
+
+
+if (navigator.userAgent.indexOf("Chrome") > 0) {
+    weboffice = "<object id='DocFrame1' type='application/x-itst-activex' align='baseline' border='0'"
+        + "style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT: 600px'"
+        + "clsid='{E77E049B-23FC-4DB8-B756-60529A35FAD5}' codebase='../../../WebOffice/WebOffice.cab'"
+        + "event_NotifyCtrlReady='WebOffice1_NotifyCtrlReady'>"
+        + "</object>";
+}
+
+
+if (navigator.userAgent.indexOf("Firefox") > 0) {
+    weboffice = "<object id='DocFrame1' type='application/x-itst-activex' align='baseline' border='0'"
+        + "style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT: 600px'"
+        + "clsid='{E77E049B-23FC-4DB8-B756-60529A35FAD5}' codebase='../../../WebOffice/WebOffice.cab'"
+        + "event_NotifyCtrlReady='WebOffice1_NotifyCtrlReady'>"
+        + "</object>";
+}
+document.write(weboffice)
+</script>
+</html>

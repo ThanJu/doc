@@ -3,8 +3,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>入库管理</title>
+    <script src="js/laydate/laydate.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/stockmgr.js"></script>
+    <script src="js/layui.js"></script>
     <link rel="stylesheet" href="css/management.css"/>
-   
+    <link rel="stylesheet" href="css/layui.css">
 </head>
 <body>
       <div id="stockmgr">
@@ -14,29 +18,32 @@
                  <div class="bg_whiteSD box_border search inputblock">
                     <div class="plateHeader i-stock"></div>
         <div class="border-l">
-                     文档名称:<input type="text" />&nbsp;&nbsp;上传人:<input type="text" />
-                        文档状态:<select style="width:60px;">
-                      <option value ="volvo">通过</option>
-                      <option value ="saab">未通过</option>
+                     文档名称:<input type="text" id="docname"/>&nbsp;&nbsp;上传人:<input type="text" id="owner" style="width:90px"/>
+                        文档状态:
+            <select style="width:60px;" id="doctype">
+                 <option value ="0">所有</option>
+                            <option value ="1">待审核</option>
+                      <option value ="2">通过</option>
+                      <option value ="3">未通过</option>
                         </select>
-                        &nbsp;&nbsp;审核时间:<input type="text" id="startdate" style="width:100px"/>-<input id="enddate" type="text" style="width:100px"/>&nbsp;&nbsp;
-                        <span class="btnSearch"></span>
-                        <ul class="checkList clearfix ">
-                            <li class="checkBox check">PDF</li>
+                        &nbsp;&nbsp;入库时间:<input type="text" id="startdate" style="width:90px" data-value=""/>-<input id="enddate" type="text" style="width:90px" data-value=""/>&nbsp;&nbsp;
+                        <span class="btnSearch" id="btnSearch"></span>
+                        <ul class="checkList clearfix " id="con-value">
+                           <li class="checkBox">PDF</li>
                             <li class="checkBox">DOC</li>
                             <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox ">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">PDF</li>
+                            <li class="checkBox">BMP</li>
+                            <li class="checkBox">PNG</li>
+                            <li class="checkBox ">GIF</li>
+                            <li class="checkBox">JPG</li>
+                            <li class="checkBox">JPEG</li>
+                            <li class="checkBox ">MPG</li>
+                            <li class="checkBox ">AVI</li>
+                            <li class="checkBox">MOV</li>
+                            <li class="checkBox ">MP4</li>
+                            <li class="checkBox">MP3</li>
+                            <li class="checkBox ">WAV</li>
+                            <li class="checkBox">MID</li>
                         </ul>
             </div>
                </div>
@@ -44,14 +51,13 @@
                <div class="content box_border inputblock top bg_whiteSD">
                          <div class="box_border">
                            
-                                <div class="addstock"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div class="delstock"></div>              
+                                <div class="addstock" id="btnaddstock"></div>&nbsp;&nbsp;&nbsp;&nbsp;<div class="delstock" id="btndelstock"></div>              
                            <br />  <br />
-                             <table class="tblist" border="0">
-                                 <tr><th style="width:50px"></th><th>文档名称</th><th>大小</th><th>上传人</th><th>文档标签</th><th>审批时间</th><th>文档状态</th><th>审批人</th></tr>
-                                 <tr><td><input type="radio" name="chksel"/></td><td>文档名称</td><td>大小</td><td>上传人</td><td>文档标签</td><td>审批时间</td><td class="f-blue">审核通过</td><td>审批人</td></tr>
-                                 
-                                 <tr><td><input type="radio" name="chksel"/></td><td>文档名称</td><td>大小</td><td>上传人</td><td>文档标签</td><td>审批时间</td><td class="f-red">审核未通过</td><td>审批人</td></tr>
+                             <table class="tblist" border="0" id="tblist-content">
+                                 <tr id="t-header"><th style="width:50px"></th><th>文档名称</th><th>大小</th><th>上传人</th><th>审批时间</th><th>入库时间</th><th>文档状态</th><th>审批人</th></tr>
+                                <tbody id="tblist-body"></tbody>
                              </table>
+                              <div id="notice_pages"></div>
                          </div>
                   
                 </div>
@@ -61,18 +67,7 @@
             
         </div>
     </div>
-<script src="js/jquery-2.1.0.min.js"></script>
-    <script src="js/management.js"></script>
-        <script src="js/laydate/laydate.js"></script>
-    <script>
-        //lay('#version').html('-v'+ laydate.v);
 
-        laydate.render({
-            elem: '#startdate'
-        });
-        laydate.render({
-            elem: '#enddate'
-        });
-</script>
+    <script src="js/management.js"></script>
 </body>
 </html>

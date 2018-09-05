@@ -183,13 +183,8 @@ public class PhoibeDocumentController {
 			phoibeDocument.setAuditStatus((short) (1));
 			phoibeDocument.setAuditUserId(1l);
 			phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
-			String finalDirPath="";
-			if(status.equals("1")) {
-				finalDirPath = window;
-			}else {
-				finalDirPath = linux;
-			}
-			phoibeDocument.setFilePath(finalDirPath + filemd5+"/"+filename);
+
+			phoibeDocument.setFilePath(filemd5+"/"+filename);
 			phoibeDocument.setFileSize(new BigDecimal(fileSize));
 			phoibeDocument.setFormat(suffix);;
 			phoibeDocument.setProgress((short) (100));
@@ -257,8 +252,13 @@ public class PhoibeDocumentController {
 		DPhoebeDocument pd = phoibeDocumentService.fetchDocumentById(Integer.parseInt(pdId));
 
 			if(null!=pd){
-
-				String fileAbosultePath = pd.getFilePath();
+				String finalDirPath="";
+				if(status.equals("1")) {
+					finalDirPath = window;
+				}else {
+					finalDirPath = linux;
+				}
+				String fileAbosultePath = finalDirPath + pd.getFilePath();
 				
 				File file = new File(fileAbosultePath);
 				String filename = file.getName();
@@ -266,7 +266,7 @@ public class PhoibeDocumentController {
 				byte[]bytes=getContent(fileAbosultePath);
 				 response.setContentType("multipart/form-data"); 
                  //2.设置文件头：最后一个参数是设置下载文件名(假如我们叫a.pdf)  
-				response.addHeader("Content-Disposition", "attachment;fileName="+new String(filename.getBytes(),"ISO8859-1"));  
+				response.addHeader("Content-Disposition", "attachment;fileName="+new String(filename.getBytes("gbk"),"ISO8859-1"));  
 				return bytes;   
 			}
 			return null;

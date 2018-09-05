@@ -1,142 +1,63 @@
 ﻿<!DOCTYPE html>
 <html>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>文档管理</title>
-    <link rel="stylesheet" href="css/management.css"/>
+<meta charset="UTF-8">
+<title>文档管理</title>
+<link rel="stylesheet" href="css/management.css" />
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/index.js"></script>
+<link href="js/webuploader-0.1.5/webuploader.css" rel="stylesheet"
+	type="text/css" />
+<!-- 引入文件上传插件 -->
+<script type="text/javascript"
+	src="js/webuploader-0.1.5/webuploader.min.js"></script>
 </head>
 <body>
-    <div id="index-m">
-        <div class="main box_border">
-            <div class="container box_border">
-                <div class="box_border">
-                    <div class="bg_whiteSD box_border search">
-                        <div class="inputBox">
-                            <input type="text" class="box_border" />
-                            <span class="btnSearch"></span>
-                        </div>
-                        <ul class="checkList clearfix ">
-                            <li class="checkBox check">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                        </ul>
-                    </div>
-                    <div class="content box_border">
-                        <div class="box_border left">
-                            <div class="box_border bg_whiteSD">
-                                <div class="plateHeader jingpin"></div>
-                                    <div class="col3">
-                                        <div class="font22 title">中国战法</div>
-                                        <ul class="list1">
-                                            <li><i class="pdf"></i>中国古代战法</li>
-                                            <li><i class="pdf"></i>中国古代战法</li>
-                                            <li><i class="doc"></i>中国古代战法</li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="col3">
-                                        <div class="font22 title">中国战法</div>
-                                        <ul class="list1">
-                                            <li><i class="doc"></i>中国古代战法</li>
-                                            <li><i class="pdf"></i>中国古代战法</li>
-                                            <li><i class="doc"></i>中国古代战法</li>
-                                        </ul>
-                                    </div>
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-                              
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="box_border bg_whiteSD">
-                                <div class="plateHeader resou"></div>
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-
-                                <div class="col3">
-                                    <div class="font22 title">中国战法</div>
-                                    <ul class="list1">
-                                        <li><i class="doc"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                        <li><i class="pdf"></i>中国古代战法</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="box_border rightAb">
-                            <div class="dataword box_border">
+	<div id="index-m">
+		<div class="main box_border">
+			<div class="container box_border">
+				<div class="box_border">
+					<div class="bg_whiteSD box_border search">
+						<div class="inputBox">
+							<input type="text" class="box_border" id="search-key" /> <span
+								class="btnSearch" id="btnSearch"></span>
+						</div>
+						<ul class="checkList clearfix " id="con-value">
+							<li class="checkBox check">PDF</li>
+							<li class="checkBox">DOC</li>
+							<li class="checkBox ">DOCX</li>
+							<li class="checkBox">BMP</li>
+							<li class="checkBox">PNG</li>
+							<li class="checkBox ">GIF</li>
+							<li class="checkBox">JPG</li>
+							<li class="checkBox">JPEG</li>
+							<li class="checkBox ">MPG</li>
+							<li class="checkBox ">AVI</li>
+							<li class="checkBox">MOV</li>
+							<li class="checkBox ">MP4</li>
+							<li class="checkBox">MP3</li>
+							<li class="checkBox ">WAV</li>
+							<li class="checkBox">MID</li>
+						</ul>
+					</div>
+					<div class="content box_border">
+						<div class="box_border left">
+							<div class="box_border bg_whiteSD">
+								<div class="plateHeader jingpin"></div>
+								<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>
+								<div id="recom-doc"></div>
+							</div>
+							<div class="box_border bg_whiteSD">
+								<div class="plateHeader resou"></div>
+								<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>
+								<div id="resou-doc"></div>
+							</div>
+						</div>
+						<div class="box_border rightAb">
+							<div class="dataword box_border">
                                 <div class="font18">战法数据文档</div>
-                                <div class="font16">19,087，500</div>
+                                <div class="font16" id="docnum"></div>
 
                             </div>
                             <div class="bg_whiteSD idx_box_list">
@@ -144,9 +65,8 @@
                                     <img class="index-head" src="images/index-head.png"/><span class="userName">李明,你好</span>
                                 </div>
                                 <div class="font22 title">中国战法</div>
-                                <ul class="list3">
-                                    <li><i class="i-star"></i>中国古代战法</li><li>34页面</li><li>上传完成</li>
-                                    <li><i class="i-star"></i>中国古代战法</li><li>34页面</li><li>下载完成</li>
+                                <ul class="list3" id="zgzhanfa">
+                                   
                                 </ul>
                                 <div class="clearfix"></div>
                                 <div id="upload"></div>
@@ -154,86 +74,322 @@
                             <div class="bg_whiteSD idx_box_list">
                                 <div class="font22 title">最新动态</div>
                                    <marquee id="affiche" align="left" behavior="scroll" direction="up" height="176px" width="100%" loop="-1" scrollamount="10" scrolldelay="300" onMouseOut="this.start()" onMouseOver="this.stop()">
-<ul class="list3">
-                                     
-                                    <li>中国古代战法</li><li>李明</li><li>30秒前上传</li>
-                                    <li>中国古代战法</li><li>李明</li><li>60秒前上传</li>
-                                     <li>中国古代战法</li><li>李明</li><li>30秒前上传</li>
-                                    <li>中国古代战法</li><li>李明</li><li>60秒前上传</li> 
-    <li>中国古代战法</li><li>李明</li><li>30秒前上传</li>
-                                    <li>中国古代战法</li><li>李明</li><li>60秒前上传</li>
-                                     <li>中国古代战法</li><li>李明</li><li>30秒前上传</li>
-                                    <li>中国古代战法</li><li>李明</li><li>60秒前上传</li> 
-    <li>中国古代战法</li><li>李明</li><li>30秒前上传</li>
-                                    <li>中国古代战法</li><li>李明</li><li>60秒前上传</li>
-                                     <li>中国古代战法</li><li>李明</li><li>30秒前上传</li>
-                                    <li>中国古代战法</li><li>李明</li><li>60秒前上传</li> 
-                                </ul></marquee>
-                                       </div>
+                                    <ul class="list3" id="lst-dym">
+
+                                    </ul>
+                                   </marquee>
+                                </div>
                             </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
+	<div class="bodyMask">
+		<div class="mask">
+			<span class="fullScreen"></span>
+			<div class="popup">
+				<div class="model-title fl">上传文档</div>
+				<i class="closed fr"></i>
+				<div class="clearfix"></div>
+				<hr />
+	<br/>
+				<div class="tbl-row">
+						<div class="lable">上传:</div>
+						<div class="ctrl">
+							<div id="uploader" class="wu-example">
+								<div id="picker" class="lable"></div>
+								<div class="wu-example ctrl">
+									<div id="thelist" class="uploader-list"></div>
+								</div>
+								<div class="ctrl">
+									<button id="ctlBtn" class="btn btn-default" filestatus=0 >开始上传</button>
+								</div>
+							</div>
+							</div>
+				</div>
 
-     <div class="bodyMask">
-<div class="mask">
-    <span class="fullScreen"></span>
-    <div class="popup">
-        <div class="model-title fl">上传文档</div><i class="closed fr"></i>
-        <div class="clearfix"></div> 
-        <hr />
-       　<div class="tbl-row">
-            <div class="lable">选择文件:</div><div class="ctrl"><input type="file" /></div>
-         </div>
-         <div class="tbl-row">
-            <div class="lable">标题:</div><div class="ctrl"><input type="text" class="inputBox"/></div>
-         </div>
-        <div class="tbl-row">
-            <div class="lable">类型作战:</div><div class="ctrl"><select>
-                      <option value ="volvo">Volvo</option>
-                      <option value ="saab">Saab</option>
-                        </select></div>
-         </div>
-        <div class="tbl-row">
-            <div class="lable">兵种:</div><div class="ctrl"><select>
-                      <option value ="volvo">Volvo</option>
-                      <option value ="saab">Saab</option>
-                        </select></div>
-         </div>
-        <div class="tbl-row">
-            <div class="lable">类型:</div><div class="ctrl"><select>
-                      <option value ="volvo">Volvo</option>
-                      <option value ="saab">Saab</option>
-                        </select></div>
-         </div>
-        <div class="tbl-row">
-            <div class="lable">单位:</div><div class="ctrl"><input type="text" class="inputBox"/></div>
-         </div>
-        <div class="tbl-row">
-            <div class="lable"></div>
-            <div class="ctrl">
-            <div class="submit"></div></div>
-        </div>
-    </div>
-        </div>
-</div>
+				<form method="post" id="ajaxform">
+					<div class="tbl-row">
+						<div class="lable">标题:</div>
+						<div class="ctrl">
+							<input type="text" id="name" name="name" class="inputBox" />
+						</div>
+					</div>
+					
+					<div class="tbl-row">
+						<div class="lable">参战国家:</div>
+						<div class="ctrl">
+							<input type="text" id="warcountry" name="warcountry"
+								class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">类型作战:</div>
+						<div class="ctrl">
+							<select id="combat_type" name="combat_type">
+							<option value="1">西方战例</option>
+							<option value="2">苏军战例</option>
+							<option value="3">俄军战例</option>
+							<option value="4 ">兵种战例</option>
+							<option value="5">其他</option>
+							</select>
+						</div>
+					</div>
 
-<script src="js/jquery-2.1.0.min.js"></script>
-<script src="js/management.js"></script>
-   
-   <script>
-       $(function () {
-           $("#upload").click(function () {
-               $(".bodyMask").fadeIn();
-           });
-           $(".closed").click(function () {
-               $(".bodyMask").hide();
-           });
-       });
-</script>
+					<div class="tbl-row">
+						<div class="lable">参战兵种:</div>
+						<div class="ctrl">
+							<select id="arms" name="arms">
+								<option value="1">步兵</option>
+								<option value="2">装甲兵</option>
+								<option value="3">通信兵</option>
+								<option value="4">炮兵</option>
+							</select>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战地址:</div>
+						<div class="ctrl">
+							<input type="text" id="waraddr" name="waraddr" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战时间:</div>
+						<div class="ctrl">
+							<input type="date" id="wartime" name="wartime" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">胜利方:</div>
+						<div class="ctrl">
+							<input type="text" id="winner" name="winner" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">失败方:</div>
+						<div class="ctrl">
+							<input type="text" id="loser" name="loser" class="inputBox" />
+						</div>
+					</div>
+
+					<div class="tbl-row">
+						<div class="lable">伤亡人数:</div>
+						<div class="ctrl">
+							<input type="text" id="warnum" name="warnum" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+					<div class="lable">标签:</div>
+						<div class="ctrl">
+							<ul class='tag-ul'>
+								<li class='tag-li'>#战役#</li>
+								<li class='tag-li'>#解析#</li>
+								<li class='tag-li'>#讲解#</li>
+								<li class='tag-li'>#讨论#</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">摘要:</div>
+						<div class="ctrl">
+							<textarea rows="10" cols="50"
+								style="width: 79%; border: 1px solid #cccccc;" id="description"
+								name="description"></textarea>
+						</div>
+					</div>
+				</form>
+				
+
+				<div class="tbl-row">
+					<div class="lable"></div>
+					<div class="ctrl">
+						<div id=submit class="submit"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/management.js"></script>
+	<script>
+		
+		$(function() {
+	        $("#ctlBtn").hide();
+			 var $btn = $('#ctlBtn');
+			    var $thelist = $('#thelist');
+			    var chunkSize = 5 * 1024 * 1024;
+
+			    // HOOK 这个必须要再uploader实例化前面
+			    WebUploader.Uploader.register({
+			        'before-send-file': 'beforeSendFile',
+			        'before-send': 'beforeSend'
+			    }, {
+			        beforeSendFile: function (file) {
+			            console.log("beforeSendFile");
+			            // Deferred对象在钩子回掉函数中经常要用到，用来处理需要等待的异步操作。
+			            var task = new $.Deferred();
+			            uploader.md5File(file).progress(function (percentage) {   // 及时显示进度
+			                console.log('计算md5进度:', percentage);
+			                getProgressBar(file, percentage, "MD5", "MD5");
+					        $('#' + file.id).find('p.state').text("文件解析中...");
+			            }).then(function (val) { // 完成
+			                console.log('md5 result:', val);
+			                file.md5 = val;
+			                // 模拟用户id
+			                // file.uid = new Date().getTime() + "_" + Math.random() * 100;
+			                file.uid = WebUploader.Base.guid();
+			                // 进行md5判断
+			                $.post("phoibe/uopload/checkFileMd5", {filename:file.name,uid: file.uid, md5: file.md5},
+			                        function (data) {
+			                            console.log(data.status);
+			                            var status = data.status.value;
+			                            task.resolve();
+			                            if (status == 101) {
+			                                // 文件不存在，那就正常流程
+			                            } else if (status == 100) {
+			                                // 忽略上传过程，直接标识上传成功；
+			                                uploader.skipFile(file);
+			                                file.pass = true;
+			                            } else if (status == 102) {
+			                                // 部分已经上传到服务器了，但是差几个模块。
+			                                file.missChunks = data.data;
+			                            }
+			                        });
+			            });
+			            return $.when(task);
+			        },
+			        beforeSend: function (block) {
+			            console.log("block")
+			            var task = new $.Deferred();
+			            var file = block.file;
+			            var missChunks = file.missChunks;
+			            var blockChunk = block.chunk;
+			            console.log("当前分块：" + blockChunk);
+			            console.log("missChunks:" + missChunks);
+			            if (missChunks !== null && missChunks !== undefined && missChunks !== '') {
+			                var flag = true;
+			                for (var i = 0; i < missChunks.length; i++) {
+			                    if (blockChunk == missChunks[i]) {
+			                        console.log(file.name + ":" + blockChunk + ":还没上传，现在上传去吧。");
+			                        flag = false;
+			                        break;
+			                    }
+			                }
+			                if (flag) {
+			                    task.reject();
+			                } else {
+			                    task.resolve();
+			                }
+			            } else {
+			                task.resolve();
+			            }
+			            return $.when(task);
+			        }
+			    });
+			    
+			    // 实例化
+			    var uploader = WebUploader.create({
+			        pick: {
+			            id: '#picker',
+			            label: '选择文件'
+			        },
+			        formData: {
+			            uid: 0,
+			            md5: '',
+			            chunkSize: chunkSize
+			        },
+			        //dnd: '#dndArea',
+			        //paste: '#uploader',
+			        swf: 'js/webuploader-0.1.5/Uploader.swf',
+			        chunked: true,
+			        chunkSize: chunkSize, // 字节 1M分块
+			        threads: 3,
+			        server: 'phoibe/uopload/fileUpload',
+			        auto: false,
+
+			        // 禁掉全局的拖拽功能。这样不会出现图片拖进页面的时候，把图片打开。
+			        disableGlobalDnd: true,
+			        fileNumLimit: 1024,
+			        fileSizeLimit: 1024 * 1024 * 1024,    // 200 M
+			        fileSingleSizeLimit: 1024 * 1024 * 1024    // 50 M
+			    });
+			 // 当有文件被添加进队列的时候
+			    uploader.on('fileQueued', function (file) {
+			        console.log("fileQueued");
+			        $thelist.append('<div id="' + file.id + '"  filename="'+file.name+'" class="item">' +
+			                '<h4 class="info">' + file.name + '</h4>' +
+			                '<div><progress max="100" value="0" id="'+file.id +'-progress">测试</progress><p class="state">等待上传...</p><div>' +
+			                '</div>');
+			        $("#ctlBtn").show();
+			    });
+
+
+			    //当某个文件的分块在发送前触发，主要用来询问是否要添加附带参数，大文件在开起分片上传的前提下此事件可能会触发多次。
+			    uploader.onUploadBeforeSend = function (obj, data) {
+			        console.log("onUploadBeforeSend");
+			        var file = obj.file;
+			        data.md5 = file.md5 || '';
+			        data.uid = file.uid;
+			    };
+			    // 上传中
+			    uploader.on('uploadProgress', function (file, percentage) {
+			        getProgressBar(file, percentage, "FILE", "上传进度");
+			        $('#' + file.id).find('p.state').text("文件上传中...");
+			        $('#ctlBtn').attr("filestatus","0");
+			    });
+			    // 上传返回结果
+			    uploader.on('uploadSuccess', function (file) {
+			        var text = '已上传';
+			        if (file.pass) {
+			            text = "文件妙传功能，文件已上传。"
+			        }
+			        $('#' + file.id).find('p.state').text(text);
+			        $('#' + file.id).attr("filemd5",file.md5);
+			        $('#' + file.id).attr("fileSize",file.size);
+			        $('#ctlBtn').attr("filestatus","1");
+			    });
+			    uploader.on('uploadError', function (file) {
+			        $('#' + file.id).find('p.state').text('上传出错');
+			    });
+			    uploader.on('uploadComplete', function (file) {
+			        // 隐藏进度条
+			        fadeOutProgress(file, 'MD5');
+			        fadeOutProgress(file, 'FILE');
+			    });
+			    // 文件上传
+			    $btn.on('click', function () {
+			        console.log("上传...");
+			        uploader.upload();
+			        console.log("上传成功");
+
+			    });
+
+			    /**
+			     *  生成进度条封装方法
+			     * @param file 文件
+			     * @param percentage 进度值
+			     * @param id_Prefix id前缀
+			     * @param titleName 标题名
+			     */
+			    function getProgressBar(file, percentage, id_Prefix, titleName) {
+			        var $li = $('#' + file.id + '-progress');
+			        var progressPercentage = percentage * 100;
+			        $li.val(progressPercentage);
+			    }
+
+			    /**
+			     * 隐藏进度条
+			     * @param file 文件对象
+			     * @param id_Prefix id前缀
+			     */
+			    function fadeOutProgress(file, id_Prefix) {
+			        $('#' + file.id+ '-progress').fadeOut();
+			    }
+		});
+			</script>
+
 </body>
 </html>

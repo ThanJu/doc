@@ -1,92 +1,85 @@
 ﻿<!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>文档管理</title>
-    <link rel="stylesheet" href="css/management.css"/>
+<meta charset="UTF-8">
+<title>文档管理</title>
+<script src="js/jquery-2.1.0.min.js"></script>
+<script src="js/docmgr.js"></script>
+<script src="js/layui.js"></script>
+<link rel="stylesheet" href="css/management.css" />
+<link rel="stylesheet" href="css/layui.css">
+
 </head>
 <body>
-    <div id="docmgr">
-        <div class="main box_border">
-            <div class="container box_border">
-                <div class="box_border">
-              
-                    <div class="bg_whiteSD box_border search inputblock">
-                    <div class="plateHeader i-docmgr"></div>
+	<div id="docmgr">
+		<div class="main box_border">
+			<div class="container box_border">
+				<div class="box_border">
 
-                        文档名称:<input type="text" />典型作战：
-                        <select>
-                      <option value ="volvo">Volvo</option>
-                      <option value ="saab">Saab</option>
-                        </select>
-                        兵种：<select>
-                      <option value ="volvo">Volvo</option>
-                      <option value ="saab">Saab</option>
-                        </select>文档拥有者：<input type="text" />
-                        <span class="btnSearch"></span>
-                        <ul class="checkList clearfix ">
-                            <li class="checkBox check">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox ">PDF</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">DOC</li>
-                            <li class="checkBox ">DOCX</li>
-                            <li class="checkBox">PDF</li>
-                        </ul>
-                    </div>
-                   
-                </div>
-                <br />
-               <div class="content box_border top  bg_whiteSD">
-                        <div class="box_border">
-                            <div class="box_border bg_whiteSD" id="doc-content">
-                                <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
+					<div class="bg_whiteSD box_border search inputblock">
+						<div class="plateHeader i-docmgr"></div>
+						<div class="clearfix " id="con-value" style='padding-top: 20px;'>
+						<ul class="u-con-list">
+						<li class="label">战例类型：</li><li><select	id="wartype">
+							<option value="0">全部</option>
+							<option value="1">西方战例</option>
+							<option value="2 ">苏军战例</option>
+							<option value="3">俄军战例</option>
+							<option value="4 ">兵种战例</option>
+							<option value="5">其他</option>
+						</select></li>
+						<li class="label">作战兵种：</li><li><select id="armtype">
+							<option value="0">全部</option>
+							<option value="1">步兵</option>
+							<option value="2">装甲兵</option>
+							<option value="3">通信兵</option>
+							<option value="4">炮兵</option>
+						</select></li>
+						<li class="label">文档名称：</li><li><input type="text" id="docname" /></li>
+						<li class="label">文档作者：</li><li><input type="text" id="owner" /></li>
+						<li>参战国家：</li><li><input type="text" id="warstate" /> </li>
+						<li class="label">参战地点：</li><li><input type="text" id="waraddr" /> </li>
+						<li class="label">参战时间：</li><li><input type="text" id="wartime" />  </li>
+						<li class="label">参战国家：</li><li><input type="text" id="warstate" /> </li>
+						<li class="label">胜利方：</li><li><input	type="text" id="winner" /></li>
+						<li class="label">失败方：</li><li><input type="text" id="loser" /></li>
+						<li class="label">伤亡人数:</li><li><input type="text" id="warnum" /></li>
+						</ul>
+						
+						</div>
+						<span class="btnSearch" id="btnSearch"></span>
+						<ul class="checkList clearfix " id="con-value">
+							<li class="checkBox">PDF</li>
+							<li class="checkBox">DOC</li>
+							<li class="checkBox ">DOCX</li>
+							<li class="checkBox">BMP</li>
+							<li class="checkBox">PNG</li>
+							<li class="checkBox ">GIF</li>
+							<li class="checkBox">JPG</li>
+							<li class="checkBox">JPEG</li>
+							<li class="checkBox ">MPG</li>
+							<li class="checkBox ">AVI</li>
+							<li class="checkBox">MOV</li>
+							<li class="checkBox ">MP4</li>
+							<li class="checkBox">MP3</li>
+							<li class="checkBox ">WAV</li>
+							<li class="checkBox">MID</li>
+						</ul>
+					</div>
 
-                                 <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
-                                 <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
-                                 <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
-                                 <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
-                                 <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
-                                 <div class="row">
-                                    <a class="title" href="docdetail.html">伊拉克战争空军作战</a>
-                                    <ul><li>上传时间:2018-08-01</li><li>格式:PDF</li><li>46条评论</li><li>评分44</li><li>大小:102K</li><li>文档拥有者:LEE</li></ul>
-                                </div>
+				</div>
+				<br />
+				<div class="content box_border top  bg_whiteSD">
+					<div class="box_border">
+						<div id="doc-content"></div>
+						<div id="notice_pages"></div>
+					</div>
+				</div>
 
-                            </div>
-                        </div>
-                    </div>
+			</div>
+		</div>
+	</div>
 
-            </div>
-        </div>
-</div>
-<script src="js/jquery-2.1.0.min.js"></script>
-<script src="js/management.js"></script>
- 
+	<script src="js/management.js"></script>
 </body>
 </html>

@@ -1,70 +1,52 @@
 spring:
-  #application
   application:
     name: phoibe-doc-cms
   thymeleaf:
     prefix: classpath:/templates/
     cache: false
-  #redis配置
+    resources:
+      chain:
+        gzipped: true
+        cache: false
+    cache-period: 604800
   redis:
     host: 10.10.40.28
     port: 9990
     database: 1
-
-  #db
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@101.201.220.162:1522:wemem
     username: docsysadmin
     password: Yhc5880908
-#    validation-query: SELECT 1
-#    test-on-borrow: false
-#    test-while-idle: true
     hikari:
-      maxLifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
-      maximumPoolSize: 15 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count
-  #上传配置
+      maxLifetime: 1765000
+      maximumPoolSize: 15
   http:
-      multipart: 
-        maxFileSize: 1048580000Mb
-        maxRequestSize: 10485800000MB
+    multipart:
+      maxFileSize: 1048580000Mb
+      maxRequestSize: 10485800000MB
 logging:
   level:
     root: info
-
-#tomcat配置
 server:
   port: 8090
   tomcat:
     max-threads: 1000
     uri-encoding: UTF-8
-
-#mybatis配置
 mybatis:
   mapper-locations: classpath*:/mapper/*Mapper.xml
   typeAliasesPackage: com.apus.balance.domain
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-
 jasypt:
   encryptor:
     password: foo
-
-#跨域配置
 crosDomain: '*'
-
 phoibe:
   address: http://127.0.0.1:8090/phoibe/
-  
-#上传文件路径
-upload: 
+upload:
   filePath: F:/Java_WorkSpace/satic/docword/
-  
-#status在windows环境下为需设置为1，Linux下需设置为2
-breakpoint: 
- upload: 
-  window:  F:/Java_WorkSpace/satic/docword/
-  linux:  satic/docword/
-  status:  1
-  chunkSize: 5242880
-  
+breakpoint:
+  upload:
+    window: F:/Java_WorkSpace/satic/docword/
+    linux: satic/docword/
+    status: 1
+    chunkSize: 5242880

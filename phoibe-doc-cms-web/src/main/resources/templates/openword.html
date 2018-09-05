@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>文档预览</title>
+</head>
+<body style="overflow-x: hidden; overflow-y: hidden">
+	<div id="wps" align="center"
+		style="left: -1px; width: 100%; height: 100%; position: absolute;"></div>
+</body>
+</html>
+<script src="js/jquery-2.1.0.min.js"></script>
+<!-- <script src="js/management.js"></script> -->
+<script type="text/javascript">
+	$(function() {
+
+		function loadScript(src, callback) {
+			var script = document.createElement('script'), head = document
+					.getElementsByTagName('head')[0];
+			script.type = 'text/javascript';
+			script.charset = 'UTF-8';
+			script.src = src;
+			if (script.addEventListener) {
+				script.addEventListener('load', function() {
+					callback();
+				}, false);
+			} else if (script.attachEvent) {
+				script.attachEvent('onreadystatechange', function() {
+					var target = window.event.srcElement;
+					if (target.readyState == 'loaded') {
+						callback();
+					}
+				});
+			}
+			head.appendChild(script);
+		}
+
+		var name = "filePath";
+		//打开本地文档
+		var filePath = window.location.search.substr(1);
+
+		filePath = decodeURI(filePath);
+
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+
+		var filename = filePath.match(reg);
+		if (filename != null) {
+			filename = filename[2];
+		}
+		//var filename = "33314432a02d706000d3647a32a20bb5/对称与非对称加密.txt";
+
+		var localhost = "http://" + window.location.host;
+
+			loadScript('js/wpsPlug-in.js', function() {
+				OpenFile(localhost + "/docword/" + filename);
+			});
+	})
+</script>

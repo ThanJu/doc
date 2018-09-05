@@ -2,15 +2,20 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>文档详情</title>
+    <title>文档详情</title>   
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/management.js"></script>
+    <script src="js/docdetail.js"></script>
+         <script src="js/layui.js"></script>
     <link rel="stylesheet" href="css/management.css"/>
-   <style>
+     <link rel="stylesheet" href="css/layui.css">
+    <style>
        #doc-content {
        min-width:935px;
        min-height:400px;
        width:100%;
        }
-   </style>
+    </style>
 </head>
 <body>
     <div id="docdetail">
@@ -20,74 +25,39 @@
                  <div class="bg_whiteSD box_border top inputblock">
                     <div class="plateHeader i-docmgr"></div>
                     <hr />
-                    <div class="left">
-                          <div class="row" style="border-bottom:0px;">
-                                     <i class="doc"></i><span class="doc-title">伊拉克战争空军作战</span>
-                                    <ul><li id="date">上传时间:2018-08-01</li><li id="format">格式:PDF</li><li id="comment">46条评论</li><li id="score">评分44</li><li id="size">大小:102K</li><li id="owner">文档拥有者:LEE</li></ul>
+                    <div class="left" style="width:600px;">
+                          <div class="row" style="border-bottom:0px;" id="doc-property">
+                                     <i id="icontitle" ></i><span class="doc-title" id="doctitle"></span>
+                                    <ul><li>上传时间:<span id="date"></span></li><li >格式:<span id="format"></span></li><li id="comment">46条评论</li><li id="score">评分44</li><li >大小:<span id="size">102K</span></li><li>文档拥有者:<span id="owner"></span></li></ul>
                                 </div>
                     </div>
-                    <div class="right">
-                        <div class="download"></div><div class="favorite"></div>
+                    <div class="right" style="width:300px">
+                        <a class="perview" id="preview" href="openword.html" title="预览" target="x"></a>
+                        <a class="download" title="下载"></a>
+                        <a class="favorite" href="#" title="收藏"></a>
                     </div>
                    
                      <div class="d-content clearfix">
-                         <div class="left">
+                        <!-- <div class="left">
                              <div class="dtitle">目录</div>
                          </div>
-                         <div class="right"></div>
+                         <div class="right" id="doc-content"></div>-->
+                         <div id="doc-content">
+
+                         </div>
+                         
                      </div>
+
                      <div id="comm">
                              <div class="tab-bc">
                               <div id="comm-title">评论</div>
                              </div>
-                              <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="commconten">文章很不错。</span>
-                                </div>
-                               <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span2">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span4">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span6">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span8">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span10">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span12">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span14">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span16">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span18">文章很不错。</span>
-                                </div>
-                           <div class="row">
-                                  <div class="imghead"><img src="images/head.png" /></div><span class="name">李明</span><span class="com-date">2018-01-01</span><br />
-                                  <span class="doctitle">中国近代战争续论</span><span id="Span20">文章很不错。</span>
-                                </div>
-
-
-                         <textarea  rows="10" placeholder="输入您的评论" id="comment-content" name="comment-content"></textarea>
+                             <div id="comm-content"></div>
+                                
+                           <div id="notice_pages"></div>
+                         <textarea  rows="5" placeholder="输入您的评论" id="comment-content" name="comment-content"></textarea>
                          <br />
+                         <input type="hidden" id="comentscore"/>
                          <div id="com-score">评分：
                                 <div class="scoreremark">
                                     <ul>
@@ -100,7 +70,7 @@
                                 </div>
 
                          </div>
-                         <div class="submit fr"></div>
+                         <div class="submit fr" id="submit"></div>
                          <div class="clearfix"></div>
                     </div>
 
@@ -108,64 +78,6 @@
                    
             </div>
         </div>
-     
-
-        <!--<div id="scoremark" class="scoremark scores">
-      <em class="score">8.0</em>
-      <span class="star">
-       <span class="ystar" style="width:80%"></span>
-       <ul>
-        <li><a href="javascript:void(0)" data-name="很差" class="one-star">1</a></li>
-        <li><a href="javascript:void(0)" data-name="较差" class="two-stars">2</a></li>
-        <li><a href="javascript:void(0)" data-name="一般" class="three-stars">3</a></li>
-        <li><a href="javascript:void(0)" data-name="较好" class="four-stars">4</a></li>
-        <li><a href="javascript:void(0)" data-name="很好" class="five-stars">5</a></li>
-       </ul>
-      </span>
-      <div style="left: 0px; display: none;" class="tips"></div>
-   </div>-->
-
 </div>
-    <script src="js/jquery-2.1.0.min.js"></script>
-<script src="js/management.js"></script>
-    <script>
-        //星星评分
-       /* starScore($(".scoremark"));
-        function starScore(star) {
-            star.find(".star ul li a").mouseenter(function () {
-                var txt = $(this).attr("data-name");
-                var x = $(this).parent("li").index();
-                star.find(".tips").html(txt).css("left", -6 + x * 24).show();
-            });
-            star.find(".star ul li a").mouseleave(function () {
-                star.find(".tips").html("").css("left", 0).hide();
-            });
-        }*/
-        var num = finalnum = tempnum = 0;
-        var lis = document.getElementsByTagName("li");
-        //num:传入点亮星星的个数
-        //finalnum:最终点亮星星的个数
-        //tempnum:一个中间值
-        function fnShow(num) {
-            finalnum = num || tempnum;//如果传入的num为0，则finalnum取tempnum的值
-            for (var i = 0; i < lis.length; i++) {
-                lis[i].className = i < finalnum ? "light" : "";//点亮星星就是加class为light的样式
-            }
-        }
-        for (var i = 1; i <= lis.length; i++) {
-            lis[i - 1].index = i;
-            lis[i - 1].onmouseover = function () { //鼠标经过点亮星星。
-                fnShow(this.index);//传入的值为正，就是finalnum
-            }
-            lis[i - 1].onmouseout = function () { //鼠标离开时星星变暗
-                fnShow(0);//传入值为0，finalnum为tempnum,初始为0
-            }
-            lis[i - 1].onclick = function () { //鼠标点击,同时会调用onmouseout,改变tempnum值点亮星星
-                tempnum = this.index;
-            }
-        }
-</script>
-
- 
 </body>
 </html>
