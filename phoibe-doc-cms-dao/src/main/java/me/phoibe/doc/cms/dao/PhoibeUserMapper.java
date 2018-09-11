@@ -16,4 +16,6 @@ public interface PhoibeUserMapper {
     int updateByPrimaryKeySelective(PhoibeUser record);
 
     int updateByPrimaryKey(PhoibeUser record);
+
+    PhoibeUser selectByParam(PhoibeUser phoibeUser);
 }

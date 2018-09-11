@@ -96,6 +96,11 @@
                 <version>${springboot.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis.springboot.version}</version>
@@ -105,6 +110,13 @@
                         <artifactId>tomcat-jdbc</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>0.7.0</version>
             </dependency>
 
             <dependency>

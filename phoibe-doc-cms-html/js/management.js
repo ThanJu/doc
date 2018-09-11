@@ -39,9 +39,9 @@ function getUrlString(name) {
 
 
 function authLogin() {
-    if (getCookie("username") == null || getCookie("username") == "") {
-        window.location.href = 'login.html';
-    }
+    // if (getCookie("username") == null || getCookie("username") == "") {
+    //     window.location.href = 'login.html';
+    // }
 }
 
 function setCookie(name, value) {

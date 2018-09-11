@@ -21,6 +21,44 @@
     from PHOIBE_USER
     where ID = #{id,jdbcType=DECIMAL}
   </select>
+
+  <sql id="selectByParam_Condition_Sql">
+    <where>
+      1=1
+      <if test="userName != null">
+        and USER_NAME = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null">
+        and TYPE = #{type,jdbcType=DECIMAL}
+      </if>
+      <if test="status != null">
+        and STATUS = #{status,jdbcType=DECIMAL}
+      </if>
+      <if test="createTime != null">
+        and CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updateTime != null">
+        and UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="password != null">
+        and PASSWORD = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="realname != null">
+        and REALNAME = #{realname,jdbcType=VARCHAR}
+      </if>
+      <if test="nickname != null">
+        and NICKNAME = #{nickname,jdbcType=VARCHAR}
+      </if>
+    </where>
+
+  </sql>
+
+  <select id="selectByParam" parameterType="me.phoibe.doc.cms.domain.po.PhoibeUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from PHOIBE_USER
+    <include refid="selectByParam_Condition_Sql"/>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from PHOIBE_USER
     where ID = #{id,jdbcType=DECIMAL}
