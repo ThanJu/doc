@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 import java.util.*;
@@ -31,7 +32,7 @@ public class JwtUtil {
     }
 
     public static HttpServletRequest validateTokenAndAddUserIdToHeader(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_STRING);
+        String token = getCookieValueByName(request,HEADER_STRING);
         if (token != null) {
             // parse the token.
             try {
@@ -48,6 +49,42 @@ public class JwtUtil {
             throw new TokenValidationException("Missing token");
         }
     }
+
+    /**
+     * 检索所有Cookie封装到Map集合
+     *
+     * @param request
+     * @return
+     */
+    public static Map<String, String> readCookieMap(HttpServletRequest request) {
+        Map<String, String> cookieMap = new HashMap<String, String>();
+        Cookie[] cookies = request.getCookies();
+        if (null != cookies) {
+            for (Cookie cookie : cookies) {
+                cookieMap.put(cookie.getName(), cookie.getValue());
+            }
+        }
+        return cookieMap;
+    }
+
+    /**
+     * 通过Key获取Value
+     *
+     * @param request
+     * @param name Key
+     * @return Value
+     */
+    public static String getCookieValueByName(HttpServletRequest request, String name) {
+        Map<String, String> cookieMap = readCookieMap(request);
+        if (cookieMap.containsKey(name)) {
+            String cookieValue = (String) cookieMap.get(name);
+            return cookieValue;
+        } else {
+            return null;
+        }
+    }
+
+
 
     /**
      * 利用jwt解析token信息.
