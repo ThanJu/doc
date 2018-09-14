@@ -1,7 +1,9 @@
 package me.phoibe.doc.cms.dao;
 
 import me.phoibe.doc.cms.domain.po.PhoibeRole;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface PhoibeRoleMapper {
     int deleteByPrimaryKey(Long roleId);
 
