@@ -130,7 +130,7 @@ public class BreakPointController {
 	 * @throws IOException
 	 */
 	@RequestMapping(value = "docSaveUpload", method = RequestMethod.POST)
-	public String docSaveUpload(MultipartFileParam param, HttpServletRequest request) throws IOException {
+	public String docSaveUpload(HttpServletRequest request) throws IOException {
 	
 		
 
