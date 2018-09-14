@@ -91,7 +91,7 @@ public class LoginContorller {
     /**
      * 登录
      */
-    @RequestMapping(value = "userlogin", method = { RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "userlogin", method = { RequestMethod.POST})
     public Object userlogin(@RequestParam String username,
                             @RequestParam String password,
                             HttpSession session,
@@ -113,7 +113,7 @@ public class LoginContorller {
 
                 Cookie cookie = new Cookie(JwtUtil.HEADER_STRING,jwt);
                 cookie.setPath("/");
-                cookie.setDomain(request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort());
+                cookie.setDomain(request.getServerName());
                 cookie.setMaxAge((int)JwtUtil.EXPIRATION_TIME);
                 response.addCookie(cookie);
 
