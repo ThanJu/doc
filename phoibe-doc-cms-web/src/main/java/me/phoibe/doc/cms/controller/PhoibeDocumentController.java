@@ -160,20 +160,23 @@ public class PhoibeDocumentController {
 			Map<String, Object> map = null;
 			String filemd5 = (String) rb.get("filemd5");
 			String filename = (String) rb.get("filename");
-			String suffix ="";
-			if(filename!=""&&null!=filename) {
-				suffix = filename.substring(filename.lastIndexOf(".")+1, filename.length());
-			}
-			String fileSize = (String) rb.get("filesize");
+			String fileext = (String) rb.get("fileext");
+			String fileSize = rb.get("filesize")+"";
+			String div_file_id = (String) rb.get("div_file_id");
+			
+			
 			PhoibeDocument phoibeDocument = new PhoibeDocument();
 			phoibeDocument.setName((String) rb.get("name"));
 			phoibeDocument.setWarstate((String) rb.get("warcountry"));
+			
 			String combat_type =(String)rb.get("combat_type");
 			combat_type = combat_type.replaceAll(" ", "");
 			phoibeDocument.setCombatType(Short.parseShort(combat_type));
+			
 			String srms =(String)rb.get("arms");
 			srms = srms.replaceAll(" ", "");
 			phoibeDocument.setArms(Short.parseShort(srms));
+			
 			phoibeDocument.setWaraddr((String) rb.get("waraddr"));
 			phoibeDocument.setWartime(PlatDateTimeUtil.formatStr((String) rb.get("wartime"),"YYYY-MM-DD"));
 			phoibeDocument.setWinner((String) rb.get("winner"));
@@ -184,16 +187,17 @@ public class PhoibeDocumentController {
 			phoibeDocument.setAuditUserId(1l);
 			phoibeDocument.setContent("正文内容正文内容正文内容正文内容正文内容正文内容".getBytes());
 
-			phoibeDocument.setFilePath(filemd5+"/"+filename);
 			phoibeDocument.setFileSize(new BigDecimal(fileSize));
-			phoibeDocument.setFormat(suffix);;
-			phoibeDocument.setProgress((short) (100));
+			phoibeDocument.setFilePath(filemd5+"/"+filename);
+			phoibeDocument.setFormat(fileext);;
+			phoibeDocument.setProgress((short) (20));
+			
 			phoibeDocument.setScore(new BigDecimal(1.2));
 			phoibeDocument.setTag("#战役#,#标签#,#讲解#,#视频#");
 			phoibeDocument.setUpdateTime(new Date());
 			phoibeDocument.setUserId(1l);
 			phoibeDocument.setUserRealName("admin");
-			phoibeDocument.setStatus((short) (2));
+			phoibeDocument.setStatus((short) (101));//上传中
 			phoibeDocument.setCreateTime(new Date());
 			short pc = (short) (1 + Math.random() * (10 - 1 + 1));
 			phoibeDocument.setPagecount(pc);
@@ -203,6 +207,8 @@ public class PhoibeDocumentController {
 			BeanUtils.copyProperties(request, phoibeDocument);
 			if (result > 0) {
 				resultMap.put("success", true);
+				resultMap.put("dId", phoibeDocument.getId());
+				resultMap.put("div_file_id", div_file_id);
 			} else {
 				resultMap.put("success", false);
 			}
@@ -214,7 +220,37 @@ public class PhoibeDocumentController {
 		LOGGER.info(JsonUtils.toJson(resultMap));
 		return JsonUtils.toJson(resultMap);
 	}
+	@RequestMapping("completeSave/{id}")
+	@ResponseBody
+	public String completeSave(@PathVariable Integer id) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			
+			PhoibeDocument phoibeDocument = new PhoibeDocument();
 
+			phoibeDocument.setId(id.longValue());
+			phoibeDocument.setProgress((short) (100));
+			
+			phoibeDocument.setStatus((short) (100));//上传完成
+			
+			int result = phoibeDocumentService.update(phoibeDocument);
+			
+			if (result > 0) {
+				resultMap.put("success", true);
+				resultMap.put("dId", result);
+			} else {
+				resultMap.put("success", false);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			resultMap.put("success", false);
+		}
+		LOGGER.info(JsonUtils.toJson(resultMap));
+		return JsonUtils.toJson(resultMap);
+	}
+	
 	@RequestMapping("update/{f}/{id}")
 	public String modifyDocument(@PathVariable String f, @PathVariable Integer id) {
 		try {

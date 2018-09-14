@@ -31,6 +31,11 @@ public class PhoibeDocumnetServiceImpl implements PhoibeDocumentService {
     }
 
     @Override
+    public Integer update(PhoibeDocument phoibeDocument) {
+        return phoibeDocumentMapper.updateByPrimaryKeySelective(phoibeDocument);
+    }
+    
+    @Override
     public PageList<DPhoebeDocument> fetchDocumentByPageList(PageParam<DPhoebeDocument> pageParam) {
         List<DPhoebeDocument> dlist = new ArrayList<>();
         List<PhoibeDocument> list = phoibeDocumentMapper.selectByPage(pageParam);

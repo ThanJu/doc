@@ -58,7 +58,7 @@
     delete from PHOIBE_DOCUMENT
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
-  <insert id="insert" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument">
+  <insert id="insert" parameterType="me.phoibe.doc.cms.domain.po.PhoibeDocument" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
     insert into PHOIBE_DOCUMENT (ID, NAME, FORMAT, 
       USER_ID, SCORE, FILE_PATH, 
       FILE_SIZE, COMBAT_TYPE, ARMS, 

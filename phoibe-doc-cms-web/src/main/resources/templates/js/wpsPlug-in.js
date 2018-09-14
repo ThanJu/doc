@@ -3,27 +3,6 @@
  */
 // var DocFrame = null;
 var DocFrame;
-var MenuItems = {
-	FILE : 1 << 0,
-	EDIT : 1 << 1,
-	VIEW : 1 << 2,
-	INSERT : 1 << 3,
-	FORMAT : 1 << 4,
-	TOOL : 1 << 5,
-	CHART : 1 << 6,
-	HELP : 1 << 7
-};
-var FileSubmenuItems = {
-	NEW : 1 << 0,
-	OPEN : 1 << 1,
-	CLOSE : 1 << 2,
-	SAVE : 1 << 3,
-	SAVEAS : 1 << 4,
-	PAGESETUP : 1 << 5,
-	PRINT : 1 << 6,
-	PROPERTY : 1 << 7
-};
-
 // 初始化文档插件
 function init(tagID, width, height) {
 	var iframe;
@@ -53,20 +32,7 @@ function init(tagID, width, height) {
 	 * console.error("该版本ie不支持attachEvent事件，请设置<meta
 	 * http-equiv='X-UA-Compatible' content='IE=10' />"); }
 	 */
-	window.onbeforeunload = function() {
-		obj.Application.Quit();
-	};
-
-	// 解决新建之后立马能输入
-	/*
-	 * window.onblur = function() { console.log("onblur");
-	 * obj.sltReleaseKeyboard(); };
-	 */
-
-	window.onresize = function() {
-		console.log("ondrag");
-		obj.sltReleaseKeyboard();
-	};
+	
 	return obj;
 }
 
@@ -82,7 +48,6 @@ function FullScreen() {
 function OpenFile(path) {
 
 	InitFrame();
-
 	if (DocFrame != null) {
 		var temp = DocFrame.openDocumentRemote(path, false);
 		if (temp) {
@@ -97,12 +62,17 @@ function OpenFile(path) {
 }
 
 function saveURL(path, filename) {
-	var name = prompt("请输入要保存的名称", "要保存的文件名.ofd")
-	if (name != null && name != "") {
-		var ret = DocFrame.saveURL(path, name);
-		alert(ret);
+	/*var name=prompt("请输入要保存的名称",filename);
+	if (name!=null && name!=""){
+		
+	}*/
+	
+	var ret = DocFrame.saveURL(path,filename);
+	if (ret) {
+		alert("文件保存成功！");
+	} else {
+		alert("文件保存失败！");
 	}
-
 }
 
 function selectBrowser() {
@@ -117,19 +87,20 @@ function selectBrowser() {
 	}
 
 	if (navigator.userAgent.indexOf("Chrome") > 0) {
-		codes.push("<object id='WebOffice1' type='application/x-itst-activex' align='baseline' border='0'"
+		codes.push("<object id='DocFrame1' type='application/x-itst-activex' align='baseline' border='0'"
 				+ "style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT: 100%'"
 				+ "clsid='{E77E049B-23FC-4DB8-B756-60529A35FAD5}'"
 				+ "</object>");
 	}
 
 	if (navigator.userAgent.indexOf("Firefox") > 0) {
-
-		codes.push("<object  name='DocFrame1' id='DocFrame1' type='application/x-itst-activex' "
-						+ "style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT: 100%'> "
-						+ "clsid='{E77E049B-23FC-4DB8-B756-60529A35FAD5}'"
-						+ " </object>");
-
+		
+		if(navigator.userAgent.indexOf("Firefox")>0){
+			codes.push("<object id='DocFrame1' type='application/x-itst-activex' align='baseline' border='0'");
+			codes.push("style='LEFT: 0px; WIDTH: 100%; TOP: 0px; HEIGHT: 100%'" );
+			codes.push("clsid='{E77E049B-23FC-4DB8-B756-60529A35FAD5}'>");
+			codes.push("</object>");
+		}
 	}
 	return codes;
 }

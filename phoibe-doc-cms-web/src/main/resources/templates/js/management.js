@@ -1,7 +1,7 @@
 
 $(function () {
 	
-    //authLogin();
+    authLogin();
 
    $(function(){
        //左侧页面导航切换
@@ -116,4 +116,13 @@ function cutString(str, len) {
         }
     }
     return s;
+}
+function getUrlParam(paramStr,paramneme) {
+    var reg = new RegExp("(^|&)" + paramneme + "=([^&]*)(&|$)", "i"); 
+
+    var result = paramStr.match(reg);
+    if (result == null || result.length < 1) {
+        return "";
+    }
+    return result[2];
 }

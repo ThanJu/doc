@@ -13,7 +13,7 @@ function loadData(pageindex) {
     var warnum = $("#warnum").val();
     var owner = $("#owner").val();
     var data = 'phoibe/document/list/'+pageindex+'/10?1=1';
-
+    
     if (name!=null);
     data = data + "&name=" + name;
     if (warstate!=null);
@@ -45,7 +45,10 @@ function loadData(pageindex) {
     if (doctypevalue != "undefined" && doctypevalue != null) {
         data = data + "&format=" + doctypevalue.toLowerCase();
     }
-//alert(data);
+    //设置默认条件
+    //剔除文件未上传的 statsu = 101 
+     data = data + "&statsu!=101";
+     
          $.ajax({
              type: 'GET',
              url: data,
@@ -71,7 +74,7 @@ function loadData(pageindex) {
                      var tag = "";
                      var docstatus = "";
                      var auditstatustyle = "f-blue";
-                     if (status == 1) {
+                     if (status == 101) {
                          docstatus = "上传中";
                      }
 

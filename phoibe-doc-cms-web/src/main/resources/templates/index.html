@@ -6,20 +6,27 @@
     <link rel="stylesheet" href="css/management.css"/>
 	<script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/management.js"></script>
+    <link href="js/webuploader-0.1.5/webuploader.css" rel="stylesheet"
+	type="text/css" />
+<!-- 引入文件上传插件 -->
+<script type="text/javascript"
+	src="js/webuploader-0.1.5/webuploader.min.js"></script>
+<script src="js/uploadForm.js"></script>
 </head>
 <body onload=" ">
 <div class="main box_border w1920">
     <div class="header">
         <div class="fl headerTitle">文档管理系统</div>
-        <div class="headerExit iconLeft fr">退出</div>
+        <div class="headerExit iconLeft fr" id="btnExit">退出</div>
         <div class="headerUsers fr">
             <span class="userName iconLeft iconUser ">李明</span>
             <span class="userIdentity">参谋</span>
         </div>
     </div>
-    <div class="navLeft box_border" id="navleft"  >
-        <div>
-            <ul>
+	<div class="navLeft box_border" id="nav_left">
+		 <div id="nav_title_btn">文档系统管理<div class="nav_shrink"></div></div>
+		 
+		    <ul>
                 <li class="navList box_border active" data-toggle="index-m.html">
                     <div class="box_border">
                     <span class="iconLeft iconIndex">首页
@@ -68,23 +75,191 @@
                     </span>
                     </div>
                 </li>
-               
             </ul>
             <div class="dateBox">
                 <div id="curtime"></div>
                 <div>今天是<span id="curweek">周三</span></div>
             </div>
+            
+            <div class="uplaodTaskBox">
+		    	<span class="uplaodTaskBtn">上传任务</span>
+            </div>
         </div>
+	<div id="nav_title_dsp">
+				显示
+	</div>
 
-    </div>
-    <div class="container box_border">
+    <div class="container box_border" id="main-content">
       <iframe id="frm-main" name="frm-main" src="index-m.html" style="width:100%;min-height:600px;overflow: scroll" scrolling="no"  frameborder="0" onload="iframeLoad()"></iframe>
     </div>
-
+     
 </div>
+<div class="uploadTaskListBox">
+	<div class="mask">
+		<div class="popup">
+			<div class="model-title fl">上传任务列表</div>
+				<i class="closed fr"></i>
+				<div class="clearfix"></div>
+				<hr />
+	<br/>	
+		<div class="tbl-row">
+			<div class="lable">上传:</div>
+			<div class="ctrl">
+			<div id="uploader" class="wu-example">
+				<div class="wu-example">
+					<div id="thelist" class="uploader-list"></div>
+					<div id="filebtn">
+						<span class="stopBtn" style="cursor: pointer;" >暂停</span>
+						<span class="continueBtn"style="cursor: pointer;" >继续</span>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		</div>
+ 	</div>
+</div>
+<div class="bodyMask">
+		<div class="mask">
+			<span class="fullScreen"></span>
+			<div class="popup">
+				<div class="model-title fl">上传文档</div>
+				<i class="closed fr"></i>
+				<div class="clearfix"></div>
+				<hr />
+	<br/>
+			<div class="tbl-row">
+					<div id="picker"class="lable">选择文件</div>
+					<div class="ctrl">
+					<div id="uploader" class="wu-example">
+						<div id="picker" class="lable"></div>
+						<div class="wu-example">
+							<div id="formthelist" class="uploader-list"></div>
+							<div id="filebtn">
+								<span class="stopBtn" style="cursor: pointer;" >暂停</span>
+								<span class="continueBtn"style="cursor: pointer;" >继续</span>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+				<form method="post" id="ajaxform">
+					<div class="tbl-row">
+						<div class="lable">标题:</div>
+						<div class="ctrl">
+							<input type="text" id="name" name="name" class="inputBox" />
+						</div>
+					</div>
+					
+					<div class="tbl-row">
+						<div class="lable">参战国家:</div>
+						<div class="ctrl">
+							<input type="text" id="warcountry" name="warcountry"
+								class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">类型作战:</div>
+						<div class="ctrl">
+							<select id="combat_type" name="combat_type">
+							<option value="1">西方战例</option>
+							<option value="2">苏军战例</option>
+							<option value="3">俄军战例</option>
+							<option value="4 ">兵种战例</option>
+							<option value="5">其他</option>
+							</select>
+						</div>
+					</div>
 
+					<div class="tbl-row">
+						<div class="lable">参战兵种:</div>
+						<div class="ctrl">
+							<select id="arms" name="arms">
+								<option value="1">步兵</option>
+								<option value="2">装甲兵</option>
+								<option value="3">通信兵</option>
+								<option value="4">炮兵</option>
+							</select>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战地址:</div>
+						<div class="ctrl">
+							<input type="text" id="waraddr" name="waraddr" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">参战时间:</div>
+						<div class="ctrl">
+							<input type="date" id="wartime" name="wartime" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">胜利方:</div>
+						<div class="ctrl">
+							<input type="text" id="winner" name="winner" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">失败方:</div>
+						<div class="ctrl">
+							<input type="text" id="loser" name="loser" class="inputBox" />
+						</div>
+					</div>
+
+					<div class="tbl-row">
+						<div class="lable">伤亡人数:</div>
+						<div class="ctrl">
+							<input type="text" id="warnum" name="warnum" class="inputBox" />
+						</div>
+					</div>
+					<div class="tbl-row">
+					<div class="lable">标签:</div>
+						<div class="ctrl">
+							<ul class='tag-ul'>
+								<li class='tag-li'>#战役#</li>
+								<li class='tag-li'>#解析#</li>
+								<li class='tag-li'>#讲解#</li>
+								<li class='tag-li'>#讨论#</li>
+							</ul>
+						</div>
+					</div>
+					<div class="tbl-row">
+						<div class="lable">摘要:</div>
+						<div class="ctrl">
+							<textarea rows="10" cols="50"
+								style="width: 79%; border: 1px solid #cccccc;" id="description"
+								name="description"></textarea>
+						</div>
+					</div>
+				</form>
+				
+
+				<div class="tbl-row">
+					<div class="lable"></div>
+					<div class="ctrl">
+						<div id=submit class="submit ctlBtn"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
     <script>
         $(function () {
+			    
+				$a = $(window).height();
+				$("nav_title").height($a);
+				$("#nav_title_btn").click(function(){
+					$("#nav_left").animate({left:'-200px'});
+					$("#main-content").css("padding-left","50px");
+					$("#nav_title_dsp").delay(500).animate({left:'0'});
+				});
+				$("#nav_title_dsp").click(function(){
+					$("#nav_title_dsp").animate({left:'-50px'});
+					$("#main-content").css("padding-left","260px");
+					$("#nav_left").delay(5).animate({left:'0'});
+				});
+
             var show = document.getElementById("curtime");
             setInterval(function () {
                 var time = new Date();   // 程序计时的月从0开始取值后+1   
@@ -116,6 +291,9 @@
 		window.onload = function () {
 			iframeLoad()
 		}
+
+
+		
     </script>
 </body>
 </html>

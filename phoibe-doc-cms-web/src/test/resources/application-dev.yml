@@ -23,6 +23,7 @@ spring:
       maximumPoolSize: 15
   http:
     multipart:
+      enabled: false
       maxFileSize: 1048580000Mb
       maxRequestSize: 10485800000MB
 logging:
@@ -48,5 +49,5 @@ breakpoint:
   upload:
     window: F:/Java_WorkSpace/satic/docword/
     linux: satic/docword/
-    status: 1
+    status: 2
     chunkSize: 5242880

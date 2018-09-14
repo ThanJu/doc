@@ -13,23 +13,27 @@ function getInfo() {
         dataType: 'json',
         success: function (result) {
             if (result.code = "SUCCESS") {
+            	var perviewStatus =0;
                 if (result.data.format == "doc" || result.data.format == "docx") {
                     $("#icontitle").attr("class", "doc");
+                    perviewStatus=1;
                 }
                 if (result.data.format == "pdf") {
                     $("#icontitle").attr("class", "pdf");
+                    perviewStatus=1;
+                }
+                if(perviewStatus ==1 ){
+                    var hrefurl = "openword.html?filePath="+result.data.filePath+"&docId="+tid;
+                    hrefurl= encodeURI(hrefurl)
+                    var pdfval = result.data.filePath.indexOf(".pdf");//验证文件后缀是否为pdf
+                    if(pdfval > 0){
+                    	hrefurl = "http://"+ window.location.host +"/docword/"+result.data.filePath;
+                    }
+                    $(".perview").attr("href",hrefurl);
+                }else{
+                	$(".perview").remove();
                 }
                 
-                var hrefurl = "openword.html?filePath="+result.data.filePath;
-                
-                hrefurl= encodeURI(hrefurl)
-                
-                var pdfval = result.data.filePath.indexOf(".pdf");//验证文件后缀是否为pdf
-            	//alert(localhost+"/docword/"+filename);
-                if(pdfval > 0){
-                	hrefurl = "http://"+ window.location.host +"/docword/"+result.data.filePath;
-                }
-                $(".perview").attr("href",hrefurl);
                 $("#date").html(result.data.createTime);
                 $("#format").html(result.data.format);
                 $("#size").html(result.data.fileSize);

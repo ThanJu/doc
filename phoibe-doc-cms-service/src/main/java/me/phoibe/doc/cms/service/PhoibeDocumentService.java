@@ -16,6 +16,8 @@ import java.util.List;
 public interface PhoibeDocumentService {
 
     Integer save(PhoibeDocument phoibeDocument);
+    
+    Integer update(PhoibeDocument phoibeDocument);
 
     PageList<DPhoebeDocument> fetchDocumentByPageList(PageParam<DPhoebeDocument> pageParam);
 

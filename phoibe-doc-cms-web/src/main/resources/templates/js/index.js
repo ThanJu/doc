@@ -189,20 +189,9 @@ $(function () {
     bindZhanfa();
     bindResouDoc();
     $("#upload").click(function () {
-        $(".bodyMask").fadeIn();
+        $(window.parent.document).find(".bodyMask").fadeIn();
     });
-    $(".closed").click(function () {
-        $(".bodyMask").hide();
-    });
-    $(".tag-li").click(function () {
-        $(this).addClass("tag-li-in");
-        $(".tag-li-in").click(function(){
-            $(this).removeClass("tag-li-in");
-            $(".tag-li").click(function () {
-                $(this).addClass("tag-li-in");
-            });
-        })
-    });
+    
     $("#btnSearch").click(function () {
         var searchKey = $("#search-key").val();
         var chkValue = $("#con-value li[checked='checked']");
@@ -222,50 +211,4 @@ $(function () {
         document.parent().getElementById("frm-main").height=document.getElementById("frm-main").contentWindow.document.body.scrollHeight+100;
         alert(document.parent().html());*/
     });
-    $("#submit").click(function () {
-    	formSubmit();
-    })
-    function formSubmit(){
-	    var form = $("#ajaxform");
-
-	    if($("#thelist").find(".item").length==0){
-	    	alert("请上传文档");
-	    	return 
-	    }
-        var filestatus = $('#ctlBtn').attr("filestatus");
-        if(filestatus==0){
-        	alert("您的文件未上传");
-	    	return 
-        }
-	    if(""==$("#name").val()){
-	    	alert("请输入标题");
-	    	return 
-	    }
-	    var formdata ={};
-	    for (var i = 0; i < form.serializeArray().length; i++) {
-			var key = form.serializeArray()[i].name;
-			var value = form.serializeArray()[i].value;
-			formdata[key] = value;
-		}
-	    $("#thelist").find(".item").each(function(){
-	    	formdata.filemd5 = $(this).attr("filemd5");
-	    	formdata.filename = $(this).attr("filename");
-	    	formdata.filesize = $(this).attr("filesize");
-			 
-	    });
-	    $.ajax({
-	        url: "phoibe/document/save",
-	        type: form.attr("method"),
-	        data: JSON.stringify(formdata), 
-	        dataType: "json",
-	        contentType:"application/json;charset=UTF-8",
-	        success: function (data)
-	        {
-	            if(data.success){
-	            	alert("提交成功");
-	            	$(".bodyMask").hide();
-	            }
-	        }
-	    });
-	};
 });

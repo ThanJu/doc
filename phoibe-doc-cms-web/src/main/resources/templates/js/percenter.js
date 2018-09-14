@@ -1,7 +1,7 @@
 
 var totalRows = 0;
 var currPage = 1;
-
+var wartype = "";
 function bindNearRead() {
     var data = 'phoibe/document/list/1/10'
     $.ajax({
@@ -110,7 +110,7 @@ function loadData(pageindex) {
     $("#tblist-body").children().remove();
 
     var data = 'phoibe/document/list/' + pageindex + '/10?f=audit';
-
+    data = data + wartype;
     $.ajax({
             type: 'GET',
             url: data,
@@ -137,11 +137,11 @@ function loadData(pageindex) {
                     var tag = "";
                     var docstatus = "";
                     var auditstatustyle = "f-blue";
-                    if (status == 1) {
+                    if (status == 101) {
                         docstatus = "上传中";
                     }
 
-                    else if (status == 2) {
+                    else if (status == 100) {
                         docstatus = "上传完成";
                     }
                     if (auditstatus == 1) {
@@ -191,36 +191,6 @@ function loadData(pageindex) {
         bindDym();
         bindNearRead();
 
-        $("#submit").click(function () {
-            var form = $("#ajaxform");
-            var path = "phoibe/document/upload";
-            form.attr("action", path)
-            var files = $("#file").get(0).files[0]; //获取file控件中的内容
-            var fd = new FormData();
-            if ("" == $("#title").val()) {
-                alert("请输入标题");
-                return
-            }
-            fd.append("title", $("#title").val());
-            fd.append("combat_type", $("#combat_type").val());
-            fd.append("arms", $("#arms").val());
-            fd.append("description", $("#description").val());
-            fd.append("file", files);
-            $.ajax({
-                url: path,
-                type: form.attr("method"),
-                data: fd,
-                dataType: "json",
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                    if (data.success) {
-                        alert("提交成功");
-                    }
-                }
-            });
-        });
-
         $("#move").click(function () {
             var sel = $("#tblist-body tr td input[type='radio']:checked");
             var rowid = $(sel).attr("data-value");
@@ -233,9 +203,11 @@ function loadData(pageindex) {
             alert(rowid);
         });
         $("#uploadfile").click(function () {
-            $(".bodyMask").fadeIn();
+            $(window.parent.document).find(".bodyMask").fadeIn();
         });
-        $(".closed").click(function () {
-            $(".bodyMask").hide();
+        $("#wartype").change(function(){
+        	var wartypevalue = $("#wartype option:selected").val();
+        	wartype = "&combatType=" + wartypevalue;
+        	loadData(0);
         });
     });
