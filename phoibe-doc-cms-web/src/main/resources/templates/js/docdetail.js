@@ -1,10 +1,10 @@
 
 var totalRows = 0;
-var currPage = 1;
+var currPage = 0;
 var tid = getUrlString("tid");
 function getInfo() {
 
-    var url = "phoibe/document/fetch/" + tid;
+    var url = GAL_URL+"phoibe/document/fetch/" + tid;
     //alert(url);
     $.ajax({
         type: 'GET',
@@ -50,7 +50,7 @@ function getInfo() {
 function loadData(pageindex) {
     $("#comm-content").children().remove();
     var docid = getUrlString("tid");
-    var url = "phoibe/comment/list/"+docid+"/"+pageindex+"/10";
+    var url = GAL_URL+"phoibe/comment/list/"+docid+"/"+pageindex+"/10";
 	//alert(url);
             $.ajax({
                 type: 'GET',
@@ -71,6 +71,7 @@ function loadData(pageindex) {
                         var row = "<div class='row'><div class='imghead'><img src='images/head.png' /></div><span class='name'>" + name + "</span><span class='com-date'>"+createTime+"</span><br /><span class='doctitle'>《" + title + "》</span><span id='commconten'>"+content+"</span></div>";
                         //alert(row);
                         $("#comm-content").append(row);
+                        parent.iframeLoad();
                     })
                 }
             });
@@ -89,7 +90,7 @@ function loadData(pageindex) {
                    , jump: function (obj, first) { //触发分页后的回调
                        if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                            currPage = obj.curr;
-                           loadData(obj.curr);
+                           loadData(obj.curr-1);
                        }
                    }
                 });

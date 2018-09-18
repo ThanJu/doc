@@ -3,6 +3,7 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>文档管理</title>
+     <script src="js/data.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/docmgr.js"></script>
 <script src="js/layui.js"></script>
@@ -18,8 +19,8 @@
 
 					<div class="bg_whiteSD box_border search inputblock">
 						<div class="plateHeader i-docmgr"></div>
-						<div class="clearfix " id="con-value" style='padding-top: 20px;'>
-						<ul class="u-con-list">
+						<div class="clearfix">
+						    <ul class="u-con-list">
 						<li class="label">战例类型：</li><li><select	id="wartype">
 							<option value="0">全部</option>
 							<option value="1">西方战例</option>
@@ -37,7 +38,7 @@
 						</select></li>
 						<li class="label">文档名称：</li><li><input type="text" id="docname" /></li>
 						<li class="label">文档作者：</li><li><input type="text" id="owner" /></li>
-						<li>参战国家：</li><li><input type="text" id="warstate" /> </li>
+						<li class="label">参战国家：</li><li><input type="text" id="warstate" /> </li>
 						<li class="label">参战地点：</li><li><input type="text" id="waraddr" /> </li>
 						<li class="label">参战时间：</li><li><input type="text" id="wartime" />  </li>
 						<li class="label">参战国家：</li><li><input type="text" id="warstate" /> </li>
@@ -71,7 +72,7 @@
 				<br />
 				<div class="content box_border top  bg_whiteSD">
 					<div class="box_border">
-						<div id="doc-content"></div>
+						<div id="docmgr-content"></div>
 						<div id="notice_pages"></div>
 					</div>
 				</div>

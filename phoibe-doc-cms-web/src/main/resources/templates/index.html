@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>文档管理</title>
     <link rel="stylesheet" href="css/management.css"/>
+    <script src="js/data.js"></script>
 	<script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/management.js"></script>
     <link href="js/webuploader-0.1.5/webuploader.css" rel="stylesheet"
@@ -16,17 +17,22 @@
 <body onload=" ">
 <div class="main box_border w1920">
     <div class="header">
-        <div class="fl headerTitle">文档管理系统</div>
-        <div class="headerExit iconLeft fr" id="btnExit">退出</div>
+        <div class="logo"></div>
+        <div class="fl headerTitle"></div>
+        <div class="headerExit iconLeft fr" id="btnExit"></div>
+        <div class="icon-p iconLeft fr" id="icon-p"></div> 
+        <div class="dateBox fr">
+                <span id="curtime"></span>
+                <span id="curweek"></span>
+            </div>
         <div class="headerUsers fr">
             <span class="userName iconLeft iconUser ">李明</span>
             <span class="userIdentity">参谋</span>
         </div>
     </div>
 	<div class="navLeft box_border" id="nav_left">
-		 <div id="nav_title_btn">文档系统管理<div class="nav_shrink"></div></div>
-		 
-		    <ul>
+		 <div id="nav_title_btn">文档系统管理</div>
+		    <ul class="fl">
                 <li class="navList box_border active" data-toggle="index-m.html">
                     <div class="box_border">
                     <span class="iconLeft iconIndex">首页
@@ -69,28 +75,21 @@
                     </span>
                     </div>
                 </li>
-                <li class="navList box_border" data-toggle="sysmgr.html">
+                <li class="navList box_border" data-toggle="logmgr.html">
                     <div class="box_border">
-                    <span class="iconLeft iconSystem">系统管理
+                    <span class="iconLeft iconSystem">日志管理
                     </span>
                     </div>
                 </li>
             </ul>
-            <div class="dateBox">
-                <div id="curtime"></div>
-                <div>今天是<span id="curweek">周三</span></div>
-            </div>
-            
+            <div id="nav_arrow" class="nav_arrow fr" data-value="1"></div>
+            <div class="clearfix"></div>
             <div class="uplaodTaskBox">
 		    	<span class="uplaodTaskBtn">上传任务</span>
             </div>
         </div>
-	<div id="nav_title_dsp">
-				显示
-	</div>
-
     <div class="container box_border" id="main-content">
-      <iframe id="frm-main" name="frm-main" src="index-m.html" style="width:100%;min-height:600px;overflow: scroll" scrolling="no"  frameborder="0" onload="iframeLoad()"></iframe>
+      <iframe id="frm-main" name="frm-main" src="index-m.html" style="width:100%;" scrolling="no"  frameborder="0" onload="iframeLoad()"></iframe>
     </div>
      
 </div>
@@ -129,10 +128,9 @@
 				<hr />
 	<br/>
 			<div class="tbl-row">
-					<div id="picker"class="lable">选择文件</div>
+				<div id="picker"class="lable">选择文件</div>
 					<div class="ctrl">
 					<div id="uploader" class="wu-example">
-						<div id="picker" class="lable"></div>
 						<div class="wu-example">
 							<div id="formthelist" class="uploader-list"></div>
 							<div id="filebtn">
@@ -246,19 +244,11 @@
 	</div>
     <script>
         $(function () {
-			    
-				$a = $(window).height();
-				$("nav_title").height($a);
-				$("#nav_title_btn").click(function(){
-					$("#nav_left").animate({left:'-200px'});
-					$("#main-content").css("padding-left","50px");
-					$("#nav_title_dsp").delay(500).animate({left:'0'});
-				});
-				$("#nav_title_dsp").click(function(){
-					$("#nav_title_dsp").animate({left:'-50px'});
-					$("#main-content").css("padding-left","260px");
-					$("#nav_left").delay(5).animate({left:'0'});
-				});
+            $("#btnExit").click(function () {
+                authExit();
+            });
+			
+            initNav();
 
             var show = document.getElementById("curtime");
             setInterval(function () {
@@ -282,18 +272,43 @@
             curweek.innerHTML = week;
         });
 
+        function initNav() {
+            $a = $(window).height();
+            $("nav_title").height($a);
+            $("#nav_arrow").click(function () {
+                var v = $("#nav_arrow").attr("data-value");
+                if (v == 1) {
+                    $("#nav_left").animate({ left: '-232px' });
+                    $("#main-content").css("padding-left", "30px");
+                    $("#nav_arrow").attr("data-value",2);
+                }
+                else {
+                    $("#main-content").css("padding-left", "260px");
+                    $("#nav_left").delay(5).animate({ left: '0' });
+                    $("#nav_arrow").attr("data-value", 1);
+                }
+              
+            });
+        }
 		function iframeLoad()
-		{
-			document.getElementById("frm-main").height=0;
-			document.getElementById("frm-main").height=document.getElementById("frm-main").contentWindow.document.body.scrollHeight+100;
+        {
+		    var iframe = document.getElementById("frm-main");
+		    var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+
+		    iframe.height = 0;
+
+		    if (iframeWin.document.body) {
+		        iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
+		    }
+
+		    /*var win_height = document.getElementById("frm-main").contentWindow.document.body.scrollHeight;
+		    alert(win_height);
+		    document.getElementById("frm-main").height = win_height + 150;*/
 		}
 
 		window.onload = function () {
 			iframeLoad()
 		}
-
-
-		
     </script>
 </body>
 </html>

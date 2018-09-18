@@ -26,4 +26,6 @@
 	opacity: 0.6;
 	pointer-events:none;
 }
-
+.uploader-list{
+	color: #8585e0;
+}

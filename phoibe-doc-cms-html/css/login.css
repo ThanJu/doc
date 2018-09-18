@@ -1,0 +1,71 @@
+ body {
+          background:url("../images/login_bg.png");
+          }
+          .container {
+          width:620px;
+          margin:0 auto;
+          height:100%;
+          background:url("../images/login_bg2.png");
+          min-height:580px;
+          overflow:hidden;
+          }   
+        .box_login {
+          width:320px;
+          margin:0 auto;
+          padding-top:360px;
+         
+          }
+          .box_login h1 {
+             font-size:26px;  
+             margin-bottom:20px;
+             text-align:center;
+             font-weight:bold;
+          }
+          #username,#password {
+          line-height:30px;
+          height:30px;
+          font-size:16px;
+          width:200px;
+          color:#c9c9c9;
+          margin-top:10px;
+          border: 1px solid #5e90ca;
+          margin-left: 10px;
+          background: #142f47;
+          }
+          .box_login .row {
+          width:100%;
+          border-bottom:0;
+          clear:both;
+          }
+          .box_login .row label {
+              width:30%;
+              padding-top:10px;
+              line-height:30px;
+              font-size:16px;
+              float:left;color:#ffffff;
+           }
+           .box_login .row .ctrl {
+             width:70%;
+             float:right;
+           }
+
+          .box_login .btnlogin{
+          width:120px;
+          height:32px;
+          line-height:32px;
+          background:#305a8f;
+          text-align:center;
+          color:#ffffff;
+          margin-top:10px;
+          border-radius:5px;
+          font-size:16px;
+          cursor:pointer;
+          display:inline-block;
+          }
+        
+          .btn-command {
+          width:270px;
+          margin:0 auto;
+          margin-top:20px;
+          
+          }

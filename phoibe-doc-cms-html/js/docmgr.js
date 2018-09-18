@@ -1,8 +1,6 @@
 
 var totalRows = 0;
-var currPage = 1;
-var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090";;
-//var baseUrl = "http://127.0.0.1:8090";
+var currPage = 0;
 //
 function loadData(pageindex) {
     $("#doc-content").children().remove()
@@ -14,8 +12,8 @@ function loadData(pageindex) {
     var loser = $("#loser").val();
     var warnum = $("#warnum").val();
     var owner = $("#owner").val();
-    var data = baseUrl+'/phoibe/document/list/'+pageindex+'/10?1=1';
-
+    var data = GAL_URL+'phoibe/document/list/'+pageindex+'/10?1=1';
+    
     if (name!=null);
     data = data + "&name=" + name;
     if (warstate!=null);
@@ -47,7 +45,10 @@ function loadData(pageindex) {
     if (doctypevalue != "undefined" && doctypevalue != null) {
         data = data + "&format=" + doctypevalue.toLowerCase();
     }
-//alert(data);
+    //设置默认条件
+    //剔除文件未上传的 statsu = 101 
+     data = data + "&statsu!=101";
+     
          $.ajax({
              type: 'GET',
              url: data,
@@ -73,7 +74,7 @@ function loadData(pageindex) {
                      var tag = "";
                      var docstatus = "";
                      var auditstatustyle = "f-blue";
-                     if (status == 1) {
+                     if (status == 101) {
                          docstatus = "上传中";
                      }
 
@@ -92,7 +93,7 @@ function loadData(pageindex) {
                          auditstatustyle = "f-red";
                      }
                      var row = "<div class='row'><a class='title' href='docdetail.html?tid="+id+"'>" + title + "</a><ul><li>上传时间:&nbsp;&nbsp;" + createtime + "</li><li>格式:&nbsp;&nbsp;" + format + "</li><li>46条评论</li><li>评分44</li><li>大小:&nbsp;&nbsp;" + filesize + "</li><li>文档拥有者:&nbsp;&nbsp;" + owner + "</li></ul></div>";
-                      $("#doc-content").append(row);
+                     $("#docmgr-content").append(row);
                  });
              }
          });
@@ -111,9 +112,11 @@ function loadData(pageindex) {
                , prev: '<em>←</em>'
                , next: '<em>→</em>'
                 , jump: function (obj, first) { //触发分页后的回调
+                	
                     if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                         currPage = obj.curr;
-                        loadData(obj.curr);
+                        loadData(obj.curr - 1);
+                        parent.iframeLoad();
                     }
                 }
              });

@@ -1,13 +1,12 @@
 
 var totalRows = 0;
-var currPage = 1;
-var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090";;//"http://192.168.199.139:8090";
-//
+var currPage = 0;
+
 
         function loadData(pageindex) {
             $("#tblist-body").children().remove();
 
-            var data = baseUrl+'/phoibe/document/list/'+pageindex+'/10?1=1&f=storage';
+            var data = GAL_URL+'phoibe/document/list/'+pageindex+'/10?1=1&f=storage';
 
             var docname = $("#docname").val();
             var owner = $("#owner").val();
@@ -86,6 +85,7 @@ var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090"
                         }
                         var row = "<tr><td class='row-id'>" + id + "</td><td><input type='radio' name='chksel' data-value='" + id + "'/></td><td title='" + title + "'><a href='docdetail.html?tid=" + id + "'>" + title + "</a></td><td>" + filesize + "</td><td>" + owner + "</td><td>" + auditdate + "</td><td class='" + auditstatustyle + "'>" + stockTime + "</td><td class='" + docstockstyle + "'>" + docstockstatus + "</td><td>" + auditor + "</td></tr>";
                         $("#tblist-body").append(row);
+                        parent.iframeLoad();
                     });
                 }
             });
@@ -105,7 +105,7 @@ var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090"
             , jump: function (obj, first) { 
                 if (!first) { 
                     currPage = obj.curr;
-                    loadData(obj.curr);
+                    loadData(obj.curr-1);
                 }
             }
          });
@@ -132,7 +132,7 @@ var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090"
             $("#btnaddstock").click(function () {
                 var sel = $("#tblist-body tr td input[type='radio']:checked");
                 var rowid = $(sel).attr("data-value");
-                var data = baseUrl+'/phoibe/document/update/instorage/' + rowid;
+                var data = 'phoibe/document/update/instorage/' + rowid;
                 $.ajax({
                     type: 'GET',
                     url: data,
@@ -153,7 +153,7 @@ var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090"
                 var sel = $("#tblist-body tr td input[type='radio']:checked");
                 var rowid = $(sel).attr("data-value");
 
-                var data = baseUrl+'/phoibe/document/update/outstorage/' + rowid;
+                var data = GAL_URL+'phoibe/document/update/outstorage/' + rowid;
                 $.ajax({
                     type: 'GET',
                     url: data,

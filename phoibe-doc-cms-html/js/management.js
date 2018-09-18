@@ -1,7 +1,6 @@
 
 $(function () {
 	
-	var baseUrl = "http://47.93.62.169:8090";//var baseUrl = "http://127.0.0.1:8090";;
     authLogin();
 
    $(function(){
@@ -39,9 +38,9 @@ function getUrlString(name) {
 
 
 function authLogin() {
-    // if (getCookie("username") == null || getCookie("username") == "") {
-    //     window.location.href = 'login.html';
-    // }
+    if (getCookie("username") == null || getCookie("username") == "") {
+        window.location.href = 'login.html';
+    }
 }
 
 function setCookie(name, value) {
@@ -72,9 +71,9 @@ function delCookie(name) {
 }
 
 function authExit() {
-    //delCookie("username");
+    delCookie("username");
     //alert(getCookie("username"));
-    //window.location.href = 'login.html';
+    window.location.href = 'login.html';
 }
 function cutString(str, len) {
 
@@ -117,4 +116,13 @@ function cutString(str, len) {
         }
     }
     return s;
+}
+function getUrlParam(paramStr,paramneme) {
+    var reg = new RegExp("(^|&)" + paramneme + "=([^&]*)(&|$)", "i"); 
+
+    var result = paramStr.match(reg);
+    if (result == null || result.length < 1) {
+        return "";
+    }
+    return result[2];
 }

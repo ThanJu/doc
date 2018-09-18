@@ -3,7 +3,7 @@ var currPage = 1;
 
     function loadData(pageindex) {
         $("#tblist-body").children().remove();    
-        var data = 'phoibe/document/list/'+pageindex+'/10?1=1';
+        var data = GAL_URL+'phoibe/document/list/'+pageindex+'/10?1=1';
         var name = "";
         var owner = "";
         var sel = $(".widget-tab input[type='radio']:checked");
@@ -81,8 +81,10 @@ var currPage = 1;
                     var row = "<tr><td class='row-id'>" + id + "</td><td><input type='radio' name='chksel' data-value='" + id + "'/></td><td title='" + title + "'><a href='docdetail.html?tid="+id+"'>" + title + "</a></td><td>" + filesize + "</td><td>" + owner + "</td><td>" + tag + "</td><td>" + auditdate + "</td><td class='" + auditstatustyle + "'>" + auditstatus + "</td><td>" + auditor + "</td></tr>";
                     //alert(row);
                     $("#tblist-body").append(row);
+                    parent.iframeLoad();
                 });
             }
+
         });
 
         layui.use(['laypage', 'layer'], function () {
@@ -100,7 +102,7 @@ var currPage = 1;
                , jump: function (obj, first) { //触发分页后的回调
                    if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                        currPage = obj.curr;
-                       loadData(obj.curr);
+                       loadData(obj.curr-1);
                    }
                }
             });
@@ -159,7 +161,7 @@ var currPage = 1;
         $("#btnreback").click(function () {
             var sel = $("#tblist-body tr td input[type='radio']:checked");
             var rowid = $(sel).attr("data-value");
-            var data = '/phoibe/document/update/checkrefuse/' + rowid;
+            var data = GAL_URL+'/phoibe/document/update/checkrefuse/' + rowid;
             //alert(data);
             $.ajax({
                 type: 'GET',
@@ -180,6 +182,6 @@ var currPage = 1;
             currPage = 1;
             totalRows = 0;
             loadData(0);
-           
+           // parent.iframeLoad();
         });
     });

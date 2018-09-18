@@ -1,9 +1,11 @@
 
 function bindZhanfa() {
     $("#zgzhanfa").children().remove();
+    //var url = GAL_URL + 'phoibe/document/list/user/1/2';
+    //alert(url);
     $.ajax({
         type: 'GET',
-        url: 'phoibe/document/list/user/1/2',
+        url: GAL_URL + 'phoibe/document/list/user/0/5',
         dataType: 'json',
         success: function (result) {//<div class='font22 title'>中国战法</div>
             var total_rows = result.data.totalCount;
@@ -22,7 +24,7 @@ function bindZhanfa() {
                     docstatus = "上传完成";
                 }
 
-                var row = "<li><i class='i-star'></i><a title='" + title + "' href='docdetail.html?tid=" + tid + "'>" + cutString(title, 10) + "</a></li><li>" + pagecount + "</li><li>" + docstatus + "</li>";
+                var row = "<li class='per-50'><i class='i-star'></i><a title='" + title + "' href='docdetail.html?tid=" + tid + "'>" + cutString(title, 20) + "</a></li><li class='per-10'>" + pagecount + "</li><li class='per-30'>" + docstatus + "</li>";
                 $("#zgzhanfa").append(row);
 
             });
@@ -30,9 +32,12 @@ function bindZhanfa() {
     });
 }
 function bindResouDoc() {//<div class='font22 title'>中国战法</div>
+    $("#zgzhanfa").children().remove();
+    //var url = GAL_URL + 'phoibe/document/list/1/19?f=hot';
+    //alert(url);
     $.ajax({
         type: 'GET',
-        url: 'phoibe/document/list/1/19?f=hot',
+        url: GAL_URL + 'phoibe/document/list/1/19?f=hot',
 
         dataType: 'json',
         success: function (result) {//<div class='font22 title'>中国战法</div>
@@ -56,14 +61,14 @@ function bindResouDoc() {//<div class='font22 title'>中国战法</div>
                     icon = "<i class='exls'></i>";
                 }
 
-                row = row + "<li>" + icon + "<a href='docdetail.html?tid=" + tid + "'>" + title + "</a></li>";
+                row = row + "<li>" + icon + "<a href='docdetail.html?tid=" + tid + "' title="+title+">" + cutString(title, 22) + "</a></li>";
                 if (step == total_rows) {
                     var trow = "<div class='col3  clearfix'><div class='ul-header'><div class='ul-img fl'><img src='images/index-head.png'/></div><div class='ul-header-right fl'><div class='ul-header-name'>李明</div><span class='ul-header-docnum'>10689</span>篇文档</div></div><ul class='list1'>" + row + "</ul></div>";
                     $("#resou-doc").append(trow)
                     return;
                 }
                 if (step % 3 == 0) {
-                    var trow = "<div class='resoucole col3  clearfix'><div class='ul-header'><div class='ul-img fl'><img src='images/index-head.png'/></div><div class='ul-header-right fl'><div class='ul-header-name'>李明&nbsp;&nbsp;<span class='ul-header-docnum'>10689</span>篇文档&nbsp;</div>"
+                    var trow = "<div class='col3  clearfix'><div class='ul-header'><div class='ul-img fl'><img src='images/index-head.png'/></div><div class='ul-header-right fl'><div class='ul-header-name'>李明&nbsp;&nbsp;<span class='ul-header-docnum'>10689</span>篇文档&nbsp;</div>"
                                       //+"<div class='scoreremark'><span class='ul-header-docnum'>10689</span>篇文档&nbsp;评分：<ul><li class='light'><a href='javascript:;'>1</a></li>"
                                       /*+"<div class='scoreremark'>评分：<ul class='fr'><li class='light'><a href='javascript:;'>1</a></li>"  
 									  +"<li class='light'><a href='javascript:;'>2</a></li>"
@@ -84,9 +89,12 @@ function bindResouDoc() {//<div class='font22 title'>中国战法</div>
 }
 
 function bindRecommDoc() {
+    $("#zgzhanfa").children().remove();
+    var url = GAL_URL + 'phoibe/document/list/1/19?f=handpick';
+    //alert(url);
     $.ajax({
         type: 'GET',
-        url: 'phoibe/document/list/1/19?f=handpick',
+        url: GAL_URL + 'phoibe/document/list/1/19?f=handpick',
 
         dataType: 'json',
         success: function (result) {//<div class='font22 title'>中国战法</div>
@@ -109,7 +117,7 @@ function bindRecommDoc() {
                 else {
                     icon = "<i class='exls'></i>";
                 }
-                row = row + "<li>" + icon + "<a href='docdetail.html?tid=" + tid + "'>" + title + "</a></li>";
+                row = row + "<li>" + icon + "<a href='docdetail.html?tid=" + tid + "' tile="+title+">" +cutString(title,22) + "</a></li>";
                 if (step == total_rows) {
                     var trow = "<div class='col3'><ul class='list1'>" + row + "</ul></div>";;
                     $("#recom-doc").append(trow)
@@ -126,10 +134,9 @@ function bindRecommDoc() {
     });
 }
 function bindDym() {
-    //alert('phoibe/document/list/user/1/10');
     $.ajax({
         type: 'GET',
-        url: 'phoibe/document/list/user/1/10',
+        url: GAL_URL + 'phoibe/document/list/user/0/10',
         //url: 'http://199.139.199.154:8090/phoibe/document/selectDoucumentList',
         dataType: 'json',
         success: function (result) {
@@ -163,16 +170,18 @@ function bindDym() {
                 if (hours > 0) minutesTip = hours + "小时" + minutesTip;
                 if (days > 0) minutesTip = days + "天" + minutesTip;
 
-                var row = "<li><a href='docdetail.html?tid=" + tid + "' title='" + docname + "'>" + cutString(docname, 16) + "</a></li><li><span>" + username + "</span></li><li>" + minutesTip + "</li>";
+                var row = "<li><a href='docdetail.html?tid=" + tid + "' title='" + docname + "'>" + cutString(docname, 28) + "</a></li><li><span>" + username + "</span></li><li>" + minutesTip + "</li>";
                 $("#lst-dym").append(row);
             });
         }
     });
 }
 function getDocNum() {
+    //var url = GAL_URL + 'phoibe/document/count';
+    //alert(url);
     $.ajax({
         type: 'GET',
-        url: 'phoibe/document/count',
+        url: GAL_URL + 'phoibe/document/count',
         dataType: 'json',
         success: function (result) {
             if (result.code == "SUCCESS");
@@ -191,7 +200,6 @@ $(function () {
     $("#upload").click(function () {
         $(window.parent.document).find(".bodyMask").fadeIn();
     });
-    
     $("#btnSearch").click(function () {
         var searchKey = $("#search-key").val();
         var chkValue = $("#con-value li[checked='checked']");
@@ -202,13 +210,5 @@ $(function () {
         if (doctypevalue != null)
             url = url + "&format=" + doctypevalue.toLowerCase();
         window.location.href = url;
-        /*if ($("#frm-main").attr("src") == null) {
-            window.location.href = url;
-        }
-        $("#frm-main").attr("src", url);
-        document.parent().getElementById("frm-main").height = 0;
-
-        document.parent().getElementById("frm-main").height=document.getElementById("frm-main").contentWindow.document.body.scrollHeight+100;
-        alert(document.parent().html());*/
     });
 });

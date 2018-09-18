@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>文档详情</title>   
+          <script src="js/data.js"></script>
     <script src="js/jquery-2.1.0.min.js"></script>
     <script src="js/management.js"></script>
     <script src="js/docdetail.js"></script>
@@ -11,7 +12,6 @@
      <link rel="stylesheet" href="css/layui.css">
     <style>
        #doc-content {
-       min-width:935px;
        min-height:400px;
        width:100%;
        }
@@ -25,13 +25,13 @@
                  <div class="bg_whiteSD box_border top inputblock">
                     <div class="plateHeader i-docmgr"></div>
                     <hr />
-                    <div class="left" style="width:600px;">
+                    <div class="left" style="width:60%;">
                           <div class="row" style="border-bottom:0px;" id="doc-property">
                                      <i id="icontitle" ></i><span class="doc-title" id="doctitle"></span>
                                     <ul><li>上传时间:<span id="date"></span></li><li >格式:<span id="format"></span></li><li id="comment">46条评论</li><li id="score">评分44</li><li >大小:<span id="size">102K</span></li><li>文档拥有者:<span id="owner"></span></li></ul>
                                 </div>
                     </div>
-                    <div class="right" style="width:300px">
+                    <div class="right" style="width:36%">
                         <a class="perview" id="preview" href="openword.html" title="预览" target="x"></a>
                         <a class="download" title="下载"></a>
                         <a class="favorite" href="#" title="收藏"></a>
@@ -49,9 +49,10 @@
                      </div>
 
                      <div id="comm">
-                             <div class="tab-bc">
-                              <div id="comm-title">评论</div>
-                             </div>
+                            <!-- <div class="tab-bc">
+                              
+                             </div>-->
+                            <div id="comm-title" class="font16 title i-sign">评论列表</div>
                              <div id="comm-content"></div>
                                 
                            <div id="notice_pages"></div>

@@ -1,12 +1,12 @@
 
 var totalRows = 0;
-var currPage = 1;
+var currPage = 0;
 
 
         function loadData(pageindex) {
             $("#tblist-body").children().remove();
 
-            var data = 'phoibe/document/list/'+pageindex+'/10?1=1&f=storage';
+            var data = GAL_URL+'phoibe/document/list/'+pageindex+'/10?1=1&f=storage';
 
             var docname = $("#docname").val();
             var owner = $("#owner").val();
@@ -85,6 +85,7 @@ var currPage = 1;
                         }
                         var row = "<tr><td class='row-id'>" + id + "</td><td><input type='radio' name='chksel' data-value='" + id + "'/></td><td title='" + title + "'><a href='docdetail.html?tid=" + id + "'>" + title + "</a></td><td>" + filesize + "</td><td>" + owner + "</td><td>" + auditdate + "</td><td class='" + auditstatustyle + "'>" + stockTime + "</td><td class='" + docstockstyle + "'>" + docstockstatus + "</td><td>" + auditor + "</td></tr>";
                         $("#tblist-body").append(row);
+                        parent.iframeLoad();
                     });
                 }
             });
@@ -104,7 +105,7 @@ var currPage = 1;
             , jump: function (obj, first) { 
                 if (!first) { 
                     currPage = obj.curr;
-                    loadData(obj.curr);
+                    loadData(obj.curr-1);
                 }
             }
          });
@@ -152,7 +153,7 @@ var currPage = 1;
                 var sel = $("#tblist-body tr td input[type='radio']:checked");
                 var rowid = $(sel).attr("data-value");
 
-                var data = 'phoibe/document/update/outstorage/' + rowid;
+                var data = GAL_URL+'phoibe/document/update/outstorage/' + rowid;
                 $.ajax({
                     type: 'GET',
                     url: data,

@@ -3,11 +3,13 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>个人中心</title>
+         <script src="js/data.js"></script>
     <script src="js/jquery-2.1.0.min.js"></script>
      <script src="js/percenter.js"></script>
       <script src="js/layui.js"></script>
     <link rel="stylesheet" href="css/management.css"/>
         <link rel="stylesheet" href="css/layui.css">
+<script src="js/management.js"></script>
     <style>
         .widget-box ul li a {
         padding:0px;
@@ -71,7 +73,16 @@
                 <br />
                <div class="content box_border inputblock top bg_whiteSD">
                          <div class="box_border">
-                                <a id="newfolder">新建文件夹</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="move">移动</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="del">删除</a> &nbsp;&nbsp;&nbsp;&nbsp;<div id="uploadfile"></div>                             
+                                <a id="newfolder">新建文件夹</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="move">移动</a>&nbsp;&nbsp;&nbsp;&nbsp;<a id="del">删除</a> &nbsp;&nbsp;&nbsp;&nbsp;<div id="uploadfile"></div>
+                               
+<!--                  文档状态：<select	style="margin-left:100px;" id="wartype">
+							<option value="0">全部</option>
+							<option value="101">上传中</option>
+							<option value="2 ">待审核</option>
+							<option value="3">审核通过</option>
+							<option value="4 ">审核未通过</option>
+							</select>  -->
+                                                       
                            <br />  <br />
                              <table class="tblist" border="0">
                                  <tr><th style="width:50px"></th><th>文档名称</th><th>大小</th><th>文件类型</th><th>文档标签</th><th>来源</th><th>创建时间</th><th>审批时间</th><th>状态</th><th></th></tr>
@@ -87,105 +98,6 @@
            </div>       
         </div>
     </div>
-
-<div class="bodyMask">
-	<div class="mask">
-    <span class="fullScreen"></span>
-    <div class="popup">
-        <div class="model-title fl">上传文档</div><i class="closed fr"></i>
-        <div class="clearfix"></div> 
-        <hr />
-       　 <form method="post" id="ajaxform">
-					<div class="tbl-row">
-						<div class="lable">选择文件:</div>
-						<div class="ctrl">
-							<input id="file" name="file" type="file" multiple="multiple"/>
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">标题:</div>
-						<div class="ctrl">
-							<input type="text" id="title" name="title" class="inputBox" />
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">参战国家:</div>
-						<div class="ctrl">
-							<input type="text" id="warcountry" name="warcountry" class="inputBox" />
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">类型作战:</div>
-						<div class="ctrl">
-							<select id="combat_type" name="combat_type">
-								<option value ="1">步兵</option>
-		                        <option value ="2 ">特种破击 </option>
-		                        <option value ="3">要地夺控</option>
-		                        <option value ="4 ">网电对战 </option>
-		                        <option value ="5">联合火力打击</option>
-							</select>
-						</div>
-					</div>
-					
-					<div class="tbl-row">
-						<div class="lable">参战兵种:</div>
-						<div class="ctrl">
-							<select id="arms" name="arms">
-								  <option value ="1">步兵</option>
-			                      <option value ="2">装甲兵</option>
-			                      <option value ="3">通信兵</option>
-			                      <option value ="4">炮兵</option>
-							</select>
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">参战地址:</div>
-						<div class="ctrl">
-							<input type="text" id="waraddr" name="waraddr" class="inputBox" />
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">参战时间:</div>
-						<div class="ctrl">
-							<input type="text" id="wartime" name="wartime" class="inputBox" />
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">胜利方:</div>
-						<div class="ctrl">
-							<input type="text" id="winner" name="winner" class="inputBox" />
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable">失败方:</div>
-						<div class="ctrl">
-							<input type="text" id="loser" name="loser" class="inputBox" />
-						</div>
-					</div>
-
-					<div class="tbl-row">
-						<div class="lable">伤亡人数:</div>
-						<div class="ctrl">
-							<input type="text" id="warnum" name="warnum" class="inputBox" />
-						</div>
-					</div>
-
-					<div class="tbl-row">
-						<div class="lable">摘要:</div>
-						<div class="ctrl">
-							<textarea rows="10" style="width:88%;border: 1px solid #cccccc;" id="description" name="description"></textarea>
-						</div>
-					</div>
-					<div class="tbl-row">
-						<div class="lable"></div>
-						<div class="ctrl">
-							<div id="submit" class="submit"></div>
-						</div>
-					</div>
-				</form>
-    </div>
-        </div>
-</div>
 </body>
-<script src="js/management.js"></script>
+    <script></script>
 </html>

@@ -3,11 +3,13 @@
 <head lang="en">
 <meta charset="UTF-8">
 <title>文档管理</title>
+     <script src="js/data.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/docmgr.js"></script>
 <script src="js/layui.js"></script>
 <link rel="stylesheet" href="css/management.css" />
 <link rel="stylesheet" href="css/layui.css">
+
 </head>
 <body>
 	<div id="docmgr">
@@ -17,33 +19,34 @@
 
 					<div class="bg_whiteSD box_border search inputblock">
 						<div class="plateHeader i-docmgr"></div>
-						参战国家： <input type="text" id="warstate" /> 
-						参战地点： <input type="text" id="waraddr" /> 
-						参战时间： <input type="text" id="wartime" /> 
-						&nbsp;&nbsp;胜利方：  <input	type="text" id="winner" /> 
-						&nbsp;&nbsp;失败方： <input type="text" id="loser" />
-						&nbsp;&nbsp;伤亡人数:<input type="text" id="warnum" /> 
-						
-						<div class="clearfix " id="con-value" style='padding-top: 20px;'>
-						典型作战： <select	id="wartype">
+						<div class="clearfix">
+						    <ul class="u-con-list">
+						<li class="label">战例类型：</li><li><select	id="wartype">
 							<option value="0">全部</option>
-							<option value="1">步兵</option>
-							<option value="2 ">特种破击</option>
-							<option value="3">要地夺控</option>
-							<option value="4 ">网电对战</option>
-							<option value="5">联合火力打击</option>
-						</select> 
-						作战兵种：  <select id="armtype">
+							<option value="1">西方战例</option>
+							<option value="2 ">苏军战例</option>
+							<option value="3">俄军战例</option>
+							<option value="4 ">兵种战例</option>
+							<option value="5">其他</option>
+						</select></li>
+						<li class="label">作战兵种：</li><li><select id="armtype">
 							<option value="0">全部</option>
 							<option value="1">步兵</option>
 							<option value="2">装甲兵</option>
 							<option value="3">通信兵</option>
 							<option value="4">炮兵</option>
-						</select> 
+						</select></li>
+						<li class="label">文档名称：</li><li><input type="text" id="docname" /></li>
+						<li class="label">文档作者：</li><li><input type="text" id="owner" /></li>
+						<li class="label">参战国家：</li><li><input type="text" id="warstate" /> </li>
+						<li class="label">参战地点：</li><li><input type="text" id="waraddr" /> </li>
+						<li class="label">参战时间：</li><li><input type="text" id="wartime" />  </li>
+						<li class="label">参战国家：</li><li><input type="text" id="warstate" /> </li>
+						<li class="label">胜利方：</li><li><input	type="text" id="winner" /></li>
+						<li class="label">失败方：</li><li><input type="text" id="loser" /></li>
+						<li class="label">伤亡人数:</li><li><input type="text" id="warnum" /></li>
+						</ul>
 						
-						 &nbsp;文档名称： <input type="text" id="docname" /> 
-						文档作者：<input type="text"
-							id="owner" /> 
 						</div>
 						<span class="btnSearch" id="btnSearch"></span>
 						<ul class="checkList clearfix " id="con-value">
@@ -69,7 +72,7 @@
 				<br />
 				<div class="content box_border top  bg_whiteSD">
 					<div class="box_border">
-						<div id="doc-content"></div>
+						<div id="docmgr-content"></div>
 						<div id="notice_pages"></div>
 					</div>
 				</div>

@@ -1,9 +1,9 @@
 
 var totalRows = 0;
-var currPage = 1;
+var currPage = 0;
 var wartype = "";
 function bindNearRead() {
-    var data = 'phoibe/document/list/1/10'
+    var data = GAL_URL+'phoibe/document/list/1/10'
     $.ajax({
         type: 'GET',
         url: data,
@@ -54,7 +54,7 @@ function bindNearRead() {
 function bindDym() {
         $.ajax({
             type: 'GET',
-            url: 'phoibe/document/list/1/10',
+            url: GAL_URL+'phoibe/document/list/1/10',
             dataType: 'json',
             success: function (result) {
                 var total_rows = result.data.totalCount;
@@ -109,7 +109,7 @@ function loadData(pageindex) {
 
     $("#tblist-body").children().remove();
 
-    var data = 'phoibe/document/list/' + pageindex + '/10?f=audit';
+    var data = GAL_URL+'phoibe/document/list/' + pageindex + '/10?f=audit';
     data = data + wartype;
     $.ajax({
             type: 'GET',
@@ -159,6 +159,7 @@ function loadData(pageindex) {
                    
                     var row = "<tr><td style='width:50px'><input type='radio' data-value='" + id + "' name='chksel'/></td><td><a href='docdetail.html?tid="+id+"'>" + title + "</a></td><td>" + filesize + "</td><td>" + format + "</td><td>" + tag + "</td><td>上传</td><td>" + createtime + "</td><td>" + auditdate + "</td><td class='"+auditstatustyle+"'>"+auditstatus+"</td><td></td></tr>";
                     $("#tblist-body").append(row);
+                    parent.iframeLoad();
                 });
             }
         });
@@ -179,7 +180,8 @@ function loadData(pageindex) {
                , jump: function (obj, first) { //触发分页后的回调
                    if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                        currPage = obj.curr;
-                       loadData(currPage);
+                       loadData(obj.curr - 1);
+                     
                    }
                }
             });

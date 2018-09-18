@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>文档管理</title>
 <link rel="stylesheet" href="css/management.css" />
+<script src="js/data.js"></script>
 <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/index.js"></script>
 </head>
@@ -36,16 +37,16 @@
 							<li class="checkBox">MID</li>
 						</ul>
 					</div>
-					<div class="content box_border">
+					<div class="content box_border" style="min-height:700px;">
 						<div class="box_border left">
 							<div class="box_border bg_whiteSD">
-								<div class="plateHeader jingpin"></div>
-								<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>
+								<div class="plateHeader jingpin font16 i-sign">精品专区</div>
+								<!--<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>-->
 								<div id="recom-doc"></div>
 							</div>
-							<div class="box_border bg_whiteSD">
-								<div class="plateHeader resou"></div>
-								<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>
+							<div class="box_border bg_whiteSD" style="height:420px;">
+								<div class="plateHeader resou font16 i-sign">热搜专区</div>
+								<!--<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1);margin: 8px;" width="90%" color=#4cb6d2 SIZE=3>-->
 								<div id="resou-doc"></div>
 							</div>
 						</div>
@@ -56,10 +57,10 @@
 
                             </div>
                             <div class="bg_whiteSD idx_box_list">
-                                <div class="index-head-bg">
+                                <!--<div class="index-head-bg">
                                     <img class="index-head" src="images/index-head.png"/><span class="userName">李明,你好</span>
-                                </div>
-                                <div class="font22 title">中国战法</div>
+                                </div>-->
+                                <div class="font16 title i-sign">我的文档</div>
                                 <ul class="list3" id="zgzhanfa">
                                    
                                 </ul>
@@ -67,24 +68,21 @@
                                 <div id="upload"></div>
                             </div>
                             <div class="bg_whiteSD idx_box_list">
-                                <div class="font22 title">最新动态</div>
+                                <div class="font16 title i-sign">最新动态</div>
                                    <marquee id="affiche" align="left" behavior="scroll" direction="up" height="176px" width="100%" loop="-1" scrollamount="10" scrolldelay="300" onMouseOut="this.start()" onMouseOver="this.stop()">
                                     <ul class="list3" id="lst-dym">
-
                                     </ul>
                                    </marquee>
-                                </div>
                             </div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+	    </div>
 
-
+        <div class="cleafix"></div>
+    </div>
 	<script src="js/management.js"></script>
-	<script>
-		
+   
 </body>
 </html>

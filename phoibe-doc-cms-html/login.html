@@ -4,78 +4,16 @@
     <title>登录页面</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+      <script src="js/data.js"></script>
    <script src="js/jquery-2.1.0.min.js"></script>
 <script src="js/common.js"></script>
-     <link rel="stylesheet" href="css/management.css"/>
-      <style>
-          .box_login {
-          width:300px;
-          margin:0 auto;
-          margin-top:150px;
-          border:1px solid #cccccc;
-          border-radius:4px;
-          padding:50px;
-          background:#ffffff;
-          
-          }
-          .box_login h1 {
-             font-size:26px;  
-             margin-bottom:20px;
-             text-align:center;
-             color:#226c97;
-             font-weight:bold;
-          }
-          #username,#password {
-          line-height:30px;
-          height:30px;
-          font-size:16px;
-          width:200px;
-          border:1px solid #cccccc;
-          margin-top:10px;
-          }
-          .box_login .row {
-          width:100%;
-          border-bottom:0;
-          clear:both;
-          }
-          .box_login .row label {
-              width:30%;
-              padding-top:10px;
-              line-height:30px;
-              font-size:16px;
-              float:left;
-           }
-           .box_login .row .ctrl {
-             width:70%;
-             float:right;
-           }
-
-          .box_login .btnlogin{
-          width:80px;
-          height:30px;
-          line-height:30px;
-          background:#226c97;
-          color:#ffffff;
-          margin-top:10px;
-          border-radius:5px;
-          font-size:16px;
-          cursor:pointer;
-          display:inline-block;
-          }
-        
-          .btn-command {
-          width:200px;
-          margin:0 auto;
-          margin-top:20px;
-          
-          }
-      </style>
+    <link rel="stylesheet" href="css/login.css"/>
   </head>
   <body>
-            <div class="container box_border">
-                <div class="box_border">
+            <div class="container">
+
                     <div class="box_login">
-                   <h1>文档管理管理系统</h1>
+                  
                       <!--<form action="http://127.0.0.1:8090/phoibe/userlogin" method="post">-->
                           <div class="row">
                           <label>用户名:</label>
@@ -86,22 +24,23 @@
                           <input id="password"  type="password" name="password" placeholder="请输入密码" value="" title="请输入密码"/>       
                           </div>
                           
-                          <p class="btn-command"><input type="button" class="btnlogin" id="btnlogin" value="登录"/>&nbsp;&nbsp;&nbsp;&nbsp; <input type="reset" class="btnlogin" value="清除">
-                          </p>
+                          <br />
+                          <div class="btn-command"><div class="btnlogin" id="btnlogin">登录</div>&nbsp;&nbsp;&nbsp;&nbsp; <div class="btnlogin" id="btnreset">清除</div>
+                          </div>
                    <!-- </form>-->
                 </div>
-            </div>
             </div>
   </body>
     <script>
         $(function () {
-
-            var baseUrl = "http://47.93.62.169:8090"
-            //var baseUrl = "http://127.0.0.1:8090"
+            $("#btnreset").click(function () {
+                $("#username").val("");
+                $("#password").val("");
+            });
             $("#btnlogin").click(function () {
                 var username = $("#username").val();
                 var password = $("#password").val();
-                var url = baseUrl + '/phoibe/userlogin?username=' + username + "&password=" + password;
+                var url = GAL_URL + 'phoibe/userlogin?username=' + username + "&password=" + password;
                 $.ajax({
                     type: 'POST',
                     url: url,

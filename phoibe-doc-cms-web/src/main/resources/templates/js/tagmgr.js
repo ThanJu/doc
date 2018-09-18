@@ -113,6 +113,29 @@ function loadData(pageindex) {
 
 
      }
+function formSubmit() {
+    var form = $("#ajaxform");
+
+    var formdata = {};
+    for (var i = 0; i < form.serializeArray().length; i++) {
+        var key = form.serializeArray()[i].name;
+        var value = form.serializeArray()[i].value;
+        formdata[key] = value;
+    }
+    $.ajax({
+        url: "tagManager/document/save",
+        type: form.attr("method"),
+        data: JSON.stringify(formdata),
+        dataType: "json",
+        async: false,
+        contentType: "application/json;charset=UTF-8",
+        success: function (data) {
+            if (data.success) {
+                alert("提交成功");
+            }
+        }
+    });
+}
 $(function () {
 		$("#btnadd").click(function () {
             $(".bodyMask").fadeIn();

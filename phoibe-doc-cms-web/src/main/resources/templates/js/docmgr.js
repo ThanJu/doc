@@ -1,6 +1,6 @@
 
 var totalRows = 0;
-var currPage = 1;
+var currPage = 0;
 //
 function loadData(pageindex) {
     $("#doc-content").children().remove()
@@ -12,7 +12,7 @@ function loadData(pageindex) {
     var loser = $("#loser").val();
     var warnum = $("#warnum").val();
     var owner = $("#owner").val();
-    var data = 'phoibe/document/list/'+pageindex+'/10?1=1';
+    var data = GAL_URL+'phoibe/document/list/'+pageindex+'/10?1=1';
     
     if (name!=null);
     data = data + "&name=" + name;
@@ -93,7 +93,7 @@ function loadData(pageindex) {
                          auditstatustyle = "f-red";
                      }
                      var row = "<div class='row'><a class='title' href='docdetail.html?tid="+id+"'>" + title + "</a><ul><li>上传时间:&nbsp;&nbsp;" + createtime + "</li><li>格式:&nbsp;&nbsp;" + format + "</li><li>46条评论</li><li>评分44</li><li>大小:&nbsp;&nbsp;" + filesize + "</li><li>文档拥有者:&nbsp;&nbsp;" + owner + "</li></ul></div>";
-                      $("#doc-content").append(row);
+                     $("#docmgr-content").append(row);
                  });
              }
          });
@@ -115,7 +115,8 @@ function loadData(pageindex) {
                 	
                     if (!first) { //点击跳页触发函数自身，并传递当前页：obj.curr
                         currPage = obj.curr;
-                        loadData(obj.curr-1);
+                        loadData(obj.curr - 1);
+                        parent.iframeLoad();
                     }
                 }
              });
