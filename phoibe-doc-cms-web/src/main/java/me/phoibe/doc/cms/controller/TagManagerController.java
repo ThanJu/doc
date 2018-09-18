@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TagManagerController {
 
 
-    @GetMapping ping("/tagform")
+    @GetMapping("/tagform")
     public String gettagForm(Model model) {
         model.addAttribute("phoibeTag", new PhoibeTag());
         return "greeting";
