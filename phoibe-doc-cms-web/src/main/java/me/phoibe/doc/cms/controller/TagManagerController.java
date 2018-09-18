@@ -1,5 +1,6 @@
 package me.phoibe.doc.cms.controller;
 
+import com.alibaba.fastjson.JSON;
 import me.phoibe.doc.cms.domain.po.PhoibeTag;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ public class TagManagerController {
 
     @PostMapping("/tagform")
     public String tagformSubmit(@ModelAttribute PhoibeTag phoibeTag) {
+        System.out.println("表单提交"+ JSON.toJSONString(phoibeTag));
         return "result";
     }
 }
